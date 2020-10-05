@@ -1,8 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import './App.css';
-import Home from './pages/Home/Home';
-import PageNotFound from './pages/PageNotFound/PageNotFound';
+
+import Home from './pages/Home'
+import PageNotFound from './pages/PageNotFound';
+
 import { HomeTemplate } from './templates/homeTemplate';
 
 function App() {
