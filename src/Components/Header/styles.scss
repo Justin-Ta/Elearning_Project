@@ -1,0 +1,45 @@
+@import '../../sass/theme.scss';
+
+.header {
+ background-color: $whitePrimary;
+ padding: 10px;
+ box-shadow: 10px -3px 10px;
+
+ .logo {
+     height: 40px;
+ } 
+
+ .ant-input-search {
+     border-radius: 40px;
+ }
+
+ .shopping-cart {
+    .anticon-shopping-cart {
+        font-size: 25px;
+    }
+    
+    @media (max-width: 991.98px) {
+        position: absolute;
+        right: 90px;
+    }
+ }
+ 
+ .ant-typography {
+     span {
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 40px;
+        color: $txtBlackPrimary;
+     }
+ }
+
+ .loginBtn {
+     border-color: $greenLight;
+ }
+
+ .signupBtn {
+    background-color: $greenLight;
+    border-color: $greenLight;
+ }
+
+}
