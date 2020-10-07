@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Switch } from 'react-router-dom';
+import {Route, BrowserRouter, Switch } from 'react-router-dom';
 import './App.css';
 import './sass/theme.scss';
 import Home from './pages/Home'
@@ -17,7 +17,7 @@ function App() {
       <HomeTemplate exact path='/' Component={Home}/>
       <HomeTemplate exact path='/home' Component={Home}/>
       <Route exact path='/signup' component={SignUp}/>
-      <Route exact path='/login/' component={Login}/>
+      <Route exact path='/login' component={Login}/>
       <HomeTemplate exact path='*' Component={PageNotFound}/>
     </Switch>
     </BrowserRouter>

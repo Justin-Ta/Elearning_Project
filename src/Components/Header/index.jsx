@@ -1,7 +1,7 @@
 import React from 'react';
 import { Input, Button, Typography } from 'antd';
 import { ShoppingCartOutlined } from '@ant-design/icons';
-
+import { NavLink } from 'react-router-dom'
 import './styles.scss';
 
 const { Link, Text } = Typography;
@@ -31,18 +31,14 @@ export default function Header() {
                             />
                         </li>
                         <li className="nav-item ml-3 my-2">
-                            <a href="#">
-                                <Button className="loginBtn">
-                                    Log in
-                                </Button>
-                            </a>
+                            <Button className="loginBtn">
+                                <NavLink to="/login">Log in</NavLink>
+                            </Button>
                         </li>
                         <li className="nav-item ml-3 my-2">
-                            <a href="#">
-                                <Button type="primary" className="signupBtn">
-                                    Sign up
+                            <Button type="primary" className="signupBtn">
+                                <NavLink to="/signup">Sign up</NavLink>
                             </Button>
-                            </a>
                         </li>
                     </ul>
                 </div>
