@@ -1,0 +1,23 @@
+.bg{
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 100vh;
+    .inputSignUp{
+        width: 65vh;
+        border:  0px solid white;
+        background: rgba(0, 0, 0, 0.7);
+        border-radius: 10px;
+        margin: 0 auto;
+        padding:30px;
+
+        h2{
+            color: palevioletred;
+        }
+        p{
+            color:white;
+        }
+    }
+}
+
+
