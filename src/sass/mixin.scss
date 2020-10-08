@@ -1,0 +1,65 @@
+//-----MIXIN: text, button, table, input-----
+@mixin Text($color,$fs,$fw) {
+    color: $color;
+    font-size: $fs;
+    font-weight: $fw;
+}
+
+@mixin btn($bg,$border,$borderRadius,$padding) {
+    background-color: $bg;
+    border: $border;
+    border-radius: $borderRadius;
+    padding: $padding;
+    text-align: center;
+}
+
+@mixin btnSecondary($padding) {
+    background-color: $secondary;
+    border: none;
+    border-radius: 5px;
+    padding: $padding;
+    color: $textWhite;
+    font-weight: $fwBold;
+    font-size: $h6;
+    text-align: center;
+
+    &:hover {
+        background-color: $darkSecondary;
+        color: $textWhite;
+        text-decoration: none;
+    }
+}
+
+@mixin btnTransparent($padding) {
+    background-color: transparent;
+    border: 1px solid $textSecondary;
+    border-radius: 3px;
+    padding: $padding;
+    color: $textSecondary;
+    font-weight: $fwMedium;
+    font-size: $subtitle;
+    text-align: center;
+}
+
+@mixin tag($bg) {
+    background-color: $bg;
+    border-radius: 5px;
+    padding: 2px 3px;
+    color: $textPrimary;
+    font-weight: $fwBold;
+    font-size: $body2;
+    text-align: center;
+}
+
+@mixin position($position, $top, $left, $index) {
+    position: $position;
+    top: $top;
+    left: $left;
+    z-index: $index;
+}
+
+@mixin mediaQuery($size) {
+    @media screen  and (max-width:$size){
+        @content;
+    }
+}

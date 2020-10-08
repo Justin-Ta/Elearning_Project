@@ -1,7 +1,6 @@
 import React from 'react';
+import './App.scss';
 import {Route, BrowserRouter, Switch } from 'react-router-dom';
-import './App.css';
-import './sass/theme.scss';
 import Home from './pages/Home'
 import Login from './pages/Login';
 import PageNotFound from './pages/PageNotFound';
@@ -9,6 +8,7 @@ import SignUp from './pages/SignUp';
 import {HomeTemplate} from './templates/homeTemplate'
 // import { HomeTemplate } from './templates/homeTemplate';
 import 'antd/dist/antd.css';
+
 
 function App() {
   return (

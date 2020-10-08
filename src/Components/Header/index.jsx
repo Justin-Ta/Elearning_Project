@@ -1,10 +1,9 @@
 import React from 'react';
 import { Input, Button, Typography } from 'antd';
 import { ShoppingCartOutlined } from '@ant-design/icons';
-import { NavLink } from 'react-router-dom'
-import './styles.scss';
+import { NavLink } from 'react-router-dom';
 
-const { Link, Text } = Typography;
+const { Link } = Typography;
 const { Search } = Input;
 
 
