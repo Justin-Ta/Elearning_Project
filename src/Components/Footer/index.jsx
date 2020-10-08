@@ -6,8 +6,8 @@ export default function Footer() {
             <div className="footer__container">
                 <div className="footer__container__info">
                     <div className="footer__container__info__col">
-                        <a href="#a">Udemy for Business</a>
-                        <a href="#a">Teach on Udemy</a>
+                        <a href="#a">E-learning for Business</a>
+                        <a href="#a">Teach on E-learning</a>
                         <a href="#a">Get the app</a>
                         <a href="#a">About us</a>
                         <a href="#a">Contact us</a>
