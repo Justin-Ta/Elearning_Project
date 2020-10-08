@@ -1,10 +1,11 @@
 import React from 'react';
 import { BrowserRouter, Switch } from 'react-router-dom';
-import './App.css';
+import './App.scss';
 import Home from './pages/Home'
 import PageNotFound from './pages/PageNotFound';
 import { HomeTemplate } from './templates/homeTemplate';
 import 'antd/dist/antd.css';
+
 
 function App() {
   return (

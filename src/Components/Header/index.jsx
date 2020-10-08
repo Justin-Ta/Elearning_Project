@@ -2,8 +2,6 @@ import React from 'react';
 import { Input, Button, Typography } from 'antd';
 import { ShoppingCartOutlined } from '@ant-design/icons';
 
-import './styles.scss';
-
 const { Link, Text } = Typography;
 const { Search } = Input;
 
