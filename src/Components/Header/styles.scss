@@ -9,6 +9,7 @@
 
  .ant-input-search {
      border-radius: 40px;
+     width: 500px;
  }
 
  .shopping-cart {
@@ -33,11 +34,22 @@
 
  .loginBtn {
      border-color: $greenLight;
+     color: $greenLight;
+
+     &:hover {
+        border-color: $greenPrimary;
+        color: $greenPrimary;
+     }
  }
 
  .signupBtn {
     background-color: $greenLight;
     border-color: $greenLight;
+
+    &:hover {
+        border-color: $greenPrimary;
+        background-color: $greenPrimary;
+     }
  }
 
 }

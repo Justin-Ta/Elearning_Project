@@ -1,9 +1,10 @@
-import React from 'react'
+import React from 'react';
+import TrendingCourses from '../../Components/TrendingCourses';
 
 export default function Home() {
     return (
         <div>
-           Home
+            <TrendingCourses />
         </div>
     )
 }

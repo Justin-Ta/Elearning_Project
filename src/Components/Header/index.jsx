@@ -26,7 +26,6 @@ export default function Header() {
                             <Search
                                 placeholder="input search text"
                                 onSearch={value => console.log(value)}
-                                style={{ width: 300 }}
                             />
                         </li>
                         <li className="nav-item ml-3 my-2">
@@ -42,7 +41,7 @@ export default function Header() {
                     </ul>
                 </div>
                 <div className="ml-3 my-2 shopping-cart">
-                        <ShoppingCartOutlined />
+                    <ShoppingCartOutlined />
                 </div>
             </nav>
         </div>

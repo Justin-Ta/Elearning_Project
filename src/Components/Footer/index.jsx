@@ -3,7 +3,8 @@ import React from 'react';
 export default function Footer() {
     return (
         <footer className="footer">
-            <div className="footer__container">
+            <hr/>
+            <div className="footer__container container">
                 <div className="footer__container__info">
                     <div className="footer__container__info__col">
                         <a href="#a">E-learning for Business</a>

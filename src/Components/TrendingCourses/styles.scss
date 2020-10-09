@@ -1,0 +1,24 @@
+.trendingCourses {
+    .popularCourses {
+        width: 165px;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid $txtBlackPrimary;
+        @include Text($txtBlackPrimary, $h6, $fwBold);
+    }
+
+    .ant-pagination {
+        text-align: center;
+
+        .ant-pagination-item-active,
+        .ant-pagination-item-active a {
+            border-color: $greenLight;
+            color: $greenLight;
+        }
+
+        .ant-pagination-item:hover {
+            color: $greenLight;
+            border-color: $greenLight;
+        }
+    }
+}
