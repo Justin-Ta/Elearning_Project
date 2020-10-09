@@ -1,6 +1,5 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import './styling.scss';
 
 export default function Login() {
    let backGround=[
@@ -13,7 +12,8 @@ export default function Login() {
         {src: '/img/bg_7.png'},
     ]
     return (
-        <div className="bg" style={{backgroundImage: `url(${backGround[Math.floor(Math.random()*7)].src})`}}>
+        <div className="login">
+            <div className="bg" style={{backgroundImage: `url(${backGround[Math.floor(Math.random()*7)].src})`}}>
             <div className="container pt-5">
             <div className="inputSignUp">
             <h2 className="text-center">ĐĂNG NHẬP</h2>
@@ -32,9 +32,10 @@ export default function Login() {
                 <NavLink to="/signup" className="btn btn-primary m-2">Đăng Ký</NavLink>
             </div>
             </div>
-            
         </div>
         </div>
+        </div>
+        
         
     )
 }

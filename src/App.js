@@ -20,7 +20,7 @@ function App() {
       <Route exact path='/login' component={Login}/>
       <HomeTemplate exact path='*' Component={PageNotFound}/>
     </Switch>
-    </BrowserRouter>
+    </BrowserRouter> 
   );
 }
 
