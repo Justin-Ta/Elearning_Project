@@ -1,7 +1,11 @@
 @import '../src/sass/theme.scss';
 @import './sass/mixin.scss';
 
+// Components
 @import './Components/Header/styles.scss';
 @import './Components/Footer/styles.scss';
+@import './Components/BackToTop/styling.scss';
+
+// Pages
 @import './pages/Login/styling.scss';
 @import './pages/SignUp/styling.scss';

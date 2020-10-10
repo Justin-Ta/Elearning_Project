@@ -2,6 +2,8 @@ import React from 'react';
 import { Input, Button, Typography } from 'antd';
 import { ShoppingCartOutlined } from '@ant-design/icons';
 import { NavLink } from 'react-router-dom';
+import ScrollToTop from '../BackToTop';
+
 
 const { Link } = Typography;
 const { Search } = Input;
@@ -45,6 +47,7 @@ export default function Header() {
                         <ShoppingCartOutlined />
                 </div>
             </nav>
+            <ScrollToTop/>
         </div>
     )
 }
