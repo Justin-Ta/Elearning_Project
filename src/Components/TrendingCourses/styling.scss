@@ -1,10 +1,11 @@
 .trendingCourses {
+    
     .popularCourses {
         width: 165px;
         margin-bottom: 20px;
         padding-bottom: 10px;
-        border-bottom: 2px solid $txtBlackPrimary;
-        @include Text($txtBlackPrimary, $h6, $fwBold);
+        border-bottom: 2px solid $brownPrimary;
+        @include Text($txtBrownLight, $h6, $fwBold);
     }
 
     .ant-pagination {

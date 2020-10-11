@@ -3,13 +3,13 @@ import { NavLink } from 'react-router-dom';
 
 export default function Login() {
    let backGround=[
-        {src: '/img/bg_1.png'},
-        {src: '/img/bg_2.png'},
-        {src: '/img/bg_3.jpg'},
-        {src: '/img/bg_4.png'},
-        {src: '/img/bg_5.png'},
-        {src: '/img/bg_6.png'},
-        {src: '/img/bg_7.png'},
+        {src: './img/bgLoginPage/bg_1.png'},
+        {src: './img/bgLoginPage/bg_2.png'},
+        {src: './img/bgLoginPage/bg_3.jpg'},
+        {src: './img/bgLoginPage/bg_4.png'},
+        {src: './img/bgLoginPage/bg_5.png'},
+        {src: './img/bgLoginPage/bg_6.png'},
+        {src: './img/bgLoginPage/bg_7.png'},
     ]
     return (
         <div className="login">

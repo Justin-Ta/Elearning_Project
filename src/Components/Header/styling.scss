@@ -1,23 +1,32 @@
 .header {
- background-color: $whitePrimary;
- padding: 10px;
- box-shadow: 10px -3px 10px;
-
+background-color: $whitePrimary;
+padding: 10px;
+box-shadow: 0px -3px 10px;
+position: relative;
+z-index: 1000;
  .logo {
      height: 40px;
  } 
 
  .ant-input-search {
      border-radius: 40px;
-     width: 500px;
+     width: 400px;
+
+     @include mediaQuery($md) {
+        width: 100%;
+        order: 3;
+        margin: 10px 0 0 0;
+     }
  }
 
  .shopping-cart {
+    top: 10px;
+
     .anticon-shopping-cart {
         font-size: 25px;
     }
     
-    @media (max-width: 991.98px) {
+    @include mediaQuery($lg) {
         position: absolute;
         right: 90px;
     }

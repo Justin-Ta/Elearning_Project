@@ -8,7 +8,9 @@ export default class CourseList extends Component {
         let CourseItems = [];
         for (let i = 0; i < 10; i++) {
             CourseItems.push(
-                <Col span={6} key={i}>
+                <Col
+                className="col-layout"
+                 key={i}>
                     <CourseItem />
                 </Col>
             );

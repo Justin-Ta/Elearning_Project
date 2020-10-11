@@ -1,0 +1,19 @@
+.carousel {
+    .ant-card {
+        width: 300px;
+        position: absolute;
+        top: 10%;
+        left: 5%;
+        z-index: 1000;
+
+        @include mediaQuery($md) {
+            margin-top: 50px;
+            text-align: center;
+            width: 100%;
+            position: relative;
+            top: 0;
+            left: 0;
+            background-color: $greyLight;
+        }
+    }
+}
