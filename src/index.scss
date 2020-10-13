@@ -1,11 +1,15 @@
 @import '../src/sass/theme.scss';
 @import './sass/mixin.scss';
 
+// Components
 @import './Components/Header/styling.scss';
 @import './Components/Footer/styling.scss';
 @import './Components/CourseItem/styling.scss';
 @import './Components/CourseList/styling.scss';
 @import './Components/Carousel/styling.scss';
 @import './Components/TrendingCourses/styling.scss';
+@import './Components/BackToTop/styling.scss';
+
+// Pages
 @import './pages/Login/styling.scss';
 @import './pages/SignUp/styling.scss';
