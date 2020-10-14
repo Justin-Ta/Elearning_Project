@@ -1,0 +1,14 @@
+.pageNotFound{
+    h2{
+        font-size: $h3;
+    }
+    p{
+        font-size: $h4;
+    }
+    button{
+        border: 3px solid $greenLight;
+        border-radius: 15px;
+        font-size: $h3;
+
+    }
+}

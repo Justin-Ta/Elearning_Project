@@ -1,5 +1,4 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
+import React from 'react';
 
 export default function SignUp() {
     let backGround = [
@@ -16,36 +15,35 @@ export default function SignUp() {
             <div className="bg" style={{ backgroundImage: `url(${backGround[Math.floor(Math.random() * 7)].src})` }}>
                 <div className="container pt-5">
                     <div className="inputSignUp">
-                        <h2 className="text-center">ĐĂNG KÝ</h2>
+                        <h2 className="text-center">SIGN IN</h2>
                         <div className="form-group">
-                            <p>Tài Khoản</p>
-                            <input name="userName" className="form-control" />
+                            <p>User Name</p>
+                            <input name="userName" className="form-control" placeholder="Type your username"/>
                         </div>
 
                         <div className="form-group">
-                            <p>Mật Khẩu</p>
-                            <input name="passWord" className="form-control" />
+                            <p>Password</p>
+                            <input name="passWord" className="form-control" placeholder="Type your password"/>
                         </div>
 
                         <div className="form-group">
-                            <p>Nhập Lại Mật Khẩu</p>
-                            <input name="rePassWord" className="form-control" />
+                            <p>Retype Password</p>
+                            <input name="rePassWord" className="form-control" placeholder="Retype your password"/>
                         </div>
 
                         <div className="form-group">
-                            <p>Họ Tên</p>
-                            <input name="name" className="form-control" />
+                            <p>Name</p>
+                            <input name="name" className="form-control" placeholder="Type your name"/>
                         </div>
 
 
                         <div className="form-group">
-                            <p>Số điện thoại</p>
-                            <input name="phone" className="form-control" />
+                            <p>Phone Number</p>
+                            <input name="phone" className="form-control" placeholder="Type your phone number"/>
                         </div>
 
                         <div className="form-group text-center">
-                            <button className="btn btn-success m-2">Đăng Ký</button>
-                            <NavLink to="/login" className="btn btn-primary m-2">Đăng Nhập</NavLink>
+                            <button className="form-control btn-primary my-3">Sign In</button>
                         </div>
                     </div>
                 </div>
