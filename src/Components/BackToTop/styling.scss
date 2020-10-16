@@ -1,0 +1,19 @@
+.scroll__to__top{
+    .backToTopButton{
+        position: fixed;
+        right: 30px;
+        bottom: 110px;
+        border: 1px solid $greenLight;
+        border-radius: 50%;
+        background-color: $greenLight;
+        width: 45px;
+        height: 45px;
+        text-align: center;
+        line-height: 35px;
+        img{
+            width: 30px;
+            height: 30px;   
+            
+        }
+    }
+}

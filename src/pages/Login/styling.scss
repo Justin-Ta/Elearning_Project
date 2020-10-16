@@ -4,19 +4,33 @@
         background-repeat: no-repeat;
         background-position: center;
         min-height: 100vh;
-        .inputSignUp{
+        .inputLogin{
             width: 65vh;
             border:  0px solid white;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.8);
             border-radius: 10px;
             margin: 0 auto;
             padding:30px;
-    
+
             h2{
                 color: $txtOrangePrimary;
             }
-            p{
+            p,i{
                 color:$txtWhitePrimary;
+                font-size: $h4;
+            }
+            button{
+                font-size: $h4;
+            }
+            input{
+                font-size: $h4;
+                background-color: transparent;
+                color:$txtWhitePrimary;
+                box-shadow: none;
+                &:focus{
+                    background-color: $whitePrimary;
+                    color:$txtBlackPrimary;
+                }
             }
         }
     }

@@ -1,6 +1,7 @@
 @import '../src/sass/theme.scss';
 @import './sass/mixin.scss';
 
+// Components
 @import './Components/Header/styling.scss';
 @import './Components/Footer/styling.scss';
 @import './Components/CourseItem1/styling.scss';
@@ -11,6 +12,10 @@
 @import './Components/Categories/styling.scss';
 @import './Components/RatingStars/styling.scss';
 @import './Components/BreadcrumbList/styling.scss';
+@import './Components/BackToTop/styling.scss';
+
+// Pages
 @import './pages/Login/styling.scss';
 @import './pages/SignUp/styling.scss';
+@import './pages/PageNotFound/styling.scss';
 @import './pages/Search/styling.scss';

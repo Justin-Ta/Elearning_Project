@@ -15,22 +15,22 @@ export default function Login() {
         <div className="login">
             <div className="bg" style={{backgroundImage: `url(${backGround[Math.floor(Math.random()*7)].src})`}}>
             <div className="container pt-5">
-            <div className="inputSignUp">
-            <h2 className="text-center">ĐĂNG NHẬP</h2>
+            <div className="inputLogin">
+            <h2 className="text-center">LOGIN</h2>
             <div className="form-group">
-                <p>Tài Khoản</p>
-                <input name="userName" className="form-control" />
+                <p>User Name</p>
+                <input name="userName" className="form-control" placeholder="Type your username"/>
             </div>
 
             <div className="form-group">
-                <p>Mật Khẩu</p>
-                <input name="passWord" className="form-control" />
+                <p>Password</p>
+                <input name="passWord" className="form-control" placeholder="Type your password"/>
             </div>
 
             <div className="form-group text-center">
-                <button className="btn btn-success m-2">Đăng Nhập</button>
-                <NavLink to="/signup" className="btn btn-primary m-2">Đăng Ký</NavLink>
+                <button className="btn btn-success form-control my-3">Login</button>
             </div>
+            <p className="text-center">Don't have an account? <NavLink to="/signup">Sign in</NavLink></p>
             </div>
         </div>
         </div>
