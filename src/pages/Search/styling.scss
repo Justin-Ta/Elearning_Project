@@ -1,12 +1,4 @@
-.trendingCourses {    
-    .popularCourses {
-        width: 165px;
-        margin-bottom: 20px;
-        padding-bottom: 10px;
-        border-bottom: 2px solid $brownPrimary;
-        @include Text($txtBrownLight, $h6, $fwBold);
-    }
-
+.search {
     .ant-pagination {
         text-align: center;
 

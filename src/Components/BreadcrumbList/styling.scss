@@ -1,0 +1,15 @@
+.ant-breadcrumb a
+{
+    color: $txtBrownPrimary;
+    font-size: 1rem;
+}
+
+.ant-breadcrumb-link > a {
+    &.active {
+        color: $greenDark;
+    }
+}
+
+.ant-breadcrumb .ant-breadcrumb-link > a:hover {
+    color: $greenLight;
+}

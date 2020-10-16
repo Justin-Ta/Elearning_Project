@@ -1,17 +1,17 @@
-import React, { Component } from 'react'
-import CourseItem from '../../Components/CourseItem'
+import React, { Component } from 'react';
+import CourseItem1 from '../CourseItem1';
 import { Row, Col } from 'antd';
 
-export default class CourseList extends Component {
+export default class CourseList1 extends Component {
 
     renderCoursesItem() {
         let CourseItems = [];
         for (let i = 0; i < 10; i++) {
             CourseItems.push(
                 <Col
-                className="col-layout"
+                 className="col-layout"
                  key={i}>
-                    <CourseItem />
+                    <CourseItem1 />
                 </Col>
             );
         }
@@ -20,7 +20,7 @@ export default class CourseList extends Component {
 
     render() {
         return (
-            <div className="courseList">
+            <div className="courseList1">
                 <Row gutter={[16, 30]}>
                     {this.renderCoursesItem()}
                 </Row>

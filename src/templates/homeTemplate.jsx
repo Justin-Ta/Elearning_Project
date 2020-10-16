@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react'
+import React, {Fragment} from 'react';
 import {Route} from 'react-router-dom';
 import Header from '../Components/Header';
 import Footer from '../Components/Footer';

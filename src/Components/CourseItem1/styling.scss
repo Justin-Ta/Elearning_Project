@@ -1,6 +1,10 @@
-.courseList {
+.courseItem1 {
     .ant-card-body {
         padding: 15px;
+    }
+
+    .ratingCore{
+        @include Text($txtBrownLight, $body2, $fwLight);
     }
 
     .title {
@@ -24,6 +28,7 @@
     .price {
         @include Text($txtBlackPrimary, $h6, $fwBold);
         line-height: 25px;
+        margin-bottom: 5px;
 
         span {
             padding-left: 10px;
