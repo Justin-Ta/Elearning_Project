@@ -5,7 +5,16 @@ box-shadow: 0px -3px 10px;
 position: relative;
 z-index: 1000;
  .logo {
+     img {
      height: 40px;
+     }
+
+     span {
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 40px;
+        color: $txtBlackPrimary;
+     }
  } 
 
  .ant-input-search {
@@ -30,15 +39,6 @@ z-index: 1000;
         position: absolute;
         right: 90px;
     }
- }
- 
- .ant-typography {
-     span {
-        font-size: 20px;
-        font-weight: 600;
-        line-height: 40px;
-        color: $txtBlackPrimary;
-     }
  }
 
  .loginBtn {

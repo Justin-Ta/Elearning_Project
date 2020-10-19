@@ -1,30 +1,26 @@
-import React, { Component } from 'react';
+import React from 'react';
 import CourseItem1 from '../CourseItem1';
 import { Row, Col } from 'antd';
 
-export default class CourseList1 extends Component {
 
-    renderCoursesItem() {
-        let CourseItems = [];
-        for (let i = 0; i < 10; i++) {
-            CourseItems.push(
-                <Col
-                 className="col-layout"
-                 key={i}>
-                    <CourseItem1 />
-                </Col>
-            );
-        }
-        return CourseItems;
-    }
+export default function CourseList1(props) {
 
-    render() {
+    const courseItems = props.courses.map( (course, index) => {
         return (
-            <div className="courseList1">
-                <Row gutter={[16, 30]}>
-                    {this.renderCoursesItem()}
-                </Row>
-            </div>
+            <Col lg={6} sm={12} xs={24} key={index}>
+                <CourseItem1 course={course}/>
+            </Col>
         )
-    }
+    });
+
+    console.count("CourseList1");
+    return (
+        <div className="courseList1">
+                <Row gutter={[16, 30]}>
+                    {courseItems}
+                </Row>
+        </div>
+    )
 }
+
+

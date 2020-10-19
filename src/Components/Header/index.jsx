@@ -1,22 +1,20 @@
 import React from 'react';
-import { Input, Button, Typography } from 'antd';
+import { Input, Button } from 'antd';
 import { ShoppingCartOutlined } from '@ant-design/icons';
 import { NavLink } from 'react-router-dom';
 import ScrollToTop from '../BackToTop';
-
-
-const { Link } = Typography;
 const { Search } = Input;
 
 
 export default function Header() {
+
     return (
         <div className="header">
             <nav className="navbar navbar-expand-lg navbar-light">
-                <Link href="#a" target="_blank" className="mr-3">
-                    <img className="logo" src="./img/icon/icon_ELearning.ico" alt="" />
+                <NavLink to={"/"} className="mr-3 logo">
+                    <img src="./img/icon/icon_ELearning.ico" alt="logo" />
                     <span>Learning</span>
-                </Link>
+                </NavLink>
                 <Search className=""
                     placeholder="Search for anything"
                     onSearch={value => console.log(value)}
@@ -50,3 +48,5 @@ export default function Header() {
         </div>
     )
 }
+
+

@@ -4,10 +4,21 @@ import './index.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import configStore from './redux/configStore';
+
+const store = createStore(
+  configStore,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
+
 ReactDOM.render(
-  //<React.StrictMode>
-    <App />
-  //</React.StrictMode>
+  // <React.StrictMode>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  // </React.StrictMode>
   ,
   document.getElementById('root')
 );
