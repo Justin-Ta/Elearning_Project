@@ -1,0 +1,10 @@
+.courseList2 {
+    .ant-card {
+    display: flex;
+    }
+
+    .ant-card-bordered .ant-card-cover {
+        margin: 0;
+        transform: none;
+    }
+}

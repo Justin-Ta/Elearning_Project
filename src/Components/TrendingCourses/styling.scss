@@ -1,5 +1,14 @@
-.trendingCourses {
-    
+.trendingCourses {    
+    .ant-spin-spinning {
+        color: $orangeDark;
+        display: block;
+        margin: 20px auto;
+        
+        .ant-spin-dot i {
+            background-color: $orangeDark;
+        }
+    }
+
     .popularCourses {
         width: 165px;
         margin-bottom: 20px;

@@ -1,0 +1,16 @@
+.search {
+    .ant-pagination {
+        text-align: center;
+
+        .ant-pagination-item-active,
+        .ant-pagination-item-active a {
+            border-color: $greenLight;
+            color: $greenLight;
+        }
+
+        .ant-pagination-item:hover {
+            color: $greenLight;
+            border-color: $greenLight;
+        }
+    }
+}

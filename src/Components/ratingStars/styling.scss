@@ -1,0 +1,15 @@
+.ratingStars {
+    display: inline-block;
+    padding-right: 7.5px;
+    
+    img.star {
+        display: inline-block;
+        width: 15px;
+    }
+    img.halfstar {
+        display: inline-block;
+        width: 7.5px;
+    }
+}
+
+
