@@ -1,0 +1,19 @@
+.courseDetail{
+    .courseDetail_header{
+        background: url('/img/education-bg.jpg');
+        background-size: cover;
+        background-repeat: none;
+        background-attachment: fixed;
+        height: 45vh;
+        h2, p{
+            color: $whitePrimary;
+        }
+        span{
+            color: $txtyellow;
+        }
+        .courseImg{
+            width: 300px;
+            height: 200px;
+        }
+    }
+}

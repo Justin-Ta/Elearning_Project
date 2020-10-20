@@ -1,14 +1,17 @@
 .pageNotFound{
+    img{
+        width: 40%;
+    }
     h2{
         font-size: $h3;
     }
     p{
-        font-size: $h4;
+        font-size: $h5;
     }
     button{
         border: 3px solid $greenLight;
         border-radius: 15px;
-        font-size: $h3;
+        font-size: $h4;
 
     }
 }

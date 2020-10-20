@@ -17,13 +17,16 @@
             }
             p,i{
                 color:$txtWhitePrimary;
-                font-size: $h4;
+                font-size: $h6;
             }
             button{
-                font-size: $h4;
+                font-size: $h6;
+            }
+            span{
+                width: 40px;
             }
             input{
-                font-size: $h4;
+                font-size: $h6;
                 background-color: transparent;
                 color:$txtWhitePrimary;
                 box-shadow: none;
