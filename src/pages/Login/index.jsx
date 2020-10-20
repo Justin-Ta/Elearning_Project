@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 export default function Login() {
    let backGround=[
-        {src: './img/bgLoginPage/bg_1.png'},
+        {src: './img/E-learning-and-education-bg.jpeg'},
         {src: './img/bgLoginPage/bg_2.png'},
         {src: './img/bgLoginPage/bg_3.jpg'},
         {src: './img/bgLoginPage/bg_4.png'},
@@ -17,14 +17,18 @@ export default function Login() {
             <div className="container pt-5">
             <div className="inputLogin">
             <h2 className="text-center">LOGIN</h2>
-            <div className="form-group">
-                <p>User Name</p>
-                <input name="userName" className="form-control" placeholder="Type your username"/>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span className="input-group-text bg-dark" id="basic-addon1"><i class="fa fa-user"></i></span>
+                </div>
+                <input type="text" name="userName" className="form-control" placeholder="Type your username" ariaLabel="Username" ariaDescribedby="basic-addon1"/>
             </div>
 
-            <div className="form-group">
-                <p>Password</p>
-                <input name="passWord" className="form-control" placeholder="Type your password"/>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span className="input-group-text bg-dark" id="basic-addon1"><i class="fa fa-lock"></i></span>
+                </div>
+                <input type="text" name="passWord" className="form-control" placeholder="Type your password" ariaLabel="Username" ariaDescribedby="basic-addon1"/>
             </div>
 
             <div className="form-group text-center">

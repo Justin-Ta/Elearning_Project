@@ -16,30 +16,46 @@ export default function SignUp() {
                 <div className="container pt-5">
                     <div className="inputSignUp">
                         <h2 className="text-center">SIGN IN</h2>
-                        <div className="form-group">
-                            <p>User Name</p>
-                            <input name="userName" className="form-control" placeholder="Type your username"/>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span className="input-group-text bg-dark" id="basic-addon1"><i class="fa fa-user"></i></span>
+                            </div>
+                            <input type="text" name="userName" className="form-control" placeholder="Type your username" ariaLabel="Username" ariaDescribedby="basic-addon1"/>
                         </div>
 
-                        <div className="form-group">
-                            <p>Password</p>
-                            <input name="passWord" className="form-control" placeholder="Type your password"/>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span className="input-group-text bg-dark" id="basic-addon1"><i class="fa fa-lock"></i></span>
+                            </div>
+                            <input type="text" name="passWord" className="form-control" placeholder="Type your password" ariaLabel="Username" ariaDescribedby="basic-addon1"/>
                         </div>
 
-                        <div className="form-group">
-                            <p>Retype Password</p>
-                            <input name="rePassWord" className="form-control" placeholder="Retype your password"/>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span className="input-group-text bg-dark" id="basic-addon1"><i class="fa fa-lock"></i></span>
+                            </div>
+                            <input type="text" name="rePassWord" className="form-control" placeholder="Retype your password" ariaLabel="Username" ariaDescribedby="basic-addon1"/>
                         </div>
 
-                        <div className="form-group">
-                            <p>Name</p>
-                            <input name="name" className="form-control" placeholder="Type your name"/>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span className="input-group-text bg-dark" id="basic-addon1"><i class="fa fa-user-circle"></i></span>
+                            </div>
+                            <input type="text" name="name" className="form-control" placeholder="Type your name" ariaLabel="Username" ariaDescribedby="basic-addon1"/>
                         </div>
 
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span className="input-group-text bg-dark" id="basic-addon1"><i class="fa fa-phone"></i></span>
+                            </div>
+                            <input type="phone" name="phone" className="form-control" placeholder="Type your phone number" ariaLabel="Username" ariaDescribedby="basic-addon1"/>
+                        </div>
 
-                        <div className="form-group">
-                            <p>Phone Number</p>
-                            <input name="phone" className="form-control" placeholder="Type your phone number"/>
+                         <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span className="input-group-text bg-dark" id="basic-addon1"><i class="fa fa-at"></i></span>
+                            </div>
+                            <input type="email" name="email" className="form-control" placeholder="Type your email" ariaLabel="Username" ariaDescribedby="basic-addon1"/>
                         </div>
 
                         <div className="form-group text-center">
