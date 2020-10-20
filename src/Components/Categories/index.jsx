@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Card, Col, Row } from 'antd';
 import { Link } from 'react-router-dom';
-import { categoryNames } from '../../constant/categoryName';
+import { categoryNames } from '../../constant/common';
 
 export default class Categories extends Component {
     renderCategory() {
