@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card } from 'antd';
-import RatingStars from '../RatingStars';
+import RatingStars from '../ratingStars';
 
 export default function CourseItem1(props) {
     console.count("CourseItem1");
