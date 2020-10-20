@@ -1,22 +1,58 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React, { Component } from 'react'
 
-const Modal = ({ isShowing, hide }) => isShowing ? ReactDOM.createPortal(
-  <React.Fragment>
-    <div className="modal-overlay"/>
-    <div className="modal-wrapper" aria-modal aria-hidden tabIndex={-1} role="dialog">
-      <div className="modal">
-        <div className="modal-header">
-          <button type="button" className="modal-close-button" data-dismiss="modal" aria-label="Close" onClick={hide}>
-            <span aria-hidden="true">&times;</span>
-          </button>
+export default class Modal extends Component {
+  render() {
+    return (
+      <div className="modal fade bd-example-modal-lg" tabIndex={-1} role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div className="modal-dialog modal-lg" role="document">
+    <div className="modal-content">
+      <div className="modal-header">
+        <h5 className="modal-title" id="exampleModalLabel">Add Course</h5>
+        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div className="modal-body">
+      <div className="row">
+        <div className="col-6">
+          <div className='form-group'>
+          <label for="exampleFormControlSelect1">Course Kind</label>
+            <select class="form-control" id="exampleFormControlSelect1">
+              <option>Development</option>
+              <option>Marketing</option>
+              <option>Business</option>
+              <option>Design</option>
+              <option>Music</option>
+              <option>Personal development</option>
+            </select>
+          </div>
         </div>
-        <p>
-          Hello, I'm a modal.
-        </p>
+        <div className="col-6">
+          <div className='form-group'>
+            <label for="exampleInputCourseName">Course Name</label>
+            <input className="form-control"/>
+          </div>
+        </div>
+      </div>
+      <div className='form-group'>
+        <label for="exampleInputPhotp">Course Photo</label>
+        <input className="form-control"/>
+      </div>
+      <div className='form-group'>
+        <label for="exampleFormControlTextarea">Description</label>
+        <textarea className='form-control'/>
+      </div>
+      </div>
+      <div className="modal-footer">
+        <button type="button" className="btn btn-secondary" data-dismiss="modal">CLOSE</button>
+        <button type="button" className="btn btn-primary">ADD</button>
       </div>
     </div>
-  </React.Fragment>, document.body
-) : null;
+  </div>
+</div>
 
-export default Modal;
+
+
+    )
+  }
+}
