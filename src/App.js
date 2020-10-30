@@ -8,14 +8,15 @@ import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import Search from './pages/Search';
 import CategoryDetail from './pages/CategoryDetail';
-import CourseManagement from './pages/CourseManagement';
-import UserManagement from './pages/UserManagement';
+import CourseManagement from './pages/Admin/CourseManagement';
+import UserManagement from './pages/Admin/UserManagement';
 import CourseDetail from './pages/CourseDetail';
 import PageNotFound from './pages/PageNotFound';
 import {HomeTemplate} from './templates/homeTemplate'
 import { AdminTemplate } from './templates/AdminTemplate';
-
-
+import Pendingrequest from './pages/PendingCourse';
+import Term from './pages/Term';
+import ForgotPassword from './pages/FogotPassWord';
 
 
 function App() {
@@ -27,12 +28,14 @@ function App() {
       <HomeTemplate exact path='/home' Component={Home}/>
       <Route exact path='/signup' component={SignUp}/>
       <Route exact path='/login' component={Login}/>
-      {/* <HomeTemplate exact path='/coursedetail/:id' Component={CourseDetail}/> */}
+      <Route exact path='/forgotpassword' component={ForgotPassword}/>  
       <HomeTemplate exact path='/coursedetail' Component={CourseDetail}/>
       <AdminTemplate exact path='/admin/coursesmanagement' Component={CourseManagement}/>
       <AdminTemplate exact path='/admin/usersmanagement' Component={UserManagement}/>
+      <AdminTemplate exact path='/admin/pendingrequest' Component={Pendingrequest}/>
       <HomeTemplate exact path='/search' Component={Search}/>
       <HomeTemplate exact path='/categories/:name' Component={CategoryDetail}/>
+      <HomeTemplate exact path='/term' Component={Term}/>
       <HomeTemplate exact path='*' Component={PageNotFound}/>
     </Switch>
     </BrowserRouter>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 export default function Footer() {
     return (
@@ -20,7 +21,7 @@ export default function Footer() {
                         <a href="#a">Affiliate</a>
                     </div>
                     <div className="footer__container__info__col">
-                        <a href="#a">Terms</a>
+                        <NavLink to='/term' target='_blank'>Terms</NavLink>
                         <a href="#a">Privacy policy and cookie policy</a>
                         <a href="#a">Sitemap</a>
                         <a href="#a">Featured courses</a>

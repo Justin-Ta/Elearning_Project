@@ -4,37 +4,32 @@
         background-repeat: no-repeat;
         background-position: center;
         min-height: 100vh;
+        padding-top: 15vh;
         .inputSignUp{
-            width: 65vh;
+            width: 70%;
             border:  0px solid white;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(255, 255, 255, 0.8);
             border-radius: 10px;
             margin: 0 auto;
-            padding:30px;
-
+            padding: 15px;
             h2{
                 color: $txtOrangePrimary;
             }
-            i{
-                color:$txtWhitePrimary;
-                font-size:  $h6;
-            }
-            button{
-                font-size:  $h6;
-            }
-            span{
-                width: 40px;
+            p{
+                color: $txtBlackPrimary;
+                margin: 0;
             }
             input{
                 font-size:  $h6;
                 background-color: transparent;
-                color:$txtWhitePrimary;
+                // color:$txtWhitePrimary;  
                 box-shadow: none;
                 &:focus{
                     background-color: $whitePrimary;
                     color:$txtBlackPrimary;
                 }
             }
+
         }
     }
 }
