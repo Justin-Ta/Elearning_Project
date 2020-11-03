@@ -1,0 +1,12 @@
+.ant-spin-spinning {
+    display: block !important;
+    margin: 20px auto !important;
+    
+    .ant-spin-text {
+        color: $orangeDark;
+    }
+
+    .ant-spin-dot i {
+        background-color: $orangeDark;
+    }
+}

@@ -33,7 +33,7 @@ export default function Footer() {
                 </div>
                 <div className="footer__container__copyright row">
                     <div className="footer__container__copyright__logo">
-                    <img src="./img/icon/icon_Elearning.ico" alt="logo-coral" />
+                    <img src="/img/icon/icon_Elearning.ico" alt="logo-coral" />
                     Learning
                     </div>
                     <span>© 2020 E-learning, Inc.</span>

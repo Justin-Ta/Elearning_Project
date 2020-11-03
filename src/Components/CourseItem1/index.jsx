@@ -21,7 +21,6 @@ export default function CourseItem1(props) {
                 </div>
                 <div className="author">czc Lorem ipsum dolor sit.</div>
                 <RatingStars score={4.5} />
-                <span className="ratingCore">4.5</span>
                 <div className="price">$12.99
                 <span>$17.55</span>
                 </div>
