@@ -1,0 +1,17 @@
+.courseItemLarge {
+    .ant-card {
+    display: flex;
+    }
+
+    .ant-card-cover{
+        width: 300px;
+        height: 200px;
+        background-color: transparent;
+        overflow: hidden;
+    }
+
+    .ant-card-bordered .ant-card-cover {
+        margin: 0;
+        transform: none;
+    }
+}

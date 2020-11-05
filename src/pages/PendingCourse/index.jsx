@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function UserManagement() {
+export default function Pendingrequest() {
     return (
         <div>
-            User Management
+            Pending
         </div>
     )
 }

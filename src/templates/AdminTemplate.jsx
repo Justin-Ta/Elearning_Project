@@ -31,15 +31,18 @@ export const AdminTemplate = ({ Component, ...props }) => {
           <>
             <Layout>
               <Sider trigger={null} collapsible collapsed={state.collapsed}>
-                <div className="logo" src="./img/icon/icon_ELearning.ico"/>
-                <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>              
+                 <div style={{position:"fixed"}}>
+                 <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>              
                   <Menu.Item key="1" icon={<DesktopOutlined />} title="Course Management">
                     <NavLink to="/admin/coursesmanagement">Course Management</NavLink>
                   </Menu.Item>
                   <Menu.Item key="2" icon={<UserOutlined />} title="Student Management">
                    <NavLink to="/admin/usersmanagement">Users Management</NavLink>
                   </Menu.Item>
-                </Menu>              
+                </Menu>  
+                 </div>
+
+                            
               </Sider>
               <Layout className="site-layout">
                 <Header
@@ -59,7 +62,7 @@ export const AdminTemplate = ({ Component, ...props }) => {
                   style={{
                     margin: "0 16px",
                     padding: 24,
-                    minHeight: "75vh",
+                    minHeight: "100vh",
                   }}
                 >
                   <Component />

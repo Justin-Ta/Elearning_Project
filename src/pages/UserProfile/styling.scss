@@ -1,0 +1,57 @@
+.userProfile{
+    &_header {
+        background: linear-gradient(140deg,	#003640 0%, #094c59 15%, #0f7c90 65%);
+        min-height: 200px;
+        position: relative;
+
+        &_avatar {
+            width: 200px;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        &_username {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: left;
+            padding-left: 100px;
+
+            h1 {
+                color: $whitePrimary;
+            }
+
+            p {
+                @include Text($txtOrangeLight, $h4, $fwLight);
+            }
+        }
+
+        &_border-90 {
+            width: 200px;
+            height: 200px;
+            border: 1px solid $whitePrimary;
+            position: absolute;
+            transform: rotate(45deg);
+        }
+    }
+
+    &_tabs {
+        .ant-tabs-nav-wrap {
+            border-bottom: 2px solid $brownDark;
+        }
+
+        .ant-tabs-tab {
+            border-top: 2px solid $brownDark !important;
+            background-color: $whiteSecondary !important;
+            @include Text($txtBrownPrimary, $h4, $fwLight);
+        }
+
+        .ant-tabs-tab-active {
+            background-color: $brownDark !important;
+            font-size: $h4;
+            & > .ant-tabs-tab-btn  {
+                color: $txtWhitePrimary !important;
+            }
+        }
+    }
+}

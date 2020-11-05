@@ -29,7 +29,7 @@ export default function TrendingCourses() {
                 <>
                     <CourseList1 courses={state.items} />
                     <Pagination
-                        pageSize={4}
+                        pageSize={state.count}
                         total={state.totalCount}
                         onChange={changePage}
                         hideOnSinglePage={true}

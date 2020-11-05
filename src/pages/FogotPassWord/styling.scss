@@ -1,12 +1,12 @@
-.login{
+.forgotPassword{
     .bg{
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
         min-height: 100vh;
         padding-top: 5vh;
-        .inputLogin{
-            width: 70%;
+        .inputForgot{
+            width: 450px;
             border:  0px solid white;
             background: rgba(255, 255, 255, 0.8);
             border-radius: 10px;
@@ -14,10 +14,14 @@
             padding: 15px;
             h2{
                 color: $txtOrangePrimary;
+                margin: 0;
             }
             p{
                 color: $txtBlackPrimary;
                 margin: 0;
+            }
+            span{
+                font-size: $h6;
             }
             input{
                 font-size:  $h6;

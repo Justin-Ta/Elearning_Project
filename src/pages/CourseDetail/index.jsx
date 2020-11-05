@@ -1,5 +1,4 @@
 import React from 'react';
-import RatingStars from '../../Components/RatingStars';
 import { Card, Button } from 'antd';
 import { Rate } from 'antd';
 import CommentList from '../../Components/CommentList';
@@ -12,7 +11,10 @@ export default function CourseDetail() {
                         <div className="row">
                             <div className="col-8 my-5">
                                 <h2>Front End Developer</h2>
-                                <h2><RatingStars score={3.4} /></h2>
+                                <h5>
+                                    <Rate allowHalf defaultValue={3.4} disabled value={"3.4"}/>
+                                    <span className="pl-3">3.4</span>
+                                </h5>
                                 <h4>Created by: ddddcd dsc</h4>
                             </div>
                             <div className="col-4 my-5">

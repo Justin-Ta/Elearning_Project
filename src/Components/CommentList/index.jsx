@@ -7,18 +7,18 @@ const { TextArea } = Input;
 export default function CommentList() {
 
     return (
-        <div className="col-8">
+        <div className="col-8 pt-5">
             <h2>Reviews</h2>
             <COMMENT />
 
             <div className="row">
-                <div className="col-1">
+                <div className="col-1 mt-3">
                 <Avatar
                     src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
                     alt="Han Solo"
                 />
                 </div>
-                <div className="col-11">
+                <div className="col-11 mt-3">
                 <Form.Item>
                     <TextArea rows={4} />
                 </Form.Item>

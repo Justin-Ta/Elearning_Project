@@ -2,11 +2,11 @@ import React from 'react';
 import { Card } from 'antd';
 import RatingStars from '../RatingStars';
 
-export default function CourseItem1(props) {
-    console.count("CourseItem1");
+export default function CourseItem(props) {
+    console.count("CourseItem");
     const { tenKhoaHoc, hinhAnh } = props.course;
     return (
-        <div className="courseItem1">
+        <div className="courseItem">
             <Card
                 hoverable
                 cover={

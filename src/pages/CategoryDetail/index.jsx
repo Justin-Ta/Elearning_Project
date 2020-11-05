@@ -4,7 +4,7 @@ import { Layout, Pagination, Spin } from 'antd';
 import { useParams } from 'react-router';
 import BreadcrumbList from '../../Components/BreadcrumbList';
 import { useSelector, useDispatch } from "react-redux";
-import { changeTrendingCoursesAction } from '../../redux/actions/course';
+import { getCategoryCoursesAction } from '../../redux/actions/course';
 const { Content, Sider } = Layout;
 
 export default function CategoryDetail() {
@@ -16,11 +16,11 @@ export default function CategoryDetail() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(changeTrendingCoursesAction(1));
+        dispatch(getCategoryCoursesAction(1, ""));
     }, [dispatch])
 
     const changePage = (currentPage) => {
-        dispatch(changeTrendingCoursesAction(currentPage));
+        dispatch(getCategoryCoursesAction(currentPage, ""));
     }
 
     return (
@@ -40,7 +40,7 @@ export default function CategoryDetail() {
                                 <CourseList2 courses={state.items} />
                                 <div className="mt-5">
                                     <Pagination
-                                        pageSize={4}
+                                        pageSize={state.count}
                                         total={state.totalCount}
                                         onChange={changePage}
                                         hideOnSinglePage={true}

@@ -8,7 +8,7 @@ const { Search } = Input;
 
 
 export default function Header() {
-    let isLogIn = true;
+    let isLogIn = false;
 
     return (
         <div className="header">
