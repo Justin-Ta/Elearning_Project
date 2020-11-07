@@ -1,0 +1,39 @@
+.signup, .login , .forgotPassword{
+    .bg{
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        min-height: 100vh;
+        padding-top: 15vh;
+        .inputSignUp, .inputLogin, .inputForgot{
+            width: 50%;
+            border:  0px solid white;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            margin: 0 auto;
+            padding: 15px;
+            @include mediaQuery ($md){
+                width: 80%;
+            }
+            h2{
+                color: $txtOrangePrimary;
+            }
+            p{
+                color: $txtBlackPrimary;
+                margin: 0;
+            }
+            input{
+                font-size:  $h6;
+                background-color: transparent;
+                box-shadow: none;
+                &:focus{
+                    background-color: $whitePrimary;
+                    color:$txtBlackPrimary;
+                }
+            }
+        }
+    }
+}
+
+
+

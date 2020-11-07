@@ -1,16 +1,17 @@
 import React from 'react';
 import { Card } from 'antd';
 import RatingStars from '../ratingStars';
+import { NavLink } from 'react-router-dom';
 
 export default function CourseItem1(props) {
     console.count("CourseItem1");
-    const { tenKhoaHoc, hinhAnh } = props.course;
+    const { tenKhoaHoc, hinhAnh, maKhoaHoc } = props.course;
     return (
         <div className="courseItem1">
-            <Card
+            <NavLink to={`/coursedetail/${maKhoaHoc}`}><Card
                 hoverable
                 cover={
-                    <img
+                    <img className="imgCourse img-fluid"
                         alt={hinhAnh}
                         src={hinhAnh}
                     />
@@ -26,7 +27,8 @@ export default function CourseItem1(props) {
                 <span>$17.55</span>
                 </div>
                 <span className="bestseller">Bestseller</span>
-            </Card>
+            </Card></NavLink>
+            
         </div>
     )
 }

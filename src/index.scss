@@ -13,12 +13,11 @@
 @import './Components/RatingStars/styling.scss';
 @import './Components/BreadcrumbList/styling.scss';
 @import './Components/BackToTop/styling.scss';
+@import './Components/Indicator/styling.scss';
 
 // Pages
-@import './pages/Login/styling.scss';
-@import './pages/SignUp/styling.scss';
 @import './pages/PageNotFound/styling.scss';
 @import './pages/CourseDetail/styling.scss';
 @import './pages/Admin/CourseManagement/styling.scss';
 @import './pages/Search/styling.scss';
-@import './pages/FogotPassWord/styling.scss'
+@import './pages/UserForm/styling.scss'

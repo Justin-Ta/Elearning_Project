@@ -1,37 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Modal from './Modal';
+import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import {getListUser} from '../../../constant/api'
+import {getListOfUser} from '../../../redux/actions/user';
 export default function UserManagement() {
-    const user=[
-        {
-            taiKhoan: "000",
-            hoTen: "007 bond",
-            email: "007@gmail.com",
-            soDt: "5899",
-            maLoaiNguoiDung: "HV"
-          },
-          {
-            taiKhoan: "0000",
-            hoTen: "0000",
-            email: "0000@111.com",
-            soDt: "0000",
-            maLoaiNguoiDung: "GV"
-          },
-          {
-            taiKhoan: "0001",
-            hoTen: "111",
-            email: "111@wwwewq.com",
-            soDt: "111",
-            maLoaiNguoiDung: "HV"
-          },
-          {
-            taiKhoan: "0003",
-            hoTen: "0003",
-            email: "0003@111.com",
-            soDt: "0003",
-            maLoaiNguoiDung: "HV"}
-    ]
+    const state= Array.from(useSelector(state=>state.userReducer));
+    const dispatch= useDispatch();
+    useEffect(()=>{
+      axios.get(getListUser())
+      .then(res=>{dispatch(getListOfUser(res.data))})
+      .catch(err=> console.log(err))
+    },[dispatch]);
+    console.log("mang User",state);
     const renderUser = () =>{
-        return user?.map((user, index)=>{
+        return state?.map((user, index)=>{
             return <tr key={index}>
                         <td>{user.maLoaiNguoiDung}</td>
                         <td >{user.taiKhoan}</td>

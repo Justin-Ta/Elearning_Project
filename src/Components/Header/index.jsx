@@ -7,12 +7,12 @@ const { Search } = Input;
 
 
 export default function Header() {
-
+const icon={src:"./img/icon/icon_ELearning.ico"};
     return (
         <div className="header">
             <nav className="navbar navbar-expand-lg navbar-light">
                 <NavLink to={"/"} className="mr-3 logo">
-                    <img src="./img/icon/icon_ELearning.ico" alt="logo" />
+                    <img {...icon} alt="logo" />
                     <span>Learning</span>
                 </NavLink>
                 <Search className=""
