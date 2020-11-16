@@ -1,23 +1,18 @@
 import React from 'react';
+import { useDispatch } from 'react-redux'
 import { Form, Input, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import Indicator from '../../../Components/Indicator';
-
+import {backGround} from '../../../constant/linkSoure'
+import {LogIn} from '../../../redux/actions/user'
 export default function Login(props) {
-   let backGround=[
-        {src: './img/E-learning-and-education-bg.jpeg'},
-        {src: './img/bgLoginPage/bg_2.png'},
-        {src: './img/bgLoginPage/bg_3.jpg'},
-        {src: './img/bgLoginPage/bg_4.png'},
-        {src: './img/bgLoginPage/bg_5.png'},
-        {src: './img/bgLoginPage/bg_6.png'},
-        {src: './img/bgLoginPage/bg_7.png'},
-    ]
-    const onFinish = values => {
-    console.log('Received values of form: ', values);
+    const dispatch = useDispatch();
+    const history= useHistory();
+    const onFinish = values  => {
+    dispatch(LogIn(values,history));
+    props.history.goBack();
   };
-
     return (
       <div className="login">
         <div
@@ -38,7 +33,7 @@ export default function Login(props) {
               onFinish={onFinish}
             >
               <Form.Item
-                name="username"
+                name="userName"
                 rules={[
                   { required: true, message: "Please input your Username!" },
                 ]}
@@ -50,18 +45,20 @@ export default function Login(props) {
               </Form.Item>
 
               <Form.Item
-                name="password"
+                name="passWord"
                 rules={[
-                  { required: true, message: "Please input your Password!" },
+                  {
+                    required: true,
+                    message: "Please input your password!",
+                  },
                 ]}
               >
-                <Input
+                <Input.Password
                   prefix={<LockOutlined className="site-form-item-icon" />}
-                  type="password"
-                  placeholder="Type your password..."
+                  placeholder="Type your password"
                 />
               </Form.Item>
-
+              
               <Form.Item
                 className="text-center"
                 name="remember"

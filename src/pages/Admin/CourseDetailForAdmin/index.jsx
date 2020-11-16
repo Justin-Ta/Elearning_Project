@@ -13,13 +13,15 @@ export default function CourseDetailForAdmin(props) {
             .then(res => { dispatch(getCourseDetail(res.data))})
             .catch(err => console.log(err));
     },[dispatch])
-    console.log(id);
+    console.log("Du lieu",state);
+    const {tenKhoaHoc, ngayTao, luotXem, hinhAnh, moTa}= state;
+
     return (
         <div>
-            <h1>{state.tenKhoaHoc}</h1>
-                            <p>Create date: <span>{state.ngayTao}</span></p>
-                            <p>Views: <span>{state.luotXem}</span></p>
-                            <button className="btn btn-success">Register</button>
+            id: {id}
+            <h1>{tenKhoaHoc}</h1>
+            <p>Create date: <span>{ngayTao}</span></p>
+            <p>Views: <span>{luotXem}</span></p>
         </div>
     )
 }

@@ -14,18 +14,17 @@ export default function CourseManagement(props) {
       .then(res=>{dispatch(getCourseInfo(res.data))})
       .catch(err=> console.log(err));
     },[dispatch])
-
-    console.log("mang", state);
     
     const renderCourse = () =>{
         return state?.map((course, index)=>{
+          const {maKhoaHoc= maKhoaHoc, tenKhoaHoc= tenKhoaHoc, soLuongHocVien= soLuongHocVien}=course;
             return <tr key={index}>
-                        <td >{course.maKhoaHoc}</td>
-                        <td>{course.tenKhoaHoc}</td>
-                        <td  className="text-center">{course.soLuongHocVien}</td>
+                        <td >{maKhoaHoc}</td>
+                        <td>{tenKhoaHoc}</td>
+                        <td  className="text-center">{soLuongHocVien}</td>
                         <td className="text-center">{ 2 >0 ? <span className="text-danger">2</span> : 1}</td>
                         <td className="text-left" style={{width:"5%"}}>
-                          <NavLink className="btn btn-primary mx-2" title="Detail course" to={`/admin/coursedetail/${course.maKhoaHoc}`}><i class="fa fa-search"></i></NavLink>
+                          <NavLink className="btn btn-primary mx-2" title="Detail course" to={`/admin/coursedetail/${maKhoaHoc}`}><i class="fa fa-search"></i></NavLink>
                         </td>
                         <td className="text-left" style={{width:"5%"}}>                         
                           <button className="btn btn-warning mx-2" title="Edit course"><i class="fa fa-edit"></i></button>
@@ -49,6 +48,9 @@ export default function CourseManagement(props) {
                   <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target=".bd-example-modal-lg">Add Course</button>
                   <Modal/>
                   
+            </div>
+            <div className="from-group">
+              <NavLink type="button" class="btn btn-primary mb-3" to ='/admin/courseedit'>1Add Course</NavLink>
             </div>
             <table className="table">
                 <thead className="bg-dark text-light font-weight-bold">

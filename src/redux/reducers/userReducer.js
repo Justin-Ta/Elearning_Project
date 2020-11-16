@@ -1,8 +1,16 @@
 import {GET_USER_LIST} from "../../constant/actionType";
+import {USER_LOGIN} from '../../constant/api'
 
-const initiaState = false;
+let userLocal ={};
+if (localStorage.getItem(USER_LOGIN)){
+    userLocal=JSON.parse(localStorage.getItem(USER_LOGIN));
+}
 
-const userReducer = ( state = initiaState, action ) => {
+const initialState = {
+    userLogin: userLocal
+}
+
+const userReducer = ( state = initialState, action ) => {
     switch (action.type){
         case GET_USER_LIST:
             return action.payload;

@@ -2,16 +2,10 @@ import React from 'react';
 import { Form, Input, Checkbox, Statistic} from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import Indicator from '../../../Components/Indicator';
+import {backGround} from '../../../constant/linkSoure'
+
 export default function ForgotPassword(props) {
-    let backGround=[
-        {src: './img/E-learning-and-education-bg.jpeg'},
-        {src: './img/bgLoginPage/bg_2.png'},
-        {src: './img/bgLoginPage/bg_3.jpg'},
-        {src: './img/bgLoginPage/bg_4.png'},
-        {src: './img/bgLoginPage/bg_5.png'},
-        {src: './img/bgLoginPage/bg_6.png'},
-        {src: './img/bgLoginPage/bg_7.png'},
-    ]
+    
     const onFinish = values => {
     console.log('Received values of form: ', values);
   };

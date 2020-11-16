@@ -15,3 +15,11 @@ export const getCourse=()=>{
 export const getListUser=()=>{
     return 'https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP01'
 }
+
+export const LOGIN="https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangNhap"
+
+export const SIGNIN="https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangKy"
+
+
+export const USER_LOGIN= "userlogin";
+export const TOKEN= "accessToken"

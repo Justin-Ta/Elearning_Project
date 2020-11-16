@@ -17,7 +17,7 @@ import { NavLink } from "react-router-dom";
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
 
-export const AdminTemplate = ({ Component, ...props }) => {
+export const AdminTemplate = ({ Component, ...restProps }) => {
   const [state, setState] = useState({
     collapsed: false,
   });
@@ -28,7 +28,7 @@ export const AdminTemplate = ({ Component, ...props }) => {
   };
   return (
     <Route
-      {...props}
+      {...restProps}
       render={(propsRoute) => {
         return (
           <>
@@ -111,7 +111,7 @@ export const AdminTemplate = ({ Component, ...props }) => {
                     minHeight: "100vh",
                   }}
                 >
-                  <Component />
+                  <Component {...propsRoute}/>
                 </Content>
               </Layout>
             </Layout>

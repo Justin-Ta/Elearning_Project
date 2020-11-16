@@ -1,29 +1,27 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import Indicator from '../../../Components/Indicator';
+import {backGround} from '../../../constant/linkSoure'
 import {
   Form,
   Input,
   Checkbox,
 } from 'antd';
-import { UserOutlined, LockOutlined, MailOutlined} from '@ant-design/icons';
-import Indicator from '../../../Components/Indicator';
-
-const backGround = [
-  { src: '/img/bgLoginPage/bg_1.png' },
-  { src: '/img/bgLoginPage/bg_2.png' },
-  { src: '/img/bgLoginPage/bg_3.jpg' },
-  { src: '/img/bgLoginPage/bg_4.png' },
-  { src: '/img/bgLoginPage/bg_5.png' },
-  { src: '/img/bgLoginPage/bg_6.png' },
-  { src: '/img/bgLoginPage/bg_7.png' },
-]
-
+import { UserOutlined, LockOutlined, MailOutlined, PhoneOutlined} from '@ant-design/icons';
+import axios from 'axios';
 export default function SignUp(props) {
-
   const onFinish = values => {
     console.log('Received values of form: ', values);
   };
 
+
+
+  // "taiKhoan": "string", 
+  // "matKhau": "string", 
+  // "hoTen": "string",
+  // "soDT": "string",
+  // "maNhom": "string",
+  // "email": "string"
   return (
     <div className="signup">
       <div
@@ -37,6 +35,38 @@ export default function SignUp(props) {
         <div className="inputSignUp">
           <h2 className="text-center">SIGN IN</h2>
           <Form name="register" onFinish={onFinish} scrollToFirstError>
+            {/* UserName */}
+            <Form.Item
+              name="username"
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your nickname!",
+                  whitespace: true,
+                },
+              ]}
+            >
+              <Input
+                prefix={<UserOutlined className="site-form-item-icon" />}
+                placeholder="Type your username"
+              />
+            </Form.Item>
+            {/*Name  */}
+            <Form.Item
+              name="name"
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your name!",
+                  whitespace: true,
+                },
+              ]}
+            >
+              <Input
+                prefix={<UserOutlined className="site-form-item-icon" />}
+                placeholder="Type your name"
+              />
+            </Form.Item>
             <Form.Item
               name="email"
               rules={[
@@ -55,7 +85,7 @@ export default function SignUp(props) {
                 placeholder="Type your email"
               />
             </Form.Item>
-
+            {/* Password */}
             <Form.Item
               name="password"
               rules={[
@@ -71,7 +101,7 @@ export default function SignUp(props) {
                 placeholder="Type your password"
               />
             </Form.Item>
-
+            {/* Confirm Password */}
             <Form.Item
               name="confirm"
               dependencies={["password"]}
@@ -98,23 +128,21 @@ export default function SignUp(props) {
                 placeholder="Re-type your password"
               />
             </Form.Item>
-
             <Form.Item
-              name="username"
+              name="phoneNumber"
               rules={[
                 {
                   required: true,
-                  message: "Please input your nickname!",
+                  message: "Please input your phone number!",
                   whitespace: true,
                 },
               ]}
             >
               <Input
-                prefix={<UserOutlined className="site-form-item-icon" />}
-                placeholder="Type your username"
+                prefix={<PhoneOutlined className="site-form-item-icon" />}
+                placeholder="Type your phone number"
               />
             </Form.Item>
-
             <Form.Item
               name="agreement"
               valuePropName="checked"
@@ -134,7 +162,6 @@ export default function SignUp(props) {
                 </NavLink>
               </Checkbox>
             </Form.Item>
-
             <Form.Item>
               <button className="form-control btn-primary">Sign In</button>
             </Form.Item>
