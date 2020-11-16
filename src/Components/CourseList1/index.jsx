@@ -1,5 +1,5 @@
 import React from 'react';
-import CourseItem1 from '../CourseItem1';
+import CourseItem from '../CourseItem';
 import { Row, Col } from 'antd';
 
 
@@ -8,7 +8,9 @@ export default function CourseList1(props) {
     const courseItems = props.courses?.map( (course, index) => {
         return (
             <Col lg={6} sm={12} xs={24} key={index}>
-                <CourseItem1 course={course}/>
+                <div className="courseItemSmall">
+                    <CourseItem course={course}/>
+                </div>
             </Col>
         )
     });

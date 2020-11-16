@@ -1,10 +1,15 @@
 .carousel {
+    .carousel-indicators {
+        @include mediaQuery($md){
+            display: none;
+        }
+    }
     .ant-card {
         width: 300px;
         position: absolute;
         top: 10%;
         left: 5%;
-        z-index: 1000;
+        z-index: 1;
 
         @include mediaQuery($md) {
             margin-top: 50px;

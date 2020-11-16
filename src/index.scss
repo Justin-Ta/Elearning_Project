@@ -5,19 +5,23 @@
 // Components
 @import './Components/Header/styling.scss';
 @import './Components/Footer/styling.scss';
-@import './Components/CourseItem1/styling.scss';
-@import './Components/CourseList2/styling.scss';
 @import './Components/Carousel/styling.scss';
 @import './Components/TrendingCourses/styling.scss';
+@import './Components/CourseItem/styling.scss';
 @import './Components/Categories/styling.scss';
 @import './Components/RatingStars/styling.scss';
 @import './Components/BreadcrumbList/styling.scss';
 @import './Components/BackToTop/styling.scss';
 @import './Components/Indicator/styling.scss';
+@import './sass/Components/spin/styling.scss';
+@import './sass/Components/courseItemSmall/styling.scss';
+@import './sass/Components/courseItemLarge/styling.scss';
 
 // Pages
 @import './pages/PageNotFound/styling.scss';
 @import './pages/CourseDetail/styling.scss';
 @import './pages/Admin/CourseManagement/styling.scss';
 @import './pages/Search/styling.scss';
-@import './pages/UserForm/styling.scss'
+@import './pages/UserForm/styling.scss';
+// @import './pages/FogotPassWord/styling.scss';
+@import './pages/UserProfile/styling.scss';

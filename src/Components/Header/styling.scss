@@ -41,13 +41,19 @@ z-index: 1000;
     }
  }
 
- .loginBtn {
+ .loginBtn, .logoutBtn {
      border-color: $greenLight;
      color: $greenLight;
 
      &:hover {
         border-color: $greenPrimary;
         color: $greenPrimary;
+     }
+
+     @include mediaQuery($lg) {
+        margin-left: auto;
+        display: block;
+        width: 77px;
      }
  }
 
@@ -58,6 +64,12 @@ z-index: 1000;
     &:hover {
         border-color: $greenPrimary;
         background-color: $greenPrimary;
+     }
+
+     @include mediaQuery($lg) {
+        margin-left: auto;
+        display: block;
+        width: 77px;
      }
  }
 

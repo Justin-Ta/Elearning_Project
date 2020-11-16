@@ -1,7 +1,5 @@
-.courseItem1 {
-    .ant-card-body {
-        padding: 15px;
-    }
+.courseItem {
+    
     .ratingCore{
         @include Text($txtBrownLight, $body2, $fwLight);
     }
