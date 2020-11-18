@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card } from 'antd';
-import RatingStars from '../ratingStars';
+import RatingStars from '../RatingStars';
 import { NavLink } from 'react-router-dom';
 
 export default function CourseItem(props) {

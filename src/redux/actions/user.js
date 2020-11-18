@@ -1,6 +1,6 @@
 import {GET_USER_LIST} from '../../constant/actionType';
 import axios from 'axios';
-import { LOGIN, TOKEN, USER_LOGIN } from '../../constant/api'
+import { logInUrl, TOKEN, USER_LOGIN } from '../../constant/api'
 export const getListOfUser=(payload)=>{
     return{
     type: GET_USER_LIST,
@@ -12,7 +12,7 @@ export const LogIn=(userLogin, history)=>{
     return async dispatch => {
         try {
             let { data, status } = await axios({
-                url: LOGIN,
+                url: logInUrl,
                 method: 'POST',
                 data: {
                     taiKhoan: userLogin.userName,

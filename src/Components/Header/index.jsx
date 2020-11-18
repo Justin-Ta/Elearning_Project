@@ -9,7 +9,6 @@ const { Search } = Input;
 
 export default function Header() {
     let isLogIn = true;
-
     return (
         <div className="header">
             <nav className="navbar navbar-expand-lg navbar-light">
