@@ -1,0 +1,18 @@
+.userInfo {
+     .ant-input-affix-wrapper {
+         font-size: $h4;
+        margin-bottom: 10px;
+         input {
+            font-size: 18px;
+            color: $greenLight;
+         }
+    }
+
+        .ant-input-prefix {
+            width: 150px;
+            color: $greenPrimary;
+            span {
+                padding: 5px 10px;
+            }
+        }
+}

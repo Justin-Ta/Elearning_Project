@@ -7,13 +7,13 @@ export default function Home() {
     return (
         <div>
             <div className="mb-5">
-            <Carousel />
+                <Carousel />
             </div>
             <div className="mb-5">
-            <Categories />
+                <Categories />
             </div>
             <div className="mb-5">
-            <TrendingCourses />
+                <TrendingCourses />
             </div>
         </div>
     )

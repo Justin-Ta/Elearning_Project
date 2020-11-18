@@ -8,7 +8,7 @@ const { Search } = Input;
 
 
 export default function Header() {
-    let isLogIn = false;
+    let isLogIn = true;
 
     return (
         <div className="header">
@@ -40,7 +40,7 @@ export default function Header() {
 
                         <div className="ml-3 my-2 shopping-cart">
                             <ShoppingCartOutlined />
-                            <span className="avatar-item ml-3 my-2">
+                            <NavLink to="/userprofile" className="avatar-item ml-3 my-2" style={{ cursor: "pointer" }} >
                                 <Badge count={2}>
                                     {false ?
                                         <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
@@ -48,7 +48,7 @@ export default function Header() {
                                         <Avatar icon={<UserOutlined />} />
                                     }
                                 </Badge>
-                            </span>
+                            </NavLink>
                         </div>
                     </>
                     :

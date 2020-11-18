@@ -1,16 +1,19 @@
 import React, { useEffect } from 'react';
 import CourseList2 from '../../Components/CourseList2';
-import { Layout, Pagination, Spin } from 'antd';
+import { Layout, Pagination } from 'antd';
 import { useParams } from 'react-router';
 import BreadcrumbList from '../../Components/BreadcrumbList';
 import { useSelector, useDispatch } from "react-redux";
 import { getCategoryCoursesAction } from '../../redux/actions/course';
+import { categoryNames } from '../../constant/common';
+import Loading from '../../Components/Loading';
 const { Content, Sider } = Layout;
 
-export default function CategoryDetail() {
+export default function CategoryDetail(props) {
     console.count("CategoryDetail");
 
     const { name } = useParams();
+    if ( !categoryNames.includes(name) ) props.history.push('/*');
     const state = useSelector(state => state.coursesInCategory);
     let isLoading = !state;
     const dispatch = useDispatch();
@@ -30,7 +33,7 @@ export default function CategoryDetail() {
                 <h2>{name.charAt(0).toUpperCase() + name.slice(1)} Courses</h2>
                 <Layout style={{ backgroundColor: 'transparent' }}>
                     {isLoading ?
-                        <Spin tip="Loading..." size={"large"}></Spin>
+                        <Loading />
                         :
                         <>
                             <Sider width={200} className="site-layout-background" style={{ backgroundColor: 'grey' }}>
@@ -40,7 +43,7 @@ export default function CategoryDetail() {
                                 <CourseList2 courses={state.items} />
                                 <div className="mt-5">
                                     <Pagination
-                                        pageSize={state.count}
+                                        pageSize={Math.floor(state.totalCount/state.totalPages)}
                                         total={state.totalCount}
                                         onChange={changePage}
                                         hideOnSinglePage={true}

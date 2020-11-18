@@ -1,57 +1,80 @@
 .userProfile{
     &_header {
-        background: linear-gradient(140deg,	#003640 0%, #094c59 15%, #0f7c90 65%);
+        background-repeat: no-repeat;
+        background-size: cover;
         min-height: 200px;
-        position: relative;
+        padding: 20px 0;
 
         &_avatar {
-            width: 200px;
-            height: 200px;
-            overflow: hidden;
+            position: relative;
+            margin-top: 24px;
+
+            &_img {
+                width: 200px;
+                height: 200px;
+                overflow: hidden;
+                margin: 0 auto;
+                border: solid 2px $blackPrimary;
+            }
+        }
+
+        &_editAvartarIcon {
+            position: absolute;
+            display: inline-block;
+            cursor: pointer;
+            top: 220px;
+            right: 25px;
+            
         }
 
         &_username {
             display: flex;
             flex-direction: column;
             justify-content: center;
-            text-align: left;
-            padding-left: 100px;
+            text-align: center;
 
-            h1 {
-                color: $whitePrimary;
+            h2 {
+                //color: $whitePrimary;
+                font-weight: 300;
             }
 
             p {
-                @include Text($txtOrangeLight, $h4, $fwLight);
+                @include Text($txtBlackPrimary, $h4, $fwLight);
             }
         }
 
-        &_border-90 {
-            width: 200px;
-            height: 200px;
-            border: 1px solid $whitePrimary;
-            position: absolute;
-            transform: rotate(45deg);
+        .ant-card-meta-title {
+            font-size: $h4;
         }
     }
 
     &_tabs {
+         
         .ant-tabs-nav-wrap {
             border-bottom: 2px solid $brownDark;
+                
         }
 
         .ant-tabs-tab {
             border-top: 2px solid $brownDark !important;
             background-color: $whiteSecondary !important;
-            @include Text($txtBrownPrimary, $h4, $fwLight);
+
+            &:hover, &-active, .ant-tabs-tab-btn:hover, .ant-tabs-tab-btn:active, .ant-tabs-tab-btn:focus {
+                color: $brownDark;
+            }
         }
 
         .ant-tabs-tab-active {
             background-color: $brownDark !important;
-            font-size: $h4;
+            font-size: $h6;
+
             & > .ant-tabs-tab-btn  {
                 color: $txtWhitePrimary !important;
             }
+        }
+
+        .ant-tabs-card > .ant-tabs-nav .ant-tabs-tab-active {
+            color: $txtWhitePrimary !important;
         }
     }
 }

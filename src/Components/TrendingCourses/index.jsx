@@ -1,8 +1,9 @@
-import { Pagination, Spin } from 'antd';
+import { Pagination } from 'antd';
 import React, { useEffect } from 'react';
 import CourseList1 from '../CourseList1';
 import { useSelector, useDispatch } from "react-redux";
 import { changeTrendingCoursesAction } from '../../redux/actions/course';
+import Loading from '../Loading';
 
 export default function TrendingCourses() {
     console.count("TrendingCourses");
@@ -24,12 +25,12 @@ export default function TrendingCourses() {
                 <h3>The world's largest selection of courses</h3>
                 <div className="popularCourses">Most popular courses</div>
                 {isLoading ?
-                <Spin tip="Loading..." size={"large"}></Spin>
+                <Loading />
                 :
                 <>
                     <CourseList1 courses={state.items} />
                     <Pagination
-                        pageSize={state.count}
+                        pageSize={Math.floor(state.totalCount/state.totalPages)}
                         total={state.totalCount}
                         onChange={changePage}
                         hideOnSinglePage={true}
