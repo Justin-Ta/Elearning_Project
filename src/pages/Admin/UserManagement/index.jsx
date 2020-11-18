@@ -1,43 +1,29 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Modal from './Modal';
+import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import {getListUser} from '../../../constant/api'
+import {getListOfUser} from '../../../redux/actions/user';
+import { NavLink } from 'react-router-dom';
+
 export default function UserManagement() {
-    const user=[
-        {
-            taiKhoan: "000",
-            hoTen: "007 bond",
-            email: "007@gmail.com",
-            soDt: "5899",
-            maLoaiNguoiDung: "HV"
-          },
-          {
-            taiKhoan: "0000",
-            hoTen: "0000",
-            email: "0000@111.com",
-            soDt: "0000",
-            maLoaiNguoiDung: "GV"
-          },
-          {
-            taiKhoan: "0001",
-            hoTen: "111",
-            email: "111@wwwewq.com",
-            soDt: "111",
-            maLoaiNguoiDung: "HV"
-          },
-          {
-            taiKhoan: "0003",
-            hoTen: "0003",
-            email: "0003@111.com",
-            soDt: "0003",
-            maLoaiNguoiDung: "HV"}
-    ]
+    const state= Array.from(useSelector(state=>state.userReducer));
+    const dispatch= useDispatch();
+    useEffect(()=>{
+      axios.get(getListUser())
+      .then(res=>{dispatch(getListOfUser(res.data))})
+      .catch(err=> console.log(err))
+    },[dispatch]);
+    console.log("mang User",state);
     const renderUser = () =>{
-        return user?.map((user, index)=>{
+        return state?.map((user, index)=>{
+        const {maLoaiNguoiDung=maLoaiNguoiDung, taiKhoan=taiKhoan, hoTen=hoTen, email=email, soDt=soDt }= user
             return <tr key={index}>
-                        <td>{user.maLoaiNguoiDung}</td>
-                        <td >{user.taiKhoan}</td>
-                        <td>{user.hoTen}</td>
-                        <td>{user.email}</td>
-                        <td>{user.soDt}</td>
+                        <td style={{width:"10%"}}>{maLoaiNguoiDung}</td>
+                        <td style={{width:"15%"}}>{taiKhoan}</td>
+                        <td style={{width:"15%"}}>{hoTen}</td>
+                        <td style={{overflow:"inherit"}} title={`${email}`}>{email}</td>
+                        <td>{soDt}</td>
                         <td className="text-left" style={{width:"5%"}}>
                           <button className="btn btn-primary mx-2" title="Detail co"><i class="fa fa-search"></i></button>                      
                         </td>
@@ -61,15 +47,16 @@ export default function UserManagement() {
                 </div>
             </div>
             <div className="from-group">
-            <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target=".bd-example-modal-lg">Add User</button>
-                  <Modal/>
+            {/* <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target=".bd-example-modal-lg">Add User</button>
+                  <Modal/> */}
+                  <NavLink type="button" class="btn btn-primary mb-3" to="/admin/useredit">Add User</NavLink>
             </div>
             <table className="table">
                 <thead className="bg-dark text-light font-weight-bold">
                     <tr>
-                        <td>User style</td>
-                        <td>User Name</td>
-                        <td>Name</td>
+                        <td style={{width:"10%"}}>User style</td>
+                        <td style={{width:"15%"}}>User Name</td>
+                        <td style={{width:"15%"}}>Name</td>
                         <td>Email</td>
                         <td>Phone Number</td>
                         <td style={{width:"5%"}}></td>
