@@ -44,13 +44,13 @@ export default function CourseManagement(props) {
                     </span>
                 </div>
             </div>
-            <div className="from-group">
+            {/* <div className="from-group">
                   <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target=".bd-example-modal-lg">Add Course</button>
                   <Modal/>
                   
-            </div>
+            </div> */}
             <div className="from-group">
-              <NavLink type="button" class="btn btn-primary mb-3" to ='/admin/courseedit'>1Add Course</NavLink>
+              <NavLink type="button" class="btn btn-primary mb-3" to ='/admin/courseedit'>Add Course</NavLink>
             </div>
             <table className="table">
                 <thead className="bg-dark text-light font-weight-bold">

@@ -12,16 +12,8 @@ import axios from 'axios';
 export default function SignUp(props) {
   const onFinish = values => {
     console.log('Received values of form: ', values);
+
   };
-
-
-
-  // "taiKhoan": "string", 
-  // "matKhau": "string", 
-  // "hoTen": "string",
-  // "soDT": "string",
-  // "maNhom": "string",
-  // "email": "string"
   return (
     <div className="signup">
       <div
@@ -144,7 +136,7 @@ export default function SignUp(props) {
               />
             </Form.Item>
             <Form.Item
-              name="agreement"
+              // name="agreement"
               valuePropName="checked"
               rules={[
                 {
