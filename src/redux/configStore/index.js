@@ -5,7 +5,7 @@ import userReducer from '../reducers/userReducer'
 
 const configStore = combineReducers({
     trendingCourses : trendingCoursesReducer,
-    userReducer,
+    userReducer : userReducer,
     coursesInCategory : coursesInCategoryReducer,
 });
 

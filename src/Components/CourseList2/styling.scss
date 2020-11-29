@@ -1,0 +1,6 @@
+.courseList2 {
+    .ant-layout.ant-layout-has-sider > .ant-layout, .ant-layout.ant-layout-has-sider > .ant-layout-content {
+        overflow-x: visible;
+        overflow-y: hidden;
+    }
+}

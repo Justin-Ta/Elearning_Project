@@ -1,0 +1,21 @@
+.sorting {
+    margin-top: 17px;
+
+    .ant-layout-sider-zero-width-trigger {
+        top: -40px;
+        left: 0;
+        background: transparent;
+        color: $orangeDark;
+        width: max-content;
+    }
+
+    .ant-layout-sider {
+        background-color: $greyLight;
+
+        @include mediaQuery($md){
+            position: absolute;
+            height: 100%;
+            z-index: 1000;
+        }
+    }
+}

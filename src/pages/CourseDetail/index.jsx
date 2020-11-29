@@ -15,9 +15,8 @@ export default function CourseDetail(props) {
         axios.get(getDetail(id))
             .then(res => { dispatch(getCourseDetail(res.data))})
             .catch(err => console.log(err));
-    },[dispatch])
-    console.log(state)
-    console.log(props)
+    },[dispatch, id])
+    console.log("state", state);
     const {tenKhoaHoc, ngayTao, luotXem, hinhAnh, moTa}= state;
 
     return (
@@ -37,7 +36,7 @@ export default function CourseDetail(props) {
                         <div className="col-4 my-5">
                             <Card
                                 style={{ width: "100%", textAlign: "center" }}
-                                cover={<img alt={hinhAnh} src={hinhAnh} />}
+                                cover={<img alt={hinhAnh} src={hinhAnh} style={{background: "grey"}} />}
                             >
                                 <h3>$132.344</h3>
                                 <Button type="primary w-100 mb-3" danger size={"large"}>

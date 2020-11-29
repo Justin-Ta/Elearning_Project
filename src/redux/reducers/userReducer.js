@@ -1,21 +1,16 @@
-import {GET_USER_LIST} from "../../constant/actionType";
-import {USER_LOGIN} from '../../constant/api'
-
-let userLocal ={};
-if (localStorage.getItem(USER_LOGIN)){
-    userLocal=JSON.parse(localStorage.getItem(USER_LOGIN));
-}
+import {POST_USERINFO} from "../../constant/actionType";
 
 const initialState = {
-    userLogin: userLocal
-}
+    token: false,
+    userInfo: false,
+};
 
 const userReducer = ( state = initialState, action ) => {
     switch (action.type){
-        case GET_USER_LIST:
+        case POST_USERINFO:
             return action.payload;
         default:
-        return state; 
+        return state;
     }
 }
 

@@ -12,10 +12,13 @@
         background-color: $greyLight;
         position: absolute;
         top: 0;
+        margin-right: 0 !important;
+        margin-left: 0 !important;
 
         img {
             position: absolute;
             top: 0;
+            height: 100%;
         }
     }
 }

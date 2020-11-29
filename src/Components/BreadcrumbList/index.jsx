@@ -24,9 +24,6 @@ export default function BreadcrumbList(category) {
     return (
         <Breadcrumb className="my-3">
             {RenderBreadcrumbItem()}
-            <Breadcrumb.Item>
-            <Link></Link>
-            </Breadcrumb.Item>
         </Breadcrumb>
     )
 }

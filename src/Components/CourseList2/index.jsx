@@ -14,9 +14,7 @@ export default function CourseList2 (props) {
 
     return (
         <div className="courseList2">
-            <div className="ml-5">
             {courseItems}
-            </div>
         </div>
     )
 }

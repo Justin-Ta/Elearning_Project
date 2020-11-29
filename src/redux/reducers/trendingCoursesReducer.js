@@ -1,4 +1,4 @@
-import { CHANGE_TRENDING_COURSES_PAGE, GET_COURSE_DETAIL, GET_COURSES } from "../../constant/actionType";
+import { GET_COURSE_DETAIL, GET_COURSES } from "../../constant/actionType";
 import { POST_TRENDING_COURSES } from "../../constant/actionType";
 
 const initiaState = false;

@@ -4,14 +4,17 @@ import UserInfo from '../../Components/UserInfo';
 import InProgressCourses from '../../Components/InProgressCourses';
 import RegisteredCourses from '../../Components/RegisteredCourses';
 import { EditOutlined } from '@ant-design/icons';
-
+import { useSelector } from "react-redux";
 const { TabPane } = Tabs;
 const { Meta } = Card;
 
 export default function UserProfile() {
+    const state = useSelector(state => state.userReducer.userInfo);
+    if (!state) return "";
     return (
         <div className="userProfile">
-            <div className="userProfile_header" style={{ backgroundImage: "url('img/UserProfileBg.jpg')" }}>
+
+            <div className="userProfile_header" style={{ backgroundImage: "url('img/background/UserProfileBg.jpg')" }}>
                 <div className="container">
                     <Card
                         style={{ width: "max-content", textAlign: "center", background: "#ffffffb8", padding: "0 20px", position: "relative" }}
@@ -25,14 +28,13 @@ export default function UserProfile() {
                             </div>
                         }
                     >
-                        <Meta title="Vo Hoang Anh Thu" description="newzon263@gmail.com" />
+                        <Meta title={state.username} description={state.email} />
                         <Tooltip placement="bottom" title={"Edit Avatar"}>
                             <div className="userProfile_header_editAvartarIcon">
                                 <EditOutlined />
                             </div>
                         </Tooltip>
                     </Card>
-
                 </div>
             </div>
 
@@ -40,7 +42,7 @@ export default function UserProfile() {
                 <div className="card-container py-5">
                     <Tabs type="card" size="large" tabBarGutter="0">
                         <TabPane tab="Profile" key="1">
-                            <UserInfo />
+                            <UserInfo userInfo={state} />
                         </TabPane>
                         <TabPane tab="In Progress" key="2">
                             <InProgressCourses />
