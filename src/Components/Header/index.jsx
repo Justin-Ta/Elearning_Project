@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { Input, Button, Tooltip, Avatar } from 'antd';
+import { Input, Button, Dropdown, Avatar } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import { ShoppingCartOutlined } from '@ant-design/icons';
 import { NavLink, useHistory } from 'react-router-dom';
@@ -31,13 +31,31 @@ export default function Header() {
 
     const showSearch = () => {
         console.log(headerStyle);
-        if ( JSON.stringify(headerStyle) === JSON.stringify({}) ) {
-           return setHeaderStyle({
-                height: "132.5px",
+        if (JSON.stringify(headerStyle) === JSON.stringify({})) {
+            return setHeaderStyle({
+                height: "130px",
             });
         }
         return setHeaderStyle({});
     }
+
+    const menu = (
+        <div className="menu">
+            <NavLink to="/userprofile" style={{ cursor: "pointer" }} >
+                <i class="fa fa-home" aria-hidden="true"></i> Go to my profile
+            </NavLink>
+            <hr/>
+            { userInfo && userInfo.role === "HV" && 
+                <NavLink to="/admin/coursesmanagement" style={{ cursor: "pointer" }} >
+                    <i class="fa fa-lock" aria-hidden="true"></i> Go to Admin page
+                </NavLink>
+            }
+            <hr/>
+            <div className="logoutBtn" onClick={logout}>
+                <i class="fa fa-sign-out" aria-hidden="true"></i> Log out
+            </div>
+        </div>
+    )
 
     return (
         <div className="header" style={headerStyle}>
@@ -50,10 +68,37 @@ export default function Header() {
                     onSearch={value => console.log("Search keyword", value)}
                     allowClear={true}
                 />
-                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <div className="d-flex">
+                    <span className="searchCollappseIcon pr-3">
+                        <SearchOutlined style={{ fontSize: "20px" }} onClick={showSearch} />
+                    </span>
+                    {
+                        isLogIn ?
+                            <>
+                                <span className="shoppingCartIcon pr-3">
+                                    <ShoppingCartOutlined />
+                                </span>
+                                <Dropdown overlay={menu} placement="bottomRight" trigger={["click"]} arrow="true">
+                                    <Avatar src={userInfo.name ? `/img/AvatarAlphabet/${userInfo.name.charAt(0).toUpperCase()}.png` : '/img/icon/EmptyAvatar.svg'}
+                                        style={{ background: "grey" }}
+                                    />
+                                </Dropdown>
+                            </>
+                            :
+                            <>
+                                    <Button className="loginBtn mr-3">
+                                        <NavLink to="/login">Log in</NavLink>
+                                    </Button>
+                                    <Button type="primary" className="signupBtn">
+                                        <NavLink to="/signup">Sign up</NavLink>
+                                    </Button>
+                            </>
+                    }
+                </div>
+                {/* <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon" />
-                </button>
-                {isLogIn ?
+                </button> */}
+                {/* {isLogIn ?
                     <>
                         <div className="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul className="navbar-nav ml-auto">
@@ -69,16 +114,16 @@ export default function Header() {
                             <div className="searchCollappseIcon">
                                 <SearchOutlined style ={{ fontSize: "20px", paddingRight: "16px"}} onClick={ showSearch } />
                             </div>
-                            <ShoppingCartOutlined />
+                            <div className="shoppingCartIcon">
+                                <ShoppingCartOutlined />
+                            </div>
                             {
                                 userInfo.name &&
-                                <NavLink to="/userprofile" className="avatar-item ml-3 my-2" style={{ cursor: "pointer" }} >
-                                    <Tooltip placement="bottom" title={"Go to my profile"}>
+                                    <Dropdown overlay={menu} placement="bottomRight" trigger={["click"]}>
                                         <Avatar src={`/img/AvatarAlphabet/${userInfo.name.charAt(0).toUpperCase()}.png`} 
                                         style={{ background: "grey" }} 
                                         />
-                                    </Tooltip>
-                                </NavLink>
+                                    </Dropdown>
                             }
                             
                         </div>
@@ -98,7 +143,7 @@ export default function Header() {
                             </li>
                         </ul>
                     </div>
-                }
+                } */}
             </nav>
             <ScrollToTop />
         </div>
