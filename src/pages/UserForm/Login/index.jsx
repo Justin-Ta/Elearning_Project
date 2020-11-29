@@ -21,8 +21,8 @@ export default function Login(props) {
     setLoading(true);
     logInService(data)
         .then(res => {
-            const { accessToken, email, hoTen, maloaiNguoiDung, maNhom, soDT, taiKhoan } = res.data;
-            const userInfo = new User(email, hoTen, maloaiNguoiDung, maNhom, soDT, taiKhoan);
+            const { accessToken, email, hoTen, maLoaiNguoiDung, maNhom, soDT, taiKhoan } = res.data;
+            const userInfo = new User(email, hoTen, maLoaiNguoiDung, maNhom, soDT, taiKhoan);
             console.log("userInfo", userInfo);
             localStorage.setItem(TOKEN, accessToken);
             localStorage.setItem(USERINFO, JSON.stringify(userInfo));
