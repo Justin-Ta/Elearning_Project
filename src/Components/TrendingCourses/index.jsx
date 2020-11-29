@@ -4,6 +4,7 @@ import CourseList1 from '../CourseList1';
 import { useSelector, useDispatch } from "react-redux";
 import { changeTrendingCoursesAction } from '../../redux/actions/course';
 import Loading from '../Loading';
+import { pageSize } from '../../constant/common';
 
 export default function TrendingCourses() {
     console.count("TrendingCourses");
@@ -30,7 +31,7 @@ export default function TrendingCourses() {
                 <>
                     <CourseList1 courses={state.items} />
                     <Pagination
-                        pageSize={Math.floor(state.totalCount/state.totalPages)}
+                        pageSize={pageSize}
                         total={state.totalCount}
                         onChange={changePage}
                         hideOnSinglePage={true}

@@ -9,7 +9,7 @@ export default function Indicator(props) {
             props.history.goBack();
           }}
         >
-          <i class="fa fa-arrow-left"></i> Back
+          <i className="fa fa-arrow-left"></i> Back
         </div>
         <div
           className="col-6 text-center indicatorIcon"
@@ -17,7 +17,7 @@ export default function Indicator(props) {
             props.history.push("/");
           }}
         >
-         <i class="fa fa-home"></i> Home
+         <i className="fa fa-home"></i> Home
         </div>
       </div>
     )

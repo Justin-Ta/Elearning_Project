@@ -3,15 +3,38 @@
     display: flex;
     }
 
-    .ant-card-cover{
-        width: 300px;
-        height: 200px;
-        background-color: transparent;
-        overflow: hidden;
+    .ant-card-bordered {
+        .ant-card-cover {
+            margin: 0;
+            transform: none;
+            background-color: $greyLight;
+            overflow: hidden;
+            height: 201px;
+            width: 300px;
+
+            img {
+                height: 100%;
+                width: auto;
+            }
+
+            @include mediaQuery($sm) {
+                width: 100%;
+
+                img {
+                    width: 100%;
+                }
+            }
+        }
     }
 
-    .ant-card-bordered .ant-card-cover {
-        margin: 0;
-        transform: none;
+    .ant-card-bordered .ant-card-body {
+        width: calc(100% - 300px);
+
+        @include mediaQuery($sm) {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.7);
+        }
     }
 }

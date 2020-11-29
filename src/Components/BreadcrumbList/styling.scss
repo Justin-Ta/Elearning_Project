@@ -6,10 +6,14 @@
 
 .ant-breadcrumb-link > a {
     &.active {
-        color: $greenDark;
+        color: $greenDark !important;
     }
 }
 
 .ant-breadcrumb .ant-breadcrumb-link > a:hover {
     color: $greenLight;
+}
+
+.ant-breadcrumb > span:last-child a {
+    color: rgba(0, 0, 0, 0.45) !important;
 }
