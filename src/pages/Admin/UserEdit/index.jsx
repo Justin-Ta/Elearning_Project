@@ -20,6 +20,8 @@ import {
   };
 
 export default function UserEdit(props) {
+  console.log("EditTile:", props.location.aboutProps)
+  console.log("Props", props)
   const onFinish = (values) => {
     props.history.push("/admin/usermanagement");
     console.log('Received values of form: ', values);
@@ -30,7 +32,7 @@ export default function UserEdit(props) {
         <Row justify="space-around">
           <Col span={10}>
             <Form.Item>
-              <span className="ant-form-text">ADD USER</span>
+              {(!props.location.aboutProps)?<span className="ant-form-text">ADD USER</span>:<span className="ant-form-text">EDIT USER</span>}
             </Form.Item>
           </Col>
 
@@ -52,8 +54,8 @@ export default function UserEdit(props) {
               ]}
             >
               <Select placeholder="Kind of user">
-                <Option value="teacher">Teacher</Option>
-                <Option value="student">Student</Option>
+                <Option value="GV">Teacher</Option>
+                <Option value="HV">Student</Option>
               </Select>
             </Form.Item>
           </Col>

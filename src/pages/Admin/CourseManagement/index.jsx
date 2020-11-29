@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Modal from './Modal';
 import axios from 'axios';
 import {getCourse} from '../../../constant/api';
 import {getCourseInfo} from '../../../redux/actions/course';
@@ -15,24 +14,50 @@ export default function CourseManagement(props) {
       .catch(err=> console.log(err));
     },[dispatch])
     
+   
     const renderCourse = () =>{
         return state?.map((course, index)=>{
-          const {maKhoaHoc= maKhoaHoc, tenKhoaHoc= tenKhoaHoc, soLuongHocVien= soLuongHocVien}=course;
-            return <tr key={index}>
-                        <td >{maKhoaHoc}</td>
-                        <td>{tenKhoaHoc}</td>
-                        <td  className="text-center">{soLuongHocVien}</td>
-                        <td className="text-center">{ 2 >0 ? <span className="text-danger">2</span> : 1}</td>
-                        <td className="text-left" style={{width:"5%"}}>
-                          <NavLink className="btn btn-primary mx-2" title="Detail course" to={`/admin/coursedetail/${maKhoaHoc}`}><i class="fa fa-search"></i></NavLink>
-                        </td>
-                        <td className="text-left" style={{width:"5%"}}>                         
-                          <button className="btn btn-warning mx-2" title="Edit course"><i class="fa fa-edit"></i></button>
-                        </td>
-                        <td className="text-left"style={{width:"5%"}}>
-                          <button className="btn btn-danger mx-2" title="Delete course"><i class="fa fa-trash"></i></button>
-                        </td>
-                    </tr>
+          const {maKhoaHoc, tenKhoaHoc, soLuongHocVien}=course;
+            return (
+              <tr key={index}>
+                <td>{maKhoaHoc}</td>
+                <td>{tenKhoaHoc}</td>
+                <td className="text-center">{soLuongHocVien}</td>
+                <td className="text-center">
+                  {2 > 0 ? <span className="text-danger">2</span> : 1}
+                </td>
+                <td className="text-left" style={{ width: "5%" }}>
+                  <NavLink
+                    className="btn btn-primary mx-2"
+                    title="Detail course"
+                    to={`/admin/coursedetail/${maKhoaHoc}`}
+                  >
+                    <i class="fa fa-search"></i>
+                  </NavLink>
+                </td>
+
+                <td className="text-left" style={{ width: "5%" }}>
+                  {" "}
+                  <NavLink
+                    to={{
+                      pathname: "/admin/courseedit",
+                      aboutProps: {
+                        selectedidds: true,
+                      },
+                    }}
+                    className="btn btn-warning mx-2"
+                    title="Edit course"
+                  >
+                    <i class="fa fa-edit"></i>
+                  </NavLink>
+                </td>
+                <td className="text-left" style={{ width: "5%" }}>
+                  <button className="btn btn-danger mx-2" title="Delete course">
+                    <i class="fa fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+            );
         })}
   return (
           <div>
@@ -44,11 +69,6 @@ export default function CourseManagement(props) {
                     </span>
                 </div>
             </div>
-            {/* <div className="from-group">
-                  <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target=".bd-example-modal-lg">Add Course</button>
-                  <Modal/>
-                  
-            </div> */}
             <div className="from-group">
               <NavLink type="button" class="btn btn-primary mb-3" to ='/admin/courseedit'>Add Course</NavLink>
             </div>

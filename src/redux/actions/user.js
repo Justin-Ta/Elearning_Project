@@ -1,6 +1,6 @@
 import {GET_USER_LIST} from '../../constant/actionType';
 import axios from 'axios';
-import { LOGIN, TOKEN, USER_LOGIN } from '../../constant/api'
+import { LOGIN, TOKEN, USER_LOGIN, SIGNIN } from '../../constant/api'
 export const getListOfUser=(payload)=>{
     return{
     type: GET_USER_LIST,
@@ -37,4 +37,12 @@ export const LogIn=(userLogin, history)=>{
         }
 
     }
+}
+
+export const SignUpAPI=(data)=>{
+    return axios({
+        url: SIGNIN,
+        method: "POST",
+        data
+    });
 }

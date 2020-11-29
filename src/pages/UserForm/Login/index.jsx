@@ -10,6 +10,7 @@ export default function Login(props) {
     const dispatch = useDispatch();
     const history= useHistory();
     const onFinish = values  => {
+      console.log(values)
     dispatch(LogIn(values,history));
     props.history.goBack();
   };
@@ -33,7 +34,7 @@ export default function Login(props) {
               onFinish={onFinish}
             >
               <Form.Item
-                name="userName"
+                name="taiKhoan"
                 rules={[
                   { required: true, message: "Please input your Username!" },
                 ]}
@@ -45,7 +46,7 @@ export default function Login(props) {
               </Form.Item>
 
               <Form.Item
-                name="passWord"
+                name="matKhau"
                 rules={[
                   {
                     required: true,
@@ -61,7 +62,6 @@ export default function Login(props) {
               
               <Form.Item
                 className="text-center"
-                name="remember"
                 valuePropName="checked"
                 noStyle
               >

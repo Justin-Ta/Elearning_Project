@@ -1,18 +1,21 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import Indicator from '../../../Components/Indicator';
-import {backGround} from '../../../constant/linkSoure'
+import {backGround} from '../../../constant/linkSoure';
 import {
   Form,
   Input,
   Checkbox,
 } from 'antd';
 import { UserOutlined, LockOutlined, MailOutlined, PhoneOutlined} from '@ant-design/icons';
+import {SignUpAPI} from '../../../redux/actions/user'
 import axios from 'axios';
 export default function SignUp(props) {
   const onFinish = values => {
+    values={...values, maNhom: "GP01"}
+    delete values.nhapLaiMatKhau
     console.log('Received values of form: ', values);
-
+    SignUpAPI(values).then(res=>{console.log(res)}).catch(err=>{console.log(err)})
   };
   return (
     <div className="signup">
@@ -29,7 +32,7 @@ export default function SignUp(props) {
           <Form name="register" onFinish={onFinish} scrollToFirstError>
             {/* UserName */}
             <Form.Item
-              name="username"
+              name="taiKhoan"
               rules={[
                 {
                   required: true,
@@ -45,7 +48,7 @@ export default function SignUp(props) {
             </Form.Item>
             {/*Name  */}
             <Form.Item
-              name="name"
+              name="hoTen"
               rules={[
                 {
                   required: true,
@@ -79,12 +82,17 @@ export default function SignUp(props) {
             </Form.Item>
             {/* Password */}
             <Form.Item
-              name="password"
+              name="matKhau"
               rules={[
                 {
                   required: true,
                   message: "Please input your password!",
                 },
+                {
+                  max: 20,
+                  min: 6,
+                  message: "Your password must be between 6 and 20 characters.",
+                }
               ]}
               hasFeedback
             >
@@ -95,7 +103,7 @@ export default function SignUp(props) {
             </Form.Item>
             {/* Confirm Password */}
             <Form.Item
-              name="confirm"
+              name="nhapLaiMatKhau"
               dependencies={["password"]}
               hasFeedback
               rules={[
@@ -105,7 +113,7 @@ export default function SignUp(props) {
                 },
                 ({ getFieldValue }) => ({
                   validator(rule, value) {
-                    if (!value || getFieldValue("password") === value) {
+                    if (!value || getFieldValue("matKhau") === value) {
                       return Promise.resolve();
                     }
                     return Promise.reject(
@@ -121,13 +129,19 @@ export default function SignUp(props) {
               />
             </Form.Item>
             <Form.Item
-              name="phoneNumber"
+              name="soDT"
               rules={[
                 {
+                  
                   required: true,
                   message: "Please input your phone number!",
                   whitespace: true,
                 },
+                {
+                  max: 10| 11,
+                  message: "Phone number contains only 10 or 11 digits"
+                }
+
               ]}
             >
               <Input

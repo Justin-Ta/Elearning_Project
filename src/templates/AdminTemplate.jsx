@@ -31,7 +31,6 @@ export const AdminTemplate = ({ Component, ...restProps }) => {
       {...restProps}
       render={(propsRoute) => {
         return (
-          <>
             <Layout>
               <Sider trigger={null} collapsible collapsed={state.collapsed}>
                 <div style={{ position: "fixed" }}>
@@ -115,7 +114,6 @@ export const AdminTemplate = ({ Component, ...restProps }) => {
                 </Content>
               </Layout>
             </Layout>
-          </>
         );
       }}
     />

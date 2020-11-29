@@ -20,6 +20,9 @@ export const LOGIN="https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/D
 
 export const SIGNIN="https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangKy"
 
+export const deleteUserAPI=(userName)=>{
+    return `https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${userName}`
+}
 
 export const USER_LOGIN= "userlogin";
 export const TOKEN= "accessToken"

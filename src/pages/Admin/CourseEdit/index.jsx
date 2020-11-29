@@ -30,7 +30,7 @@ export default function CourseEdit(props) {
         <Row justify="space-around">
           <Col span={10}>
             <Form.Item>
-              <span className="ant-form-text">ADD COURSE</span>
+            {(!props.location.aboutProps)?<span className="ant-form-text">ADD COURSE</span>:<span className="ant-form-text">EDIT COURSE</span>}
             </Form.Item>
           </Col>
 
