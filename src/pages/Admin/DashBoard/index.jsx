@@ -6,4 +6,8 @@ export default function DashBoard() {
             Welcome to Admin Mode!!!
         </div>
     )
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> main

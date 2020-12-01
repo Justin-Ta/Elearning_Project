@@ -10,11 +10,19 @@ export default function CourseDetailForAdmin(props) {
     const dispatch= useDispatch();
     useEffect(() => {
         axios.get(getDetail(id))
+<<<<<<< HEAD
             .then(res => {dispatch(getCourseDetail(res.data))})
             .catch(err => console.log(err));
     },[dispatch])
     console.log(state, id);
     const {tenKhoaHoc, ngayTao, luotXem}= state;
+=======
+            .then(res => { dispatch(getCourseDetail(res.data))})
+            .catch(err => console.log(err));
+    },[dispatch])
+    console.log("Du lieu",state);
+    const {tenKhoaHoc, ngayTao, luotXem, hinhAnh, moTa}= state;
+>>>>>>> main
 
     return (
         <div>
