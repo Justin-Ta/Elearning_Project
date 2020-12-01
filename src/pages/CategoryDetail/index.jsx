@@ -1,29 +1,56 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import CourseList2 from '../../Components/CourseList2';
-import { Layout, Pagination } from 'antd';
+import { Pagination } from 'antd';
 import { useParams } from 'react-router';
 import BreadcrumbList from '../../Components/BreadcrumbList';
+import { useSelector, useDispatch } from "react-redux";
+import { getCategoryCoursesAction } from '../../redux/actions/course';
+import { categoryNames, pageSize } from '../../constant/common';
+import Loading from '../../Components/Loading';
+import Sorting from '../../Components/Sorting';
 
-const { Content, Sider } = Layout;
+export default function CategoryDetail(props) {
+    console.count("CategoryDetail");
 
-export default function CategoryDetail() {
     const { name } = useParams();
+    if ( !categoryNames.includes(name) ) props.history.push('/*');
+    const state = useSelector(state => state.coursesInCategory);
+    let isLoading = !state;
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getCategoryCoursesAction(1, ""));
+    }, [dispatch])
+
+    const changePage = (currentPage) => {
+        dispatch(getCategoryCoursesAction(currentPage, ""));
+    }
+
     return (
         <div className="search mb-5">
             <div className="container">
-                {BreadcrumbList(name)}
+                {/* {BreadcrumbList(name)} */}
                 <h2>{name.charAt(0).toUpperCase() + name.slice(1)} Courses</h2>
-                <Layout style={{ backgroundColor: 'transparent' }}>
-                    <Sider width={200} className="site-layout-background" style={{ backgroundColor: 'transparent' }}>
-                        <h5>Sorting</h5>
-                    </Sider>
-                    <Content style={{ overflow: 'visible' }}>
-                        <CourseList2 />
-                        <div className="mt-5">
-                            <Pagination defaultCurrent={1} total={60} />
-                        </div>
-                    </Content>
-                </Layout>
+                <div style={{ backgroundColor: 'transparent' }} className="d-flex ">
+                    {isLoading ?
+                        <Loading />
+                        :
+                        <>
+                            <Sorting/>
+                            <div className="flex-grow-1">
+                                <CourseList2 courses={state.items}/>
+                                <div className="mt-5">
+                                    <Pagination
+                                        pageSize={pageSize}
+                                        total={state.totalCount}
+                                        onChange={changePage}
+                                        hideOnSinglePage={true}
+                                    />
+                                </div>
+                            </div>
+                        </>
+                    }
+                </div>
             </div>
         </div>
     )

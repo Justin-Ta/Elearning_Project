@@ -10,6 +10,11 @@
         display: inline-block;
         width: 7.5px;
     }
+
+    .ratingCore{
+        @include Text($txtBrownLight, $body2, $fwLight);
+        padding-left: 5px;
+    }
 }
 
 

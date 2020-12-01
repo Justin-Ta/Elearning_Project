@@ -1,7 +1,7 @@
 import React from 'react';
 import { Breadcrumb } from 'antd';
 import { Link } from 'react-router-dom';
-import { categoryNames } from '../../constant/categoryName';
+import { categoryNames } from '../../constant/common';
 
 export default function BreadcrumbList(category) {
     const RenderBreadcrumbItem = () => {
@@ -24,9 +24,6 @@ export default function BreadcrumbList(category) {
     return (
         <Breadcrumb className="my-3">
             {RenderBreadcrumbItem()}
-            <Breadcrumb.Item>
-            <Link></Link>
-            </Breadcrumb.Item>
         </Breadcrumb>
     )
 }

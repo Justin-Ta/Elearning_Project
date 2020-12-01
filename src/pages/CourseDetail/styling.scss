@@ -14,5 +14,15 @@
             border-radius: 5px; 
             box-shadow: inset 0px 0px 15px 2px rgba(255,255,255,0.6);
         }
+        background: url('https://www.dporganizer.com/wp-content/uploads/2018/02/15145454/education-background.jpg');
+        background-size: cover;
+        background-repeat: none;
+        background-attachment: fixed;
+        
+        height: 45vh;
+        min-height: 300px;
+        h2, h5, h4{
+            color: $whitePrimary;
+        }
     }
 }

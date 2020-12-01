@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function RatingStars(props) {
-    console.count("render rating stars");
+    //console.count("render rating stars");
     let stars = [];
     for (let i = 0; i < Math.floor(props.score); i++) {
         stars.push(
@@ -14,7 +14,7 @@ export default function RatingStars(props) {
 
     return (
         <div className="ratingStars">
-            {stars}
+            {stars} <span className="ratingCore">{props.score}</span>
         </div>
     )
 }

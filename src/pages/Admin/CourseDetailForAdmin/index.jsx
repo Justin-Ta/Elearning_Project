@@ -13,7 +13,7 @@ export default function CourseDetailForAdmin(props) {
             .then(res => {dispatch(getCourseDetail(res.data))})
             .catch(err => console.log(err));
     },[dispatch])
-    console.log(state);
+    console.log(state, id);
     const {tenKhoaHoc, ngayTao, luotXem}= state;
 
     return (

@@ -36,11 +36,11 @@ export default function UserEdit(props) {
             </Form.Item>
           </Col>
 
-          <Col span={10}>
-            <Form.Item label="User Id">
-              <span className="ant-form-text">55151</span>
-            </Form.Item>
-          </Col>
+           <Col span={10}>
+             <Form.Item label="User Id">
+               <span className="ant-form-text">55151</span>
+             </Form.Item>
+           </Col>
 
           <Col span={7}>
             <Form.Item

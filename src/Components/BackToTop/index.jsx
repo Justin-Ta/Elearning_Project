@@ -41,7 +41,7 @@ export default class ScrollToTop extends Component {
           <div className="scroll__to__top">
             {is_visible && (
               <div className="backToTopButton" onClick={() => this.scrollToTop()}>
-               <img src= "/img/Back_To_Top.png" alt="Back_To_Top.png"/>
+               <img src= "/img/icon/Back_To_Top.png" alt="Back_To_Top.png"/>
               </div>
             )}
           </div>

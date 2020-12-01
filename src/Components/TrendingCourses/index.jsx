@@ -1,11 +1,10 @@
-import { Pagination, Spin } from 'antd';
+import { Pagination } from 'antd';
 import React, { useEffect } from 'react';
 import CourseList1 from '../CourseList1';
 import { useSelector, useDispatch } from "react-redux";
-import { getCourseListByPageUrl } from '../../constant/api';
-
-import axios from 'axios';
 import { changeTrendingCoursesAction } from '../../redux/actions/course';
+import Loading from '../Loading';
+import { pageSize } from '../../constant/common';
 
 export default function TrendingCourses() {
     console.count("TrendingCourses");
@@ -14,15 +13,11 @@ export default function TrendingCourses() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        axios.get(getCourseListByPageUrl(1))
-            .then(res => { dispatch(changeTrendingCoursesAction(res.data)) })
-            .catch(err => console.log(err));
-    }, [dispatch])
+        dispatch(changeTrendingCoursesAction(1));
+    },[dispatch])
 
     const changePage = (currentPage) => {
-        axios.get(getCourseListByPageUrl(currentPage))
-            .then(res => { dispatch(changeTrendingCoursesAction(res.data)) })
-            .catch(err => console.log(err));
+        dispatch(changeTrendingCoursesAction(currentPage));
     }
 
     return (
@@ -31,12 +26,12 @@ export default function TrendingCourses() {
                 <h3>The world's largest selection of courses</h3>
                 <div className="popularCourses">Most popular courses</div>
                 {isLoading ?
-                <Spin tip="Loading..." size={"large"}></Spin>
+                <Loading />
                 :
                 <>
                     <CourseList1 courses={state.items} />
                     <Pagination
-                        pageSize={4}
+                        pageSize={pageSize}
                         total={state.totalCount}
                         onChange={changePage}
                         hideOnSinglePage={true}

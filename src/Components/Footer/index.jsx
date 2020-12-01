@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 export default function Footer() {
     return (
         <footer className="footer">
-            <hr/>
+            <hr className="my-0"/>
             <div className="footer__container container">
                 <div className="footer__container__info">
                     <div className="footer__container__info__col">
@@ -34,7 +34,7 @@ export default function Footer() {
                 </div>
                 <div className="footer__container__copyright row">
                     <div className="footer__container__copyright__logo">
-                    <img src="./img/icon/icon_Elearning.ico" alt="logo-coral" />
+                    <img src="/img/icon/icon_Elearning.ico" alt="logo-coral" />
                     Learning
                     </div>
                     <span>© 2020 E-learning, Inc.</span>

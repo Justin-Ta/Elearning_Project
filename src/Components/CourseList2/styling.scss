@@ -1,10 +1,6 @@
 .courseList2 {
-    .ant-card {
-    display: flex;
-    }
-
-    .ant-card-bordered .ant-card-cover {
-        margin: 0;
-        transform: none;
+    .ant-layout.ant-layout-has-sider > .ant-layout, .ant-layout.ant-layout-has-sider > .ant-layout-content {
+        overflow-x: visible;
+        overflow-y: hidden;
     }
 }

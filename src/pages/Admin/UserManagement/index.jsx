@@ -9,7 +9,7 @@ export default function UserManagement() {
     const state= Array.from(useSelector(state=>state.userReducer));
     const dispatch= useDispatch();
     useEffect(()=>{
-      axios.get(getListUser())
+      axios.get(getListUser)
       .then(res=>{dispatch(getListOfUser(res.data))})
       .catch(err=> console.log(err))
     },[dispatch]);
@@ -23,7 +23,7 @@ export default function UserManagement() {
           .then(res => console.log(res))
        }
       }
-
+      console.log("nguoi dung", state)
     const renderUser = () =>{
         return state?.map((user, index)=>{
         const {maLoaiNguoiDung, taiKhoan, hoTen, email, soDt}= user
@@ -93,12 +93,12 @@ export default function UserManagement() {
                         <td style={{width:"5%"}}></td>
                         <td style={{width:"5%"}}></td>
 
-                    </tr>
-                </thead>
-                <tbody className="table__content">
-                    {renderUser()}
-                </tbody>
-            </table>
-    </div>
+                     </tr>
+                 </thead>
+                 <tbody className="table__content">
+                     {renderUser()}
+                 </tbody>
+             </table>
+     </div>
   )
 }

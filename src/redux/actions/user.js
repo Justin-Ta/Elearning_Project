@@ -1,48 +1,47 @@
-import {GET_USER_LIST} from '../../constant/actionType';
-import axios from 'axios';
-import { LOGIN, TOKEN, USER_LOGIN, SIGNIN } from '../../constant/api'
-export const getListOfUser=(payload)=>{
-    return{
-    type: GET_USER_LIST,
-    payload: payload,
+import { GET_USER_LIST, POST_USERINFO } from '../../constant/actionType';
+import { signUpService } from '../../Axios/user';
+import { message } from 'antd';
+import { TOKEN, USERINFO } from '../../constant/common';
+
+export const getListOfUser = (payload) => {
+    return {
+        type: GET_USER_LIST,
+        payload: payload,
     }
 }
 
-export const LogIn=(userLogin, history)=>{
-    return async dispatch => {
-        try {
-            let { data, status } = await axios({
-                url: LOGIN,
-                method: 'POST',
-                data: {
-                    taiKhoan: userLogin.userName,
-                    matKhau: userLogin.passWord
-                }
-            });
-            console.log(data)
-            if (status === 200) {
-                //Sau khi gọi api => dispatch lên redux 
-                dispatch({
-                    type: 'DANG_NHAP',
-                    userLogin: data
-                });
-                //Lưu vào localstorage
-                localStorage.setItem(USER_LOGIN, JSON.stringify(data));
-                localStorage.setItem(TOKEN, data.accessToken);
-                // history.push("/")
-                history.goBack();
-            }
-        } catch (err) {
-            console.log(err.response.data);
+export const sigUpAction = (userInfo, signUpForm, setLoading) => {
+    signUpService(userInfo)
+        .then(res => {
+            console.log(res.status);
+            setLoading(false);
+            message.success('Sign up successfully');
+            signUpForm.resetFields();
+            return;
+        })
+        .catch(err => {
+            console.log(err);
+            setLoading(false);
+            message.error('Sign up unsuccessfully');
+        });
+}
+
+export const postUserAction = () => {
+    const accessToken = localStorage.getItem(TOKEN);
+    const userInfo = JSON.parse(localStorage.getItem(USERINFO));
+    return {
+        type: POST_USERINFO,
+        payload: {
+            token: accessToken,
+            userInfo: userInfo,
         }
-
     }
 }
 
-export const SignUpAPI=(data)=>{
-    return axios({
-        url: SIGNIN,
-        method: "POST",
-        data
-    });
-}
+// export const SignUpAPI=(data)=>{
+//     return axios({
+//         url: SIGNIN,
+//         method: "POST",
+//         data
+//     });
+// }

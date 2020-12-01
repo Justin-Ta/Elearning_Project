@@ -1,0 +1,24 @@
+.courseItemSmall {
+    .ant-card-body {
+        margin-top: 66.66%;
+        padding: 15px;
+        position: relative;
+    }
+
+    .ant-card-cover{
+        width: 100%;
+        padding-top: 60%;
+        overflow: hidden;
+        background-color: $greyLight;
+        position: absolute;
+        top: 0;
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+
+        img {
+            position: absolute;
+            top: 0;
+            height: 100%;
+        }
+    }
+}

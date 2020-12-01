@@ -1,0 +1,67 @@
+.courseItem {
+    .ratingCore{
+        @include Text($txtBrownLight, $body2, $fwLight);
+    }
+
+    .title {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;  
+        overflow: hidden; 
+
+        @include Text($txtBlackPrimary, $h6, $fwBold);
+        line-height: 25px;
+    }
+
+    .author {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        @include Text($txtBrownLight, $body2, $fwLight);
+        line-height: 25px;
+    }
+
+    .price {
+        @include Text($txtBlackPrimary, $h6, $fwBold);
+        line-height: 25px;
+        margin-bottom: 5px;
+
+        span {
+            padding-left: 10px;
+            text-decoration-line: line-through;
+            @include Text($txtBrownLight, $body2, $fwLight);
+        }
+    }
+
+    .bestseller {
+        background-color: $orangeLight;
+        @include Text($txtBlackPrimary, $body2, $fwBold);
+        padding: 3px 5px;
+        border-radius: 2px;
+    }
+
+    // @include mediaQuery($md) {
+    //     .ant-card-body {
+    //         margin-top: 66.66%;
+    //         padding: 15px;
+    //         position: relative;
+    //     }
+    
+    //     .ant-card-cover{
+    //         width: 100%;
+    //         padding-top: 60%;
+    //         overflow: hidden;
+    //         background-color: $greyLight;
+    //         position: absolute;
+    //         top: 0;
+    //         margin-right: 0 !important;
+    //         margin-left: 0 !important;
+    
+    //         img {
+    //             position: absolute;
+    //             top: 0;
+    //             height: 100%;
+    //         }
+    //     }
+    // }
+}

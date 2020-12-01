@@ -11,7 +11,6 @@ import Search from './pages/Search';
 import CategoryDetail from './pages/CategoryDetail';
 import CourseManagement from './pages/Admin/CourseManagement';
 import UserManagement from './pages/Admin/UserManagement';
-import CourseDetail from './pages/CourseDetail';
 import PageNotFound from './pages/PageNotFound';
 import {HomeTemplate} from './templates/homeTemplate'
 import { AdminTemplate } from './templates/AdminTemplate';
@@ -20,10 +19,11 @@ import Term from './pages/Term';
 import CourseEdit from './pages/Admin/CourseEdit';
 import UserEdit from './pages/Admin/UserEdit';
 import CourseDetailForAdmin from './pages/Admin/CourseDetailForAdmin';
-
+import UserProfile from './pages/UserProfile';
+import CourseDetail from './pages/CourseDetail'
+import DashBoard from './pages/Admin/DashBoard';
 
 function App() {
-
   return (
     <BrowserRouter>
     <Switch>
@@ -33,6 +33,7 @@ function App() {
       <Route exact path='/login' component={Login}/>
       <Route exact path='/forgotpassword' component={ForgotPassword}/>  
       <HomeTemplate exact path='/coursedetail/:id' Component={CourseDetail}/>
+      <AdminTemplate exact path='/admin' Component={DashBoard}/>
       <AdminTemplate exact path='/admin/coursesmanagement' Component={CourseManagement}/>
       <AdminTemplate exact path='/admin/courseedit' Component={CourseEdit}/>
       <AdminTemplate exact path='/admin/coursedetail/:id' Component={CourseDetailForAdmin}/>
@@ -41,6 +42,7 @@ function App() {
       <AdminTemplate exact path='/admin/pendingrequest' Component={Pendingrequest}/>
       <HomeTemplate exact path='/search' Component={Search}/>
       <HomeTemplate exact path='/categories/:name' Component={CategoryDetail}/>
+      <HomeTemplate exact path='/userprofile' Component={UserProfile}/>
       <HomeTemplate exact path='/term' Component={Term}/>
       <HomeTemplate exact path='*' Component={PageNotFound}/>
     </Switch>

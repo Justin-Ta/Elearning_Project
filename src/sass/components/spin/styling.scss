@@ -1,0 +1,14 @@
+.ant-spin-spinning {
+    display: block !important;
+    margin: 0 auto !important;
+    position: absolute !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    .ant-spin-text {
+        color: $orangeDark;
+    }
+
+    .anticon-spin {
+        color: $orangeDark;
+    }
+}

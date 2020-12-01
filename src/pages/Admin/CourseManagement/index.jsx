@@ -9,7 +9,7 @@ export default function CourseManagement(props) {
     const state = Array.from(useSelector(state=> state.trendingCourses));
     const dispatch= useDispatch();
     useEffect(() => {
-      axios.get(getCourse())
+      axios.get(getCourse)
       .then(res=>{dispatch(getCourseInfo(res.data))})
       .catch(err=> console.log(err));
     },[dispatch])
