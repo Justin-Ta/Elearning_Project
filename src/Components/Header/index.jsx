@@ -46,7 +46,7 @@ export default function Header() {
             </NavLink>
             <hr/>
             { userInfo && userInfo.role === "HV" && 
-                <NavLink to="/admin/coursesmanagement" style={{ cursor: "pointer" }} >
+                <NavLink to="/admin" style={{ cursor: "pointer" }} >
                     <i class="fa fa-lock" aria-hidden="true"></i> Go to Admin page
                 </NavLink>
             }

@@ -21,6 +21,7 @@ import UserEdit from './pages/Admin/UserEdit';
 import CourseDetailForAdmin from './pages/Admin/CourseDetailForAdmin';
 import UserProfile from './pages/UserProfile';
 import CourseDetail from './pages/CourseDetail'
+import DashBoard from './pages/Admin/DashBoard';
 
 function App() {
 
@@ -33,6 +34,7 @@ function App() {
       <Route exact path='/login' component={Login}/>
       <Route exact path='/forgotpassword' component={ForgotPassword}/>  
       <HomeTemplate exact path='/coursedetail/:id' Component={CourseDetail}/>
+      <AdminTemplate exact path='/admin' Component={DashBoard}/>
       <AdminTemplate exact path='/admin/coursesmanagement' Component={CourseManagement}/>
       <AdminTemplate exact path='/admin/courseedit' Component={CourseEdit}/>
       <AdminTemplate exact path='/admin/coursedetail/:id' Component={CourseDetailForAdmin}/>
