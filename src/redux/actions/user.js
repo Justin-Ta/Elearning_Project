@@ -1,4 +1,4 @@
-import { GET_USER_LIST, POST_USERINFO } from '../../constant/actionType';
+import { GET_USER_LIST, POST_USERINFO, SEARCH_USER } from '../../constant/actionType';
 import { signUpService } from '../../Axios/user';
 import { message } from 'antd';
 import { TOKEN, USERINFO } from '../../constant/common';
@@ -38,10 +38,13 @@ export const postUserAction = () => {
     }
 }
 
-// export const SignUpAPI=(data)=>{
-//     return axios({
-//         url: SIGNIN,
-//         method: "POST",
-//         data
-//     });
-// }
+export const DeleteUserAction=()=>{
+    
+}
+
+export const searchUserAction = (payload) => {
+    return {
+        type: SEARCH_USER,
+        payload: payload,
+    }
+}

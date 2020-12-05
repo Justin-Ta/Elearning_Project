@@ -23,3 +23,10 @@ export const deleteUserAPI=(userName)=>{
     return `https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${userName}`
 }
 
+export const deleteCourseAPI=(courseName)=>{
+    return `https://elearning0706.cybersoft.edu.vn/api/QuanLyKhoaHoc/XoaKhoaHoc?MaKhoaHoc=${courseName}`
+}
+
+export const searchUserAPI=(keyWord)=>{
+    return `https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP11&tuKhoa=${keyWord}`
+}

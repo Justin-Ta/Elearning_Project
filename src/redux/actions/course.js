@@ -7,7 +7,6 @@ import {
     POST_TRENDING_COURSES,
     POST_COURSES_IN_CATEGORY,
 } from '../../constant/actionType';
-//--------------------------------------
 
 export const getCourseDetail = (payload) => { 
     return { 

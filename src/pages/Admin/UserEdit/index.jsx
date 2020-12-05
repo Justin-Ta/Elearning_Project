@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
     Form,
     Select,
@@ -8,8 +8,10 @@ import {
     Col,
     Input
   } from 'antd';
-  import { UploadOutlined, BookOutlined, MailOutlined, LockOutlined, PhoneOutlined } from '@ant-design/icons';
-  const { TextArea } = Input;
+  import { UploadOutlined, BookOutlined, MailOutlined, LockOutlined, PhoneOutlined }from '@ant-design/icons';
+  import { sigUpAction } from '../../../redux/actions/user';
+
+  
   const { Option } = Select;
   const normFile = (e) => {
     console.log('Upload event:', e);
@@ -20,42 +22,39 @@ import {
   };
 
 export default function UserEdit(props) {
-<<<<<<< HEAD
   console.log("EditTile:", props.location.aboutProps)
-  console.log("Props", props)
-=======
->>>>>>> main
+  const [signUpForm] = Form.useForm();
+  const [loading, setLoading] = useState(false);
+
   const onFinish = (values) => {
-    props.history.push("/admin/usermanagement");
-    console.log('Received values of form: ', values);
+    setLoading(true);
+    const { name, email, password, username } = values;
+    let userInfo = {
+      "taiKhoan": username,
+      "matKhau": password,
+      "hoTen": name,
+      "soDT": "",
+      "maNhom": "GP11",
+      "email": email
+    }
+    console.log('sent data', userInfo, setLoading);
+    sigUpAction(userInfo, signUpForm, setLoading);
   };
   
     return (
       <Form name="validate_other" onFinish={onFinish}>
         <Row justify="space-around">
-          <Col span={10}>
+          <Col span={24}>
             <Form.Item>
-<<<<<<< HEAD
               {(!props.location.aboutProps)?<span className="ant-form-text">ADD USER</span>:<span className="ant-form-text">EDIT USER</span>}
             </Form.Item>
           </Col>
 
-           <Col span={10}>
+           {/* <Col span={10}>
              <Form.Item label="User Id">
                <span className="ant-form-text">55151</span>
              </Form.Item>
-           </Col>
-=======
-              <span className="ant-form-text">ADD USER</span>
-            </Form.Item>
-          </Col>
-
-          <Col span={10}>
-            <Form.Item label="User Id">
-              <span className="ant-form-text">55151</span>
-            </Form.Item>
-          </Col>
->>>>>>> main
+           </Col> */}
 
           <Col span={7}>
             <Form.Item
@@ -69,13 +68,8 @@ export default function UserEdit(props) {
               ]}
             >
               <Select placeholder="Kind of user">
-<<<<<<< HEAD
                 <Option value="GV">Teacher</Option>
                 <Option value="HV">Student</Option>
-=======
-                <Option value="teacher">Teacher</Option>
-                <Option value="student">Student</Option>
->>>>>>> main
               </Select>
             </Form.Item>
           </Col>
@@ -124,11 +118,6 @@ export default function UserEdit(props) {
           <Form.Item
         name="phone"
         rules={[
-          {
-            type: "number",
-            maxLength: 10 | 11,
-            message: 'The input is not number',
-          },
           {
             required: true,
             message: 'Please input your phone number!',
@@ -180,6 +169,8 @@ export default function UserEdit(props) {
             </Button>
           </Upload>
         </Form.Item>
+
+
 
         <Form.Item
           wrapperCol={{

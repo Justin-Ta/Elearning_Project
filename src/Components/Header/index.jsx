@@ -40,22 +40,28 @@ export default function Header() {
     }
 
     const menu = (
-        <div className="menu">
-            <NavLink to="/userprofile" style={{ cursor: "pointer" }} >
-                <i class="fa fa-home" aria-hidden="true"></i> Go to my profile
-            </NavLink>
-            <hr/>
-            { userInfo && userInfo.role === "HV" && 
-                <NavLink to="/admin" style={{ cursor: "pointer" }} >
-                    <i class="fa fa-lock" aria-hidden="true"></i> Go to Admin page
-                </NavLink>
-            }
-            <hr/>
-            <div className="logoutBtn" onClick={logout}>
-                <i class="fa fa-sign-out" aria-hidden="true"></i> Log out
+      <div className="menu">
+        <NavLink to="/userprofile" style={{ cursor: "pointer" }}>
+          <i class="fa fa-home" aria-hidden="true"></i> Go to my profile
+        </NavLink>
+        <div>
+          {userInfo && userInfo.role === "GV" && (
+            <div>
+              <hr/>
+              <NavLink to="/admin" style={{ cursor: "pointer" }}>
+                <i class="fa fa-lock" aria-hidden="true"></i> Go to Admin page
+              </NavLink>
             </div>
+          )}
         </div>
-    )
+        <div>
+          <hr/>
+          <div className="logoutBtn" onClick={logout}>
+            <i class="fa fa-sign-out" aria-hidden="true"></i> Log out
+          </div>
+        </div>
+      </div>
+    );
 
     return (
         <div className="header" style={headerStyle}>

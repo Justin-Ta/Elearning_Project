@@ -8,3 +8,4 @@ export const POST_COURSES_IN_CATEGORY = "POST_COURSES_IN_CATEGORY";
 // User API
 export const GET_USER_LIST= "GET USER LIST";
 export const POST_USERINFO = "POST_USERINFO";
+export const SEARCH_USER= "SEARCH USER";

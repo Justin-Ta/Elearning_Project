@@ -2,6 +2,7 @@ import axios from 'axios';
 import { 
     getTrendingCoursesByPageUrl,
     getCategoryCoursesByPageUrl,
+    deleteCourseAPI
 } from '../constant/api';
 
 export const getTrendingCoursesService = (currentPage) => {
@@ -10,4 +11,8 @@ export const getTrendingCoursesService = (currentPage) => {
 
 export const getCategoryCoursesService = (currentPage, category) => {
     return axios.get(getCategoryCoursesByPageUrl(currentPage, category));
+}
+
+export const deleteCourseService=(CourseName)=>{
+    return axios.delete(deleteCourseAPI(CourseName));
 }

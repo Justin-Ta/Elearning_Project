@@ -14,7 +14,6 @@ export default function CourseManagement(props) {
       .catch(err=> console.log(err));
     },[dispatch])
     
-<<<<<<< HEAD
    
     const renderCourse = () =>{
         return state?.map((course, index)=>{
@@ -53,32 +52,14 @@ export default function CourseManagement(props) {
                   </NavLink>
                 </td>
                 <td className="text-left" style={{ width: "5%" }}>
-                  <button className="btn btn-danger mx-2" title="Delete course">
+                  <button className="btn btn-danger mx-2" title="Delete course" onClick={()=>{
+                    console.log("Selected course",tenKhoaHoc)
+                  }}>
                     <i class="fa fa-trash"></i>
                   </button>
                 </td>
               </tr>
             );
-=======
-    const renderCourse = () =>{
-        return state?.map((course, index)=>{
-          const {maKhoaHoc= maKhoaHoc, tenKhoaHoc= tenKhoaHoc, soLuongHocVien= soLuongHocVien}=course;
-            return <tr key={index}>
-                        <td >{maKhoaHoc}</td>
-                        <td>{tenKhoaHoc}</td>
-                        <td  className="text-center">{soLuongHocVien}</td>
-                        <td className="text-center">{ 2 >0 ? <span className="text-danger">2</span> : 1}</td>
-                        <td className="text-left" style={{width:"5%"}}>
-                          <NavLink className="btn btn-primary mx-2" title="Detail course" to={`/admin/coursedetail/${maKhoaHoc}`}><i class="fa fa-search"></i></NavLink>
-                        </td>
-                        <td className="text-left" style={{width:"5%"}}>                         
-                          <button className="btn btn-warning mx-2" title="Edit course"><i class="fa fa-edit"></i></button>
-                        </td>
-                        <td className="text-left"style={{width:"5%"}}>
-                          <button className="btn btn-danger mx-2" title="Delete course"><i class="fa fa-trash"></i></button>
-                        </td>
-                    </tr>
->>>>>>> main
         })}
   return (
           <div>
@@ -90,14 +71,6 @@ export default function CourseManagement(props) {
                     </span>
                 </div>
             </div>
-<<<<<<< HEAD
-=======
-            {/* <div className="from-group">
-                  <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target=".bd-example-modal-lg">Add Course</button>
-                  <Modal/>
-                  
-            </div> */}
->>>>>>> main
             <div className="from-group">
               <NavLink type="button" class="btn btn-primary mb-3" to ='/admin/courseedit'>Add Course</NavLink>
             </div>
@@ -119,8 +92,4 @@ export default function CourseManagement(props) {
             </table>
     </div>
   )
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> main
