@@ -5,10 +5,10 @@ import { NavLink } from 'react-router-dom';
 
 export default function CourseItem(props) {
     //console.count("CourseItem");
-    const { tenKhoaHoc, hinhAnh, maKhoaHoc } = props.course;
+    const { tenKhoaHoc, hinhAnh, maKhoaHoc, moTa } = props.course;
     return (
         <div className="courseItem">
-            <NavLink to={`/coursedetail/${maKhoaHoc}`}>
+            <NavLink to={`/coursedetail/${encodeURIComponent(maKhoaHoc)}`}>
                 <Card
                     hoverable
                     cover={
@@ -21,7 +21,7 @@ export default function CourseItem(props) {
                     <div className="title">
                         {tenKhoaHoc}
                     </div>
-                    <div className="author">czc Lorem ipsum dolor sit.</div>
+                <div className="author">{moTa}</div>
                     <RatingStars score={4.5} />
                     <div className="price">$12.99
                 <span>$17.55</span>

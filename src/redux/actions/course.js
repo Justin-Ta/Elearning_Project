@@ -1,7 +1,11 @@
-import { GET_COURSE_DETAIL, GET_COURSES } from '../../constant/actionType';
+import { GET_COURSES, POST_COURSE_DETAIL, POST_PENDING_COURSES, POST_REGISTERED_COURSES, UPDATE_PENDING_COURSES } from '../../constant/actionType';
 import { 
     getTrendingCoursesService,
-    getCategoryCoursesService, 
+    getCategoryCoursesService,
+    getCourseDetailService,
+    getPendingCourseService,
+    getRegisteredCoursesService,
+    registerCourseService, 
 } from '../../Axios/course';
 import { 
     POST_TRENDING_COURSES,
@@ -9,12 +13,6 @@ import {
 } from '../../constant/actionType';
 //--------------------------------------
 
-export const getCourseDetail = (payload) => { 
-    return { 
-        type: GET_COURSE_DETAIL,
-        payload: payload,
-    }
-}
 export const getCourseInfo = (payload) => { 
     return { 
         type: GET_COURSES,
@@ -45,6 +43,63 @@ export const getCategoryCoursesAction = (currentPage, category) => {
             });
         })
         .catch( err => console.log(err) );
+    }
+}
+
+export const getCourseDetailAction = (id) => {
+    return dispatch => {
+        getCourseDetailService(id)
+        .then( res => {
+            dispatch({ 
+                type: POST_COURSE_DETAIL,
+                payload: res.data,
+            });
+        })
+        .catch(err => console.log(err));
+    }
+}
+
+export const getPendingCoursesAction = (data) => {
+    return dispatch => {
+        getPendingCourseService(data)
+        .then( res => {
+            dispatch({ 
+                type: POST_PENDING_COURSES,
+                payload: res.data,
+            });
+        })
+        .catch(err => console.log(err));
+    }
+}
+
+export const getRegisteredCoursesAction = (data) => {
+    return dispatch => {
+        getRegisteredCoursesService(data)
+        .then( res => {
+            dispatch({ 
+                type: POST_REGISTERED_COURSES,
+                payload: res.data,
+            });
+        })
+        .catch(err => console.log(err));
+    }
+}
+
+export const registerCourseAction = (data, courseInfo, afterDispatch, afterCallAPIFailed) => {
+    return dispatch => {
+        registerCourseService(data)
+        .then( res => {
+            console.log('res.data', res.data);
+            dispatch({
+                type: UPDATE_PENDING_COURSES,
+                payload: courseInfo,
+            });
+            afterDispatch();
+        })
+        .catch(err => {
+            afterCallAPIFailed();
+            console.log(err);
+        });
     }
 }
 

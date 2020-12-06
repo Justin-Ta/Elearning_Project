@@ -1,5 +1,5 @@
 import React from 'react';
-import { Breadcrumb } from 'antd';
+
 import { Link } from 'react-router-dom';
 import { categoryNames } from '../../constant/common';
 
@@ -8,22 +8,26 @@ export default function BreadcrumbList(category) {
         return categoryNames.map((name, index) => {
             if ( category === name ) {
                 return (
-                    <Breadcrumb.Item key={index}>
-                        <Link to={"/categories/"+ name} className="active">{name}</Link>
-                    </Breadcrumb.Item>
+                    <Link to={"/categories/"+ name} className="active" key={index}>
+                        <span>{name}</span> 
+                        <div className="arrow-above"></div>
+                        <div className="arrow-below"></div>
+                    </Link>
                 )
             }
             return (
-                <Breadcrumb.Item key={index}>
-                    <Link to={"/categories/"+ name} >{name}</Link>
-                </Breadcrumb.Item>
+                <Link to={"/categories/"+ name} key={index}>
+                    <span>{name}</span>
+                </Link>
             )
         })
     }
 
     return (
-        <Breadcrumb className="my-3">
+        <div className="BreadcrumbList">
+            <div className="container">
             {RenderBreadcrumbItem()}
-        </Breadcrumb>
+            </div>
+        </div>
     )
 }

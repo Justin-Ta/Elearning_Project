@@ -10,7 +10,7 @@ import Loading from '../../Components/Loading';
 import Sorting from '../../Components/Sorting';
 
 export default function CategoryDetail(props) {
-    console.count("CategoryDetail");
+    //console.count("CategoryDetail");
 
     const { name } = useParams();
     if ( !categoryNames.includes(name) ) props.history.push('/*');
@@ -28,16 +28,16 @@ export default function CategoryDetail(props) {
 
     return (
         <div className="search mb-5">
-            <div className="container">
-                {/* {BreadcrumbList(name)} */}
+            {BreadcrumbList(name)}
+            <div className="container pt-4">
                 <h2>{name.charAt(0).toUpperCase() + name.slice(1)} Courses</h2>
                 <div style={{ backgroundColor: 'transparent' }} className="d-flex ">
                     {isLoading ?
                         <Loading />
                         :
                         <>
-                            <Sorting/>
-                            <div className="flex-grow-1">
+                            {/* <Sorting/> */}
+                            <div className="col-12">
                                 <CourseList2 courses={state.items}/>
                                 <div className="mt-5">
                                     <Pagination

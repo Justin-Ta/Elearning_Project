@@ -14,5 +14,21 @@
             span {
                 padding: 5px 10px;
             }
+
+            @include mediaQuery($sm) {
+                width: 120px;
+            }
         }
+
+    #cancleBtn {
+        border-color: $txtOrangePrimary;
+        color: $txtOrangePrimary;
+        width: 80px;
+    }
+
+    #okBtn {
+        background-color: $orangePrimary;
+        border-color: $txtOrangePrimary;
+        width: 80px;
+    }
 }

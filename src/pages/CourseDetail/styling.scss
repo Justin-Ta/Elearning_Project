@@ -1,28 +1,74 @@
 .courseDetail{
     .courseDetail_header{
-        background-color: rgba(203, 4, 1, 0.75);
-        height: 300px;
+        background-color: $blackPrimary;
+        min-height: max-content;
+        background: url('https://www.dporganizer.com/wp-content/uploads/2018/02/15145454/education-background.jpg');
+        background-size: cover;
+        background-repeat: none;
+        background-attachment: fixed;
+
         h1, p{
             color: $txtWhitePrimary;
         }
         span{
             font-weight: bold;
         }
-        .courseImg{
-            width: 300px;
-            height: 200px;
-            border-radius: 5px; 
-            box-shadow: inset 0px 0px 15px 2px rgba(255,255,255,0.6);
-        }
-        background: url('https://www.dporganizer.com/wp-content/uploads/2018/02/15145454/education-background.jpg');
-        background-size: cover;
-        background-repeat: none;
-        background-attachment: fixed;
-        
-        height: 45vh;
-        min-height: 300px;
+
+
         h2, h5, h4{
             color: $whitePrimary;
+        }
+
+        &_detail {
+            margin: 48px 0;
+
+            @include mediaQuery($md) {
+                margin-top: 0;
+                order: 2;
+            }
+        }
+
+        &_card {
+            margin: 48px 0;
+
+            @include mediaQuery($md) {
+                order: 1;
+            }
+
+            &_playBg {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(255, 255, 255, 0.5);
+                color: $brownPrimary;
+                display: flex;
+                font-size: 60px;
+                justify-content: center;
+                align-items: center;
+
+                .anticon-play-circle {
+                    transition: all 0.5s;
+
+                    &:hover{
+                        cursor: pointer;
+                    transform: scale(1.2);
+                    }
+                }
+            }
+
+            .ant-card.ant-card-bordered {
+                position: absolute;
+                text-align: center;
+                width: auto;
+                margin: 0 15px;
+                right: 0;
+
+                @include mediaQuery($md) {
+                    position: relative;
+                    order: 1;
+                    margin: 0;
+                }
+            }
         }
     }
 }

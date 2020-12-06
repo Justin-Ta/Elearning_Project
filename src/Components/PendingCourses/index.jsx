@@ -1,13 +1,12 @@
 import React from 'react';
-import { useSelector } from "react-redux";
 import { List, Tag } from 'antd';
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { tagColor } from '../../constant/common';
 
-export default function RegisteredCourses() {
-    const state = useSelector(state => state.userReducer.KhoaHocDaXetDuyet);
+export default function PendingCourses(props) {
+    const state = useSelector(state => state.userReducer.KhoaHocChoXetDuyet);
     const data = state;
-
     return (
         <List
             itemLayout="horizontal"

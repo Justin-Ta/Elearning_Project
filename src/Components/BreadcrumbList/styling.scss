@@ -1,19 +1,50 @@
-.ant-breadcrumb a
-{
-    color: $txtBrownPrimary;
-    font-size: 1rem;
-}
-
-.ant-breadcrumb-link > a {
-    &.active {
-        color: $greenDark !important;
+.BreadcrumbList {
+    background-color: $greyLight;
+    
+    @include mediaQuery($md) {
+        display: none;
     }
-}
 
-.ant-breadcrumb .ant-breadcrumb-link > a:hover {
-    color: $greenLight;
-}
+    .container {
+        display: flex;
+        flex-direction: row;
 
-.ant-breadcrumb > span:last-child a {
-    color: rgba(0, 0, 0, 0.45) !important;
+        a {
+            line-height: 52px;
+            flex-grow: 1;
+            font-weight: $fwMedium;
+            color: $txtBrownPrimary;
+            display: inline-block;
+            position: relative;
+            text-align: center;
+    
+            &:hover {
+                color: $txtBrownPrimary;
+            }
+
+            &.active {
+                border-left: 0.5px solid $brownPrimary;
+            }
+
+            .arrow-above, .arrow-below {
+                position: absolute;
+                height: 26px;
+                width: 0.5px;
+                background-color: $brownPrimary;
+                right: 0px;
+                box-shadow: 5px 0px 5px $brownPrimary;
+            }
+
+            .arrow-above {
+                top: 0;
+                transform: skewX(30deg);
+            }
+
+            .arrow-below {
+                top: 26px;
+                transform: skewX(-30deg);
+            }
+        }
+    }
+    
 }

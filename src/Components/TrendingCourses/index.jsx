@@ -7,7 +7,7 @@ import Loading from '../Loading';
 import { pageSize } from '../../constant/common';
 
 export default function TrendingCourses() {
-    console.count("TrendingCourses");
+    //console.count("TrendingCourses");
     const state = useSelector(state => state.trendingCourses);
     let isLoading = !state;
     const dispatch = useDispatch();

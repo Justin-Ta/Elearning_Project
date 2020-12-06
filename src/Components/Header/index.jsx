@@ -1,36 +1,43 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { Input, Button, Dropdown, Avatar } from 'antd';
-import { SearchOutlined } from '@ant-design/icons';
-import { ShoppingCartOutlined } from '@ant-design/icons';
+import { SearchOutlined, MoreOutlined, ShoppingCartOutlined } from '@ant-design/icons';
 import { NavLink, useHistory } from 'react-router-dom';
 import ScrollToTop from '../BackToTop';
-import { TOKEN, USERINFO } from '../../constant/common';
-import { postUserAction } from '../../redux/actions/user';
+import { TOKEN } from '../../constant/common';
+import { deleteInfoAction, postUserInfoAction } from '../../redux/actions/user';
+import { getPendingCoursesAction, getRegisteredCoursesAction } from '../../redux/actions/course';
 
 const { Search } = Input;
 
 export default function Header() {
-    const [headerStyle, setHeaderStyle] = useState({})
-    const state = useSelector(state => state.userReducer);
-    const { token, userInfo } = state;
-    let isLogIn = token;
     let history = useHistory();
-
     const dispatch = useDispatch();
+    const token = localStorage.getItem(TOKEN);
+    const state = useSelector(state => state.userReducer);
+
     useEffect(() => {
-        dispatch(postUserAction());
-    }, [dispatch])
+        if (!token) return;
+        dispatch(postUserInfoAction());
+    }, [dispatch, token, state.taiKhoan])
+
+    useEffect(() => {
+        if (!token || !state.taiKhoan) return;
+        dispatch(getRegisteredCoursesAction({ 'taiKhoan': state.taiKhoan }));
+        dispatch(getPendingCoursesAction({ 'taiKhoan': state.taiKhoan }));
+    }, [dispatch, token, state.taiKhoan])
+
+    const [headerStyle, setHeaderStyle] = useState({})
+    const [CollappseIconGroupStyle, setCollappseIconGroupStyle] = useState({})
+    const { hoTen: name, maLoaiNguoiDung: role } = state;
 
     const logout = () => {
         localStorage.removeItem(TOKEN);
-        localStorage.removeItem(USERINFO);
-        dispatch(postUserAction());
+        dispatch(deleteInfoAction());
         if (history.location.pathname.includes("/userprofile")) history.push("/");
     }
 
     const showSearch = () => {
-        console.log(headerStyle);
         if (JSON.stringify(headerStyle) === JSON.stringify({})) {
             return setHeaderStyle({
                 height: "130px",
@@ -39,63 +46,92 @@ export default function Header() {
         return setHeaderStyle({});
     }
 
+    const showMore = () => {
+        if (JSON.stringify(CollappseIconGroupStyle) === JSON.stringify({})) {
+            return setCollappseIconGroupStyle({
+                width: "100%",
+            });
+        }
+        return setCollappseIconGroupStyle({});
+    }
+
+    const onBlur = () => {
+        setHeaderStyle({});
+        setCollappseIconGroupStyle({})
+    }
+
     const menu = (
         <div className="menu">
             <NavLink to="/userprofile" style={{ cursor: "pointer" }} >
-                <i class="fa fa-home" aria-hidden="true"></i> Go to my profile
+                <i className="fa fa-home" aria-hidden="true"></i> Go to my profile
             </NavLink>
-            <hr/>
-            { userInfo && userInfo.role === "HV" && 
-                <NavLink to="/admin/coursesmanagement" style={{ cursor: "pointer" }} >
-                    <i class="fa fa-lock" aria-hidden="true"></i> Go to Admin page
-                </NavLink>
+            <hr />
+            { role === "GV" &&
+                <>
+                    <NavLink to="/admin/coursesmanagement" style={{ cursor: "pointer" }} >
+                        <i className="fa fa-lock" aria-hidden="true"></i> Go to Admin page
+                    </NavLink>
+                    <hr />
+                </>
             }
-            <hr/>
             <div className="logoutBtn" onClick={logout}>
-                <i class="fa fa-sign-out" aria-hidden="true"></i> Log out
+                <i className="fa fa-sign-out" aria-hidden="true"></i> Log out
             </div>
         </div>
     )
 
+    //console.count('header');
+
     return (
         <div className="header" style={headerStyle}>
-            <nav className="navbar navbar-expand-lg navbar-light">
-                <NavLink to={"/"} className="mr-3 logo">
-                    <img src="/img/icon/icon_ELearning.ico" alt="logo" />
-                    <span>Learning</span>
-                </NavLink>
-                <Search placeholder="Search for anything"
-                    onSearch={value => console.log("Search keyword", value)}
-                    allowClear={true}
-                />
-                <div className="d-flex">
-                    <span className="searchCollappseIcon pr-3">
-                        <SearchOutlined style={{ fontSize: "20px" }} onClick={showSearch} />
-                    </span>
-                    {
-                        isLogIn ?
-                            <>
-                                <span className="shoppingCartIcon pr-3">
-                                    <ShoppingCartOutlined />
-                                </span>
-                                <Dropdown overlay={menu} placement="bottomRight" trigger={["click"]} arrow="true">
-                                    <Avatar src={userInfo.name ? `/img/AvatarAlphabet/${userInfo.name.charAt(0).toUpperCase()}.png` : '/img/icon/EmptyAvatar.svg'}
-                                        style={{ background: "grey" }}
-                                    />
-                                </Dropdown>
-                            </>
-                            :
-                            <>
+            <div className="container">
+                <nav className="navbar navbar-expand-lg navbar-light">
+                    <NavLink to={"/"} className="mr-3 logo">
+                        <img src="/img/icon/icon_ELearning.ico" alt="logo" />
+                        <span>Learning</span>
+                    </NavLink>
+                    <Search placeholder="Search for anything"
+                        //onSearch={value => console.log("Search keyword", value)}
+                        allowClear={true}
+                    />
+                    <div className="CollappseIconGroup">
+                        <span className="searchCollappseIcon pr-3">
+                            <SearchOutlined onClick={showSearch} onBlur={onBlur}/>
+                        </span>
+                        {
+                            !token &&
+                            <span className="moreCollappseIcon pr-3">
+                            <MoreOutlined onClick={showMore} onBlur={onBlur}/>
+                            </span>
+                        }
+                        
+                    </div>
+                    <div>
+                        {
+                            token ?
+                                <>
+                                    <span className="shoppingCartIcon pr-3">
+                                        <ShoppingCartOutlined />
+                                    </span>
+                                    <Dropdown overlay={menu} placement="bottomRight" trigger={["click"]} arrow="true">
+                                        <Avatar src={name ? `/img/AvatarAlphabet/${name.charAt(0).toUpperCase()}.png` : '/img/icon/EmptyAvatar.svg'}
+                                            style={{ background: "grey" }}
+                                        />
+                                    </Dropdown>
+                                </>
+                                :
+                                <div className="btnGroup" style={CollappseIconGroupStyle}>
                                     <Button className="loginBtn mr-3">
                                         <NavLink to="/login">Log in</NavLink>
                                     </Button>
                                     <Button type="primary" className="signupBtn">
                                         <NavLink to="/signup">Sign up</NavLink>
                                     </Button>
-                            </>
-                    }
-                </div>
-            </nav>
+                                </div>
+                        }
+                    </div>
+                </nav>
+            </div>
             <ScrollToTop />
         </div>
     )

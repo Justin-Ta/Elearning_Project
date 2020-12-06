@@ -9,7 +9,7 @@ import {
   Spin
 } from 'antd';
 import { UserOutlined, LockOutlined, MailOutlined } from '@ant-design/icons';
-import { sigUpAction } from '../../../redux/actions/user';
+import { signUpAction } from '../../../redux/actions/user';
 
 export default function SignUp(props) {
   const [signUpForm] = Form.useForm();
@@ -27,7 +27,7 @@ export default function SignUp(props) {
       "email": email
     }
     console.log('sent data', userInfo, setLoading);
-    sigUpAction(userInfo, signUpForm, setLoading);
+    signUpAction(userInfo, signUpForm, setLoading);
   };
 
   return (

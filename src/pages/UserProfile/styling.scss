@@ -45,6 +45,12 @@
         .ant-card-meta-title {
             font-size: $h4;
         }
+
+        .ant-card.ant-card-bordered {
+            @include mediaQuery($md) {
+                margin: auto;
+            }
+        }
     }
 
     &_tabs {
@@ -65,7 +71,7 @@
 
         .ant-tabs-tab-active {
             background-color: $brownDark !important;
-            font-size: $h6;
+            font-size: $body2;
 
             & > .ant-tabs-tab-btn  {
                 color: $txtWhitePrimary !important;

@@ -7,7 +7,7 @@ const { TextArea } = Input;
 export default function CommentList() {
 
     return (
-        <div className="col-8 pt-5">
+        <div>
             <h2>Reviews</h2>
             <COMMENT />
 

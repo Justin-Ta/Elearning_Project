@@ -1,16 +1,16 @@
 import React from 'react';
 import { Tabs, Card, Tooltip } from 'antd';
 import UserInfo from '../../Components/UserInfo';
-import InProgressCourses from '../../Components/InProgressCourses';
 import RegisteredCourses from '../../Components/RegisteredCourses';
 import { EditOutlined } from '@ant-design/icons';
 import { useSelector } from "react-redux";
+import PendingCourses from '../../Components/PendingCourses';
 const { TabPane } = Tabs;
-const { Meta } = Card;
 
 export default function UserProfile() {
-    const state = useSelector(state => state.userReducer.userInfo);
-    if (!state) return "";
+    const state = useSelector(state => state.userReducer);
+    const { taiKhoan: username } = state;
+    if (!username) return "";
     return (
         <div className="userProfile">
 
@@ -28,7 +28,6 @@ export default function UserProfile() {
                             </div>
                         }
                     >
-                        <Meta title={state.username} description={state.email} />
                         <Tooltip placement="bottom" title={"Edit Avatar"}>
                             <div className="userProfile_header_editAvartarIcon">
                                 <EditOutlined />
@@ -44,11 +43,11 @@ export default function UserProfile() {
                         <TabPane tab="Profile" key="1">
                             <UserInfo userInfo={state} />
                         </TabPane>
-                        <TabPane tab="In Progress" key="2">
-                            <InProgressCourses />
+                        <TabPane tab="Pending" key="2">
+                            <PendingCourses username={state.taiKhoan}/>
                         </TabPane>
                         <TabPane tab="Registered" key="3">
-                            <RegisteredCourses />
+                            <RegisteredCourses username={state.taiKhoan}/>
                         </TabPane>
                     </Tabs>
                 </div>

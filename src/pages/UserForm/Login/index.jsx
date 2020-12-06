@@ -5,9 +5,8 @@ import { NavLink } from 'react-router-dom';
 import Indicator from '../../../Components/Indicator';
 import { backGround } from '../../../constant/linkSoure'
 import { useHistory } from "react-router-dom";
-import { logInService } from '../../../Axios/user';
-import { TOKEN, USERINFO } from '../../../constant/common';
-import User from '../../../Modals/user';
+import { TOKEN } from '../../../constant/common';
+import { logInAction } from '../../../redux/actions/user';
 
 export default function Login(props) {
   const [loading, setLoading] = useState(false);
@@ -19,25 +18,18 @@ export default function Login(props) {
       "matKhau": password.trim()
     };
     setLoading(true);
-    logInService(data)
-        .then(res => {
-            const { accessToken, email, hoTen, maLoaiNguoiDung, maNhom, soDT, taiKhoan } = res.data;
-            const userInfo = new User(email, hoTen, maLoaiNguoiDung, maNhom, soDT, taiKhoan);
-            console.log("userInfo", userInfo);
-            localStorage.setItem(TOKEN, accessToken);
-            localStorage.setItem(USERINFO, JSON.stringify(userInfo));
-            history.push("/");
-        })
-        .catch(err => {
-            console.log(err);
-            setLoading(false);
-            message.error({
-              content: "Username or password is incorrect",
-              icon: <i className="fa fa-exclamation-circle pr-2 text-danger" aria-hidden="true"></i>
-            });
-        }) 
-    
-    
+    const afterCallAPISuccess = (accessToken) => {
+      localStorage.setItem(TOKEN, accessToken);
+      history.push("/");
+    };
+    const afterCallAPIFailed = () => {
+      setLoading(false);
+      message.error({
+        content: "Username or password is incorrect",
+        icon: <i className="fa fa-exclamation-circle pr-2 text-danger" aria-hidden="true"></i>
+      });
+    };
+    logInAction(data, afterCallAPISuccess, afterCallAPIFailed);
   };
 
   return (
