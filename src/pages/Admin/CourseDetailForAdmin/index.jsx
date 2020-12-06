@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import axios from 'axios';
-import {getCourseDetail} from '../../../redux/actions/course';
+import {getCourseDetailAction} from '../../../redux/actions/course';
 import {getDetail} from '../../../constant/api';
 
 export default function CourseDetailForAdmin(props) {
@@ -10,7 +10,7 @@ export default function CourseDetailForAdmin(props) {
     const dispatch= useDispatch();
     useEffect(() => {
         axios.get(getDetail(id))
-            .then(res => { dispatch(getCourseDetail(res.data))})
+            .then(res => { dispatch(getCourseDetailAction(res.data))})
             .catch(err => console.log(err));
     },[dispatch])
     console.log("Du lieu",state);
