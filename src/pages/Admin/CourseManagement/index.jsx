@@ -16,7 +16,7 @@ export default function CourseManagement(props) {
     
     const renderCourse = () =>{
         return state?.map((course, index)=>{
-          const {maKhoaHoc= maKhoaHoc, tenKhoaHoc= tenKhoaHoc, soLuongHocVien= soLuongHocVien}=course;
+          const {maKhoaHoc, tenKhoaHoc, soLuongHocVien}=course;
             return <tr key={index}>
                         <td >{maKhoaHoc}</td>
                         <td>{tenKhoaHoc}</td>

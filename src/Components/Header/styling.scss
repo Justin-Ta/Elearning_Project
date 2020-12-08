@@ -88,7 +88,7 @@ transition: height 0.5s;
      border-color: $greenLight;
      color: $greenLight;
 
-     &:hover {
+     &:hover, &:active {
         border-color: $greenPrimary;
         color: $greenPrimary;
      }
@@ -104,7 +104,7 @@ transition: height 0.5s;
     background-color: $greenLight;
     border-color: $greenLight;
 
-    &:hover {
+    &:hover, &:active {
         border-color: $greenPrimary;
         background-color: $greenPrimary;
      }

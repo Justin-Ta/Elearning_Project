@@ -6,9 +6,10 @@ import { NavLink } from 'react-router-dom';
 export default function CourseItem(props) {
     //console.count("CourseItem");
     const { tenKhoaHoc, hinhAnh, maKhoaHoc, moTa } = props.course;
+    const url = '/coursedetail/'+ encodeURIComponent(maKhoaHoc);
     return (
         <div className="courseItem">
-            <NavLink to={`/coursedetail/${encodeURIComponent(maKhoaHoc)}`}>
+            <NavLink to={url}>
                 <Card
                     hoverable
                     cover={

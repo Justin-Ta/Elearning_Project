@@ -8,7 +8,7 @@ export default function UserInfo(props) {
     //console.log("userInfo", props.userInfo);
     const dispatch = useDispatch();
     const initialUserInfor = props.userInfo;
-    const { taiKhoan, email, hoTen, soDT, maLoaiNguoiDung, ...rest } = initialUserInfor;
+    const { taiKhoan, email, hoTen, soDT, maLoaiNguoiDung } = initialUserInfor;
 
     const [isEditable, setIsEditable] = useState(false);
     const [isChanged, setIsChanged] = useState(false);
@@ -25,7 +25,15 @@ export default function UserInfo(props) {
 
     const submit = (values) => {
         values.maLoaiNguoiDung = (values.maLoaiNguoiDung === 'Teacher'? 'GV' : 'HV');
-        const submitData = {...values, ...rest};
+        const submitData = {
+            taiKhoan: taiKhoan,
+            matKhau: initialUserInfor.matKhau,
+            maLoaiNguoiDung: maLoaiNguoiDung,
+            maNhom: "GP11",
+            hoTen: values.hoTen,
+            soDT: values.soDT,
+            email: values.email,
+        };
         //console.log(submitData);
         dispatch(updateUserInfoAction(submitData));
         setIsEditable(false);
@@ -50,7 +58,7 @@ export default function UserInfo(props) {
     }
 
     return (
-        <div className="userInfo px-3">
+        <div className="userInfo">
             <Form ref={formRef} name="control-ref" onFinish={submit} onValuesChange={onValueChange}>
                 <div className="row">
                     <div className="col-lg-6 col-sm-12">

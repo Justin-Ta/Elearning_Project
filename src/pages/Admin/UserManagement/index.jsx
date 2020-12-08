@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import Modal from './Modal';
+//import Modal from './Modal';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import {getListUser} from '../../../constant/api'
@@ -17,7 +17,7 @@ export default function UserManagement() {
     console.log("mang User",state);
     const renderUser = () =>{
         return state?.map((user, index)=>{
-        const {maLoaiNguoiDung=maLoaiNguoiDung, taiKhoan=taiKhoan, hoTen=hoTen, email=email, soDt=soDt }= user
+        const {maLoaiNguoiDung, taiKhoan, hoTen, email, soDt}= user
             return <tr key={index}>
                         <td style={{width:"10%"}}>{maLoaiNguoiDung}</td>
                         <td style={{width:"15%"}}>{taiKhoan}</td>

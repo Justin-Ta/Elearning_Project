@@ -9,7 +9,6 @@ import {
     Input
   } from 'antd';
   import { UploadOutlined, BookOutlined, MailOutlined, LockOutlined, PhoneOutlined } from '@ant-design/icons';
-  const { TextArea } = Input;
   const { Option } = Select;
   const normFile = (e) => {
     console.log('Upload event:', e);

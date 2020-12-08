@@ -96,15 +96,15 @@ export default function Header() {
                     />
                     <div className="CollappseIconGroup">
                         <span className="searchCollappseIcon pr-3">
-                            <SearchOutlined onClick={showSearch} onBlur={onBlur}/>
+                            <SearchOutlined onClick={showSearch} onBlur={onBlur} />
                         </span>
                         {
                             !token &&
                             <span className="moreCollappseIcon pr-3">
-                            <MoreOutlined onClick={showMore} onBlur={onBlur}/>
+                                <MoreOutlined onClick={showMore} onBlur={onBlur} />
                             </span>
                         }
-                        
+
                     </div>
                     <div>
                         {
@@ -121,12 +121,16 @@ export default function Header() {
                                 </>
                                 :
                                 <div className="btnGroup" style={CollappseIconGroupStyle}>
-                                    <Button className="loginBtn mr-3">
-                                        <NavLink to="/login">Log in</NavLink>
-                                    </Button>
-                                    <Button type="primary" className="signupBtn">
-                                        <NavLink to="/signup">Sign up</NavLink>
-                                    </Button>
+                                    <NavLink to="/login">
+                                        <Button className="loginBtn mr-3">
+                                            Log in
+                                        </Button>
+                                    </NavLink>
+                                    <NavLink to="/signup">
+                                        <Button type="primary" className="signupBtn">
+                                            Sign up
+                                        </Button>
+                                    </NavLink>
                                 </div>
                         }
                     </div>

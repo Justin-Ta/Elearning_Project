@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getCategoryCoursesAction } from '../../redux/actions/course';
 import { categoryNames, pageSize } from '../../constant/common';
 import Loading from '../../Components/Loading';
-import Sorting from '../../Components/Sorting';
+//import Sorting from '../../Components/Sorting';
 
 export default function CategoryDetail(props) {
     //console.count("CategoryDetail");
