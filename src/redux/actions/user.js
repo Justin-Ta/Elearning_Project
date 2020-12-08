@@ -1,4 +1,4 @@
-import { GET_USER_LIST, POST_USERINFO, UPDATE_USERINFO } from '../../constant/actionType';
+import { DELETE_USERINFO, GET_USER_LIST, POST_USERINFO, UPDATE_USERINFO } from '../../constant/actionType';
 import { getUserService, logInService, signUpService, updateUserService } from '../../Axios/user';
 import { message } from 'antd';
 
@@ -21,18 +21,15 @@ export const logInAction = (data, afterCallAPISuccess, afterCallAPIFailed) => {
         }) 
 }
 
-export const signUpAction = (userInfo, signUpForm, setLoading) => {
+export const signUpAction = (userInfo, aftercallAPISuccess, afterCallAPIFailed) => {
     signUpService(userInfo)
         .then(res => {
-            setLoading(false);
-            message.success('Sign up successfully');
-            signUpForm.resetFields();
+            aftercallAPISuccess();
             return;
         })
         .catch(err => {
-            console.log(err);
-            setLoading(false);
-            message.error('Sign up unsuccessfully');
+            console.log(err.response.data);
+            afterCallAPIFailed(err);
         });
 }
 
@@ -71,7 +68,6 @@ export const updateUserInfoAction = (userInfo) => {
 
 export const deleteInfoAction = () => {
     const data = {
-        chiTietKhoaHocGhiDanh: [],
         taiKhoan: undefined,
         matKhau: undefined,
         hoTen: undefined,
@@ -79,9 +75,11 @@ export const deleteInfoAction = () => {
         maLoaiNguoiDung: undefined,
         maNhom: undefined,
         email: undefined,
+        KhoaHocChoXetDuyet:[],
+        KhoaHocDaXetDuyet:[],
     }
     return {
-        type: POST_USERINFO,
+        type: DELETE_USERINFO,
         payload: data
     }
 }

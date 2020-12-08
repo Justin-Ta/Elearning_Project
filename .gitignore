@@ -3,3 +3,7 @@
 # dependencies
 /node_modules
 /.vs/Elearning_Project/v16
+/.firebase/hosting.YnVpbGQ.cache
+/build
+/firebase.json
+/.firebaserc

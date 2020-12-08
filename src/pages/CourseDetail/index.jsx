@@ -6,11 +6,14 @@ import { PlayCircleOutlined } from '@ant-design/icons';
 import CommentList from '../../Components/CommentList';
 import { useState } from 'react';
 import Loading from '../../Components/Loading';
+import { useHistory } from 'react-router-dom';
 
 export default function CourseDetail(props) {
     const id = props.match.params.id;
     const [isLoading, setIsLoading] = useState(false);
     const dispatch = useDispatch();
+    const history = useHistory();
+
     useEffect(() => {
         dispatch(getCourseDetailAction(id));
     }, [dispatch, id])
@@ -31,6 +34,10 @@ export default function CourseDetail(props) {
     if (!tenKhoaHoc || state.choXetDuyet === undefined || state.daXetDuyet === undefined) return <Loading/>;
 
     const register = () => {
+        if ( !state.taiKhoan ) {
+            history.push("/login");
+            return;
+        }
         setIsLoading(true);
         const data = {
             maKhoaHoc: maKhoaHoc,
@@ -108,14 +115,16 @@ export default function CourseDetail(props) {
 
             </div>
 
-            <div className="courseDetail__content">
+            <div className="courseDetail_content">
                 <div className="container">
+                    <div className="courseDetail_content_wrapper">
                     <div className="description col-lg-8 col-md-8 col-sm-12 mt-5">
                         <h2>Description</h2>
                         {moTa}
                     </div>
                     <div className="studentComment col-lg-8 col-md-8 col-sm-12 mt-5">
                         <CommentList />
+                    </div>
                     </div>
                 </div>
             </div>

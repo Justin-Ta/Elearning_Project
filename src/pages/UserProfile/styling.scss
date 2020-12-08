@@ -47,6 +47,12 @@
         }
 
         .ant-card.ant-card-bordered {
+            display: inline-block;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.722);
+            padding: 0 20px;
+            position: relative;
+            
             @include mediaQuery($md) {
                 margin: auto;
             }

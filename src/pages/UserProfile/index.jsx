@@ -17,7 +17,6 @@ export default function UserProfile() {
             <div className="userProfile_header" style={{ backgroundImage: "url('img/background/UserProfileBg.jpg')" }}>
                 <div className="container">
                     <Card
-                        style={{ width: "max-content", textAlign: "center", background: "#ffffffb8", padding: "0 20px", position: "relative" }}
                         cover={
                             <div className="userProfile_header_avatar">
                                 <div className="rounded-circle userProfile_header_avatar_img">

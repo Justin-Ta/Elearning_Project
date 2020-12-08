@@ -1,4 +1,4 @@
-import {POST_USERINFO, UPDATE_USERINFO, POST_PENDING_COURSES, POST_REGISTERED_COURSES, UPDATE_PENDING_COURSES} from "../../constant/actionType";
+import {POST_USERINFO, UPDATE_USERINFO, POST_PENDING_COURSES, POST_REGISTERED_COURSES, UPDATE_PENDING_COURSES, DELETE_USERINFO} from "../../constant/actionType";
 
 const initialState = {
     taiKhoan:undefined,
@@ -6,6 +6,7 @@ const initialState = {
     soDT:undefined,
     maLoaiNguoiDung:undefined,
     maNhom:undefined,
+    matKhau:undefined,
     email:undefined,
     KhoaHocChoXetDuyet:[],
     KhoaHocDaXetDuyet:[],
@@ -17,6 +18,11 @@ const userReducer = ( state = initialState, action ) => {
         case POST_USERINFO:
             Object.keys(state).forEach(key => {
                 if ( key === 'KhoaHocChoXetDuyet' || key === 'KhoaHocDaXetDuyet') return;
+                return newState[key] = action.payload[key];
+            })
+            return newState;
+        case DELETE_USERINFO:
+            Object.keys(state).forEach(key => {
                 return newState[key] = action.payload[key];
             })
             return newState;

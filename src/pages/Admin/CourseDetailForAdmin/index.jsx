@@ -12,9 +12,9 @@ export default function CourseDetailForAdmin(props) {
         axios.get(getDetail(id))
             .then(res => { dispatch(getCourseDetailAction(res.data))})
             .catch(err => console.log(err));
-    },[dispatch])
+    },[dispatch, id])
     console.log("Du lieu",state);
-    const {tenKhoaHoc, ngayTao, luotXem, hinhAnh, moTa}= state;
+    const {tenKhoaHoc, ngayTao, luotXem}= state;
 
     return (
         <div>
