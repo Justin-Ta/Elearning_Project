@@ -34,6 +34,7 @@ function App() {
       <Route exact path='/login' component={Login}/>
       <Route exact path='/forgotpassword' component={ForgotPassword}/>  
       <HomeTemplate exact path='/coursedetail/:id' Component={CourseDetail}/>
+      <HomeTemplate exact path='/search/:key' Component={Search}/>
       <AdminTemplate exact path='/admin' Component={DashBoard}/>
       <AdminTemplate exact path='/admin/coursesmanagement' Component={CourseManagement}/>
       <AdminTemplate exact path='/admin/courseedit' Component={CourseEdit}/>

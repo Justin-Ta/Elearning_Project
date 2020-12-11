@@ -22,3 +22,11 @@ export const tagColor = [
     'blue',
     'purple',
 ]
+export const errorResp = {
+    existedEmail: "Email đã tồn tại!",
+    existedUsername: "Tài khoản đã tồn tại!",
+}
+export const errorRespTranslation = {
+    existedEmail: "Email already existed",
+    existedUsername: "Username already existed",
+}

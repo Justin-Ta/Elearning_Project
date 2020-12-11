@@ -6,6 +6,8 @@ import {
     getPendingCourseUrl,
     getRegisteredCoursesUrl,
     registerCourseUrl,
+    unRegisterCourseUrl,
+    getCourse,
 } from '../constant/api';
 import { GV_TOKEN, TOKEN } from '../constant/common';
 
@@ -19,6 +21,10 @@ export const getCategoryCoursesService = (currentPage, category) => {
 
 export const getCourseDetailService = (CourseId) => {
     return axios.get(getDetail(CourseId));
+}
+
+export const getCoursesService = () => {
+    return axios.get(getCourse);
 }
 
 export const getPendingCourseService = (username) => {
@@ -43,4 +49,12 @@ export const registerCourseService = (data) => {
         'Authorization': `Bearer ${localStorage.getItem(TOKEN)}`,
     }
     return axios.post(registerCourseUrl, data, {headers});
+}
+
+export const unRegisterCourseService = (data) => {
+    const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem(TOKEN)}`,
+    }
+    return axios.post(unRegisterCourseUrl, data, {headers});
 }

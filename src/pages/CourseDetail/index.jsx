@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCourseDetailAction, registerCourseAction } from '../../redux/actions/course';
-import { Card, Button, message, Rate } from 'antd';
+import { getCourseDetailAction, registerCourseAction, unRegisterCourseAction } from '../../redux/actions/course';
+import { Card, Button, message, Rate, Popconfirm } from 'antd';
 import { PlayCircleOutlined } from '@ant-design/icons';
 import CommentList from '../../Components/CommentList';
 import { useState } from 'react';
@@ -49,22 +49,38 @@ export default function CourseDetail(props) {
         }
 
         const afterDispatch = () => {
-            setTimeout(() => {
-                setIsLoading(false)
-            }, 500);
+            setIsLoading(false)
         }
 
         const afterCallAPIFailed = () => {
-            setTimeout(() => {
-                setIsLoading(false)
-            }, 500);
+            setIsLoading(false)
             message.error({
                 content: "Register unsuccessfully",
                 icon: <i className="fa fa-exclamation-circle pr-2 text-danger" aria-hidden="true"></i>
               });
         }
+        dispatch(registerCourseAction(data, course, afterDispatch, afterCallAPIFailed));
+    }
 
-        dispatch(registerCourseAction(data, course,afterDispatch, afterCallAPIFailed));
+    const unRegister = () => {
+        setIsLoading(true);
+        const data = {
+            maKhoaHoc: maKhoaHoc,
+            taiKhoan: state.taiKhoan,
+        }
+
+        const afterDispatch = () => {
+            setIsLoading(false)
+        }
+
+        const afterCallAPIFailed = () => {
+            setIsLoading(false)
+            message.error({
+                content: "Unregister failed",
+                icon: <i className="fa fa-exclamation-circle pr-2 text-danger" aria-hidden="true"></i>
+              });
+        }
+        dispatch(unRegisterCourseAction(data, afterDispatch, afterCallAPIFailed));
     }
 
     const cardImg = (
@@ -99,13 +115,21 @@ export default function CourseDetail(props) {
                                 <h3>$132.344</h3>
                                 <Button type="primary w-100 mb-3" danger 
                                 size={"large"} 
-                                disabled={state.choXetDuyet >= 0}
                                 onClick={register}
                                 loading={isLoading}
-                                hidden={state.daXetDuyet >= 0}
+                                hidden={state.daXetDuyet >= 0 || state.choXetDuyet >= 0}
                                 >
-                                    {(state.choXetDuyet >= 0) ? 'Registered': 'Register'}
+                                    Register
                                 </Button>
+                                <Popconfirm placement="bottom" title={"Are you sure to unregister this course?"} onConfirm={unRegister} okText="Yes" cancelText="No">
+                                <Button type="primary w-100 mb-3" 
+                                size={"large"} 
+                                loading={isLoading}
+                                hidden={state.choXetDuyet === -1}
+                                >
+                                    Unregister
+                                </Button>
+                                </Popconfirm>
                                 <h6>How do you feel?</h6>
                                 <Rate allowHalf defaultValue={0} />
                             </Card>

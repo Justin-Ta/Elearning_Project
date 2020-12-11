@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { tagColor } from '../../constant/common';
 
-export default function PendingCourses(props) {
+export default function PendingCourses() {
     const state = useSelector(state => state.userReducer.KhoaHocChoXetDuyet);
     const data = state;
     return (
@@ -16,7 +16,7 @@ export default function PendingCourses(props) {
                     <List.Item.Meta
                         avatar={<Tag color={tagColor[key]}>{key}</Tag>}
                         title={
-                        <NavLink to={`/coursedetail/${item.maKhoaHoc}`}>
+                        <NavLink to={'/coursedetail/'+ encodeURIComponent(item.maKhoaHoc)}>
                             {item.tenKhoaHoc}
                         </NavLink>
                     }

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { Input, Button, Dropdown, Avatar } from 'antd';
-import { SearchOutlined, MoreOutlined, ShoppingCartOutlined } from '@ant-design/icons';
+import { SearchOutlined, MoreOutlined } from '@ant-design/icons';
 import { NavLink, useHistory } from 'react-router-dom';
 import ScrollToTop from '../BackToTop';
 import { TOKEN } from '../../constant/common';
@@ -60,6 +60,14 @@ export default function Header() {
         setCollappseIconGroupStyle({})
     }
 
+    const onSearch = (key) => {
+        if (!key && key !== 0) return;
+        key = key.trim();
+        if (key === "") return;
+        const url = "/search/" + key;
+        history.push(url);
+    }
+
     const menu = (
         <div className="menu">
             <NavLink to="/userprofile" style={{ cursor: "pointer" }} >
@@ -90,9 +98,8 @@ export default function Header() {
                         <img src="/img/icon/icon_ELearning.ico" alt="logo" />
                         <span>Learning</span>
                     </NavLink>
-                    <Search placeholder="Search for anything"
-                        //onSearch={value => console.log("Search keyword", value)}
-                        allowClear={true}
+                    <Search placeholder="Search course name"
+                        onSearch={onSearch}
                     />
                     <div className="CollappseIconGroup">
                         <span className="searchCollappseIcon pr-3">
@@ -110,9 +117,6 @@ export default function Header() {
                         {
                             token ?
                                 <>
-                                    <span className="shoppingCartIcon pr-3">
-                                        <ShoppingCartOutlined />
-                                    </span>
                                     <Dropdown overlay={menu} placement="bottomRight" trigger={["click"]} arrow="true">
                                         <Avatar src={name ? `/img/AvatarAlphabet/${name.charAt(0).toUpperCase()}.png` : '/img/icon/EmptyAvatar.svg'}
                                             style={{ background: "grey" }}

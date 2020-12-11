@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Input, Form, Button } from 'antd';
+import { Input, Form, Button, message } from 'antd';
 import { useDispatch } from 'react-redux';
 import { updateUserInfoAction } from '../../redux/actions/user';
 
@@ -34,9 +34,24 @@ export default function UserInfo(props) {
             soDT: values.soDT,
             email: values.email,
         };
-        //console.log(submitData);
-        dispatch(updateUserInfoAction(submitData));
-        setIsEditable(false);
+
+        const afterDipatch = () => {
+            message.success({
+                content: 'Update successfully',
+                icon: <i className="fa fa-info-circle pr-2 text-success" aria-hidden="true"></i>
+              });
+            setIsEditable(false);
+        }
+
+        const afterCallAPIFailed = (err) => {
+            const errorMess = String(err)
+            message.error({
+                content: errorMess,
+                icon: <i className="fa fa-exclamation-circle pr-2 text-danger" aria-hidden="true"></i>
+              });
+        }
+
+        dispatch(updateUserInfoAction(submitData, afterDipatch, afterCallAPIFailed));
     }
 
     const onValueChange = (allValues) => {

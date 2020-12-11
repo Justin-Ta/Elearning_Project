@@ -1,5 +1,11 @@
 .categories {
     align-items: stretch;
+
+    .ant-card-cover {
+        min-height: 150px;
+        background-color: $greyLight;
+    }
+
     .ant-card-body {
         padding: 15px 15px;
         height: 74px;
