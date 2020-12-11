@@ -11,6 +11,7 @@ import {
 } from 'antd';
 import { UserOutlined, LockOutlined, MailOutlined } from '@ant-design/icons';
 import { signUpAction } from '../../../redux/actions/user';
+import { errorResp, errorRespTranslation } from '../../../constant/common';
 
 export default function SignUp(props) {
   const [signUpForm] = Form.useForm();
@@ -39,14 +40,14 @@ export default function SignUp(props) {
 
     const afterCallAPIFailed = (err) => {
       setLoading(false);
-      if (err.response.data === 'Email đã tồn tại!') {
-        return message.error({
-          content: "Email already existed",
-          icon: <i className="fa fa-exclamation-circle pr-2 text-danger" aria-hidden="true"></i>
-        });
-      }
+      const errResp = err.response.data;
+      const {existedEmail, existedUsername} = errorResp;
+      let finalErrMess = 'Sign up unsuccessfully';
+      if (errResp === existedEmail) finalErrMess = errorRespTranslation.existedEmail;
+      else if (errResp === existedUsername) finalErrMess = errorRespTranslation.existedUsername;
+      
       return message.error({
-        content: 'Sign up unsuccessfully',
+        content: finalErrMess,
         icon: <i className="fa fa-exclamation-circle pr-2 text-danger" aria-hidden="true"></i>
       });
     }

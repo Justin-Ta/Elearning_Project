@@ -1,6 +1,5 @@
 import { DELETE_USERINFO, GET_USER_LIST, POST_USERINFO, UPDATE_USERINFO } from '../../constant/actionType';
 import { getUserService, logInService, signUpService, updateUserService } from '../../Axios/user';
-import { message } from 'antd';
 
 export const getListOfUser = (payload) => {
     return {
@@ -48,7 +47,7 @@ export const postUserInfoAction = () => {
     }
 }
 
-export const updateUserInfoAction = (userInfo) => {
+export const updateUserInfoAction = (userInfo, afterDipatch, afterCallAPIFailed) => {
     return dispatch => {
         updateUserService(userInfo)
         .then(res => {
@@ -57,11 +56,11 @@ export const updateUserInfoAction = (userInfo) => {
                 type: UPDATE_USERINFO,
                 payload: res.data,
             })
-            message.success('Update successfully');
+            afterDipatch();
         })
         .catch(err => {
             console.log(err);
-            message.error( String(err) );
+            afterCallAPIFailed(err);
         });
     }
 }
