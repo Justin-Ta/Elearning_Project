@@ -18,6 +18,8 @@ export const getRegisteredCoursesUrl = 'https://elearning0706.cybersoft.edu.vn/a
 
 export const registerCourseUrl = 'https://elearning0706.cybersoft.edu.vn/api/QuanLyKhoaHoc/DangKyKhoaHoc';
 
+export const unRegisterCourseUrl = 'https://elearning0706.cybersoft.edu.vn/api/QuanLyKhoaHoc/HuyGhiDanh';
+
 // User API
 export const getListUser = 'https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP01';
 

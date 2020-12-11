@@ -1,12 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Card, Input } from 'antd';
+import { useHistory } from 'react-router-dom';
 
 const { Search } = Input;
 
-export default class Carousel extends Component {
-    render() {
-        return (
-            <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
+
+export default function Carousel() {
+    const history = useHistory();
+    const onSearch = (key) => {
+    if (!key && key !== 0) return;
+    key = key.trim();
+    if (key === "") return;
+    const url = "/search/" + key;
+    history.push(url);
+    }
+    
+    return (
+        <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
                 <ol className="carousel-indicators">
                     <li data-target="#carouselExampleIndicators" data-slide-to={0} className="active" />
                     <li data-target="#carouselExampleIndicators" data-slide-to={1} />
@@ -30,10 +40,11 @@ export default class Carousel extends Component {
                         <p>Get a new course for Computer Learning Month — starting at $12.99</p>
                         <Search
                             placeholder="What you want to learn"
+                            onSearch={onSearch}
                         />
                     </Card>
                 </div>
             </div>
-        )
-    }
+    )
 }
+

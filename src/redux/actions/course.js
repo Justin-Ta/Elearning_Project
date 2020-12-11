@@ -1,11 +1,12 @@
-import { GET_COURSES, POST_COURSE_DETAIL, POST_PENDING_COURSES, POST_REGISTERED_COURSES, UPDATE_PENDING_COURSES } from '../../constant/actionType';
+import { GET_COURSES, POST_COURSE_DETAIL, POST_PENDING_COURSES, POST_REGISTERED_COURSES, REMOVE_PENDING_COURSE, UPDATE_PENDING_COURSES } from '../../constant/actionType';
 import { 
     getTrendingCoursesService,
     getCategoryCoursesService,
     getCourseDetailService,
     getPendingCourseService,
     getRegisteredCoursesService,
-    registerCourseService, 
+    registerCourseService,
+    unRegisterCourseService,
 } from '../../Axios/course';
 import { 
     POST_TRENDING_COURSES,
@@ -93,6 +94,24 @@ export const registerCourseAction = (data, courseInfo, afterDispatch, afterCallA
             dispatch({
                 type: UPDATE_PENDING_COURSES,
                 payload: courseInfo,
+            });
+            afterDispatch();
+        })
+        .catch(err => {
+            afterCallAPIFailed();
+            console.log(err);
+        });
+    }
+}
+
+export const unRegisterCourseAction = (data, afterDispatch, afterCallAPIFailed) => {
+    return dispatch => {
+        unRegisterCourseService(data)
+        .then( res => {
+            console.log('res.data', res.data);
+            dispatch({
+                type: REMOVE_PENDING_COURSE,
+                payload: data.maKhoaHoc,
             });
             afterDispatch();
         })

@@ -16,6 +16,7 @@ export default class Categories extends Component {
                         <Card
                             hoverable
                             cover={<img alt="example" src={`./img/categories/category-${index}.jpg`} />}
+                            bordered={true}
                         >
                             <p>
                                 <b>{name}</b>

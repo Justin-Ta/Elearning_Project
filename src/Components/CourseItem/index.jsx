@@ -4,7 +4,6 @@ import RatingStars from '../RatingStars';
 import { NavLink } from 'react-router-dom';
 
 export default function CourseItem(props) {
-    //console.count("CourseItem");
     const { tenKhoaHoc, hinhAnh, maKhoaHoc, moTa } = props.course;
     const url = '/coursedetail/'+ encodeURIComponent(maKhoaHoc);
     return (
@@ -25,7 +24,7 @@ export default function CourseItem(props) {
                 <div className="author">{moTa}</div>
                     <RatingStars score={4.5} />
                     <div className="price">$12.99
-                <span>$17.55</span>
+                        <span>$17.55</span>
                     </div>
                     <span className="bestseller">Bestseller</span>
                 </Card>

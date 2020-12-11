@@ -1,4 +1,4 @@
-import {POST_USERINFO, UPDATE_USERINFO, POST_PENDING_COURSES, POST_REGISTERED_COURSES, UPDATE_PENDING_COURSES, DELETE_USERINFO} from "../../constant/actionType";
+import {POST_USERINFO, UPDATE_USERINFO, POST_PENDING_COURSES, POST_REGISTERED_COURSES, UPDATE_PENDING_COURSES, DELETE_USERINFO, REMOVE_PENDING_COURSE} from "../../constant/actionType";
 
 const initialState = {
     taiKhoan:undefined,
@@ -39,6 +39,12 @@ const userReducer = ( state = initialState, action ) => {
             return newState;
         case UPDATE_PENDING_COURSES:
             newState.KhoaHocChoXetDuyet.push(action.payload);
+            return newState;
+        case REMOVE_PENDING_COURSE:
+            const index = newState.KhoaHocChoXetDuyet.findIndex((course) => {
+                return course.maKhoaHoc === action.payload;
+            });
+            newState.KhoaHocChoXetDuyet.splice(index,1);
             return newState;
         default:
         return state;
