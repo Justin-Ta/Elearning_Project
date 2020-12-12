@@ -34,9 +34,9 @@ export const changeTrendingCoursesAction = (currentPage) => {
     }
 }
 
-export const getCategoryCoursesAction = (currentPage, category) => { 
+export const getCategoryCoursesAction = (category) => { 
     return dispatch => {
-        getCategoryCoursesService(currentPage, category)
+        getCategoryCoursesService(category)
         .then( res => {
             dispatch({
                 type: POST_COURSES_IN_CATEGORY,

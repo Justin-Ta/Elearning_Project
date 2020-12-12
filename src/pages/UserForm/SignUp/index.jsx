@@ -11,7 +11,7 @@ import {
 } from 'antd';
 import { UserOutlined, LockOutlined, MailOutlined } from '@ant-design/icons';
 import { signUpAction } from '../../../redux/actions/user';
-import { errorResp, errorRespTranslation } from '../../../constant/common';
+import { errorResp, errorRespTranslation, groupID } from '../../../constant/common';
 
 export default function SignUp(props) {
   const [signUpForm] = Form.useForm();
@@ -25,7 +25,7 @@ export default function SignUp(props) {
       "matKhau": password,
       "hoTen": name,
       "soDT": "",
-      "maNhom": "GP11",
+      "maNhom": groupID,
       "email": email
     }
     //console.log('sent data', userInfo, setLoading);

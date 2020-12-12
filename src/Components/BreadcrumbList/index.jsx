@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Link } from 'react-router-dom';
-import { categoryNames } from '../../constant/common';
+import { categoryDisplayNames, categoryNames } from '../../constant/common';
 
 export default function BreadcrumbList(category) {
     const RenderBreadcrumbItem = () => {
@@ -9,7 +9,7 @@ export default function BreadcrumbList(category) {
             if ( category === name ) {
                 return (
                     <Link to={"/categories/"+ name} className="active" key={index}>
-                        <span>{name}</span> 
+                        <span>{categoryDisplayNames[name]}</span> 
                         <div className="arrow-above"></div>
                         <div className="arrow-below"></div>
                     </Link>
@@ -17,7 +17,7 @@ export default function BreadcrumbList(category) {
             }
             return (
                 <Link to={"/categories/"+ name} key={index}>
-                    <span>{name}</span>
+                    <span>{categoryDisplayNames[name]}</span>
                 </Link>
             )
         })
