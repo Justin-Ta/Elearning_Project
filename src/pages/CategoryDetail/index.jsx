@@ -14,15 +14,19 @@ export default function CategoryDetail(props) {
     if ( !categoryNames.includes(name) ) props.history.push('/*');
     const state = useSelector(state => state.coursesInCategory);
     const [currentPage, setCurrentPage] = useState(1);
-    let isLoading = !state;
+    const [isLoading, setIsLoading] = useState(true);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getCategoryCoursesAction(name));
+        dispatch(getCategoryCoursesAction(name, afterCallAPISuccess));
     }, [dispatch, name])
 
+    const afterCallAPISuccess = () => {
+        setIsLoading(false);
+    }
+
     const changePage = (page) => {
-        console.log(page);
+        //console.log(page);
         setCurrentPage(page);
     }
 

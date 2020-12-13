@@ -76,9 +76,13 @@ export default function SignUp(props) {
                   rules={[
                     {
                       required: true,
-                      message: "Please input your nickname!",
+                      message: "Please input your username!",
                       whitespace: true,
                     },
+                    {
+                      pattern: '^[A-Za-z0-9]+$',
+                      message: 'Please input only alphabetic character or number',
+                    }
                   ]}
                 >
                   <Input

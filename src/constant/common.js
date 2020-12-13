@@ -8,7 +8,7 @@ export const categoryDisplayNames = {
     FullStack: 'Fullstack',
     TuDuy: 'Programming thinking'
 }
-export const groupID = "GP08";
+export const groupID = "GP11";
 export const TOKEN= "accessToken";
 export const USERINFO = "username";
 export const pageSize = 8;
