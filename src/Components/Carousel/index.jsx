@@ -8,15 +8,16 @@ const { Search } = Input;
 export default function Carousel() {
     const history = useHistory();
     const onSearch = (key) => {
-    if (!key && key !== 0) return;
-    key = key.trim();
-    if (key === "") return;
-    const url = "/search/" + key;
-    history.push(url);
+        if (!key && key !== 0) return;
+        key = key.trim();
+        if (key === "") return;
+        const url = "/search/" + key;
+        history.push(url);
     }
-    
+
     return (
-        <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
+        <div className="carousel">
+            <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
                 <ol className="carousel-indicators">
                     <li data-target="#carouselExampleIndicators" data-slide-to={0} className="active" />
                     <li data-target="#carouselExampleIndicators" data-slide-to={1} />
@@ -45,6 +46,7 @@ export default function Carousel() {
                     </Card>
                 </div>
             </div>
+        </div>
     )
 }
 

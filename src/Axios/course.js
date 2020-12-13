@@ -15,8 +15,8 @@ export const getTrendingCoursesService = (currentPage) => {
     return axios.get(getTrendingCoursesByPageUrl(currentPage));
 }
 
-export const getCategoryCoursesService = (currentPage, category) => {
-    return axios.get(getCategoryCoursesByPageUrl(currentPage, category));
+export const getCategoryCoursesService = (category) => {
+    return axios.get(getCategoryCoursesByPageUrl(category));
 }
 
 export const getCourseDetailService = (CourseId) => {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Card, Col, Row } from 'antd';
 import { Link } from 'react-router-dom';
-import { categoryNames } from '../../constant/common';
+import { categoryDisplayNames, categoryNames } from '../../constant/common';
 
 export default class Categories extends Component {
     renderCategory() {
@@ -19,7 +19,7 @@ export default class Categories extends Component {
                             bordered={true}
                         >
                             <p>
-                                <b>{name}</b>
+                                <b>{categoryDisplayNames[name]}</b>
                             </p>
                         </Card>
                     </Link>

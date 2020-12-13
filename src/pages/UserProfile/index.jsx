@@ -42,10 +42,10 @@ export default function UserProfile() {
                         <TabPane tab="Profile" key="1">
                             <UserInfo userInfo={state} />
                         </TabPane>
-                        <TabPane tab="Pending" key="2">
+                        <TabPane tab="Registered" key="2">
                             <PendingCourses username={state.taiKhoan}/>
                         </TabPane>
-                        <TabPane tab="Registered" key="3">
+                        <TabPane tab="Ready to learn" key="3">
                             <RegisteredCourses username={state.taiKhoan}/>
                         </TabPane>
                     </Tabs>

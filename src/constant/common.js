@@ -1,4 +1,14 @@
-export const categoryNames = ['Development', 'Marketing', 'Business', 'Design', 'Music', 'Personal development'];
+//export const categoryNames = ['Development', 'Marketing', 'Business', 'Design', 'Music', 'Personal development'];
+export const categoryNames = ['BackEnd', 'DiDong', 'FrontEnd', 'Design', 'FullStack', 'TuDuy'];
+export const categoryDisplayNames = {
+    BackEnd: 'Back-end',
+    DiDong: 'Mobile',
+    FrontEnd: 'Front-end',
+    Design: 'Design',
+    FullStack: 'Fullstack',
+    TuDuy: 'Programming thinking'
+}
+export const groupID = "GP11";
 export const TOKEN= "accessToken";
 export const USERINFO = "username";
 export const pageSize = 8;

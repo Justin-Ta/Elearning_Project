@@ -34,20 +34,21 @@ export const changeTrendingCoursesAction = (currentPage) => {
     }
 }
 
-export const getCategoryCoursesAction = (currentPage, category) => { 
+export const getCategoryCoursesAction = (category, afterCallAPISuccess) => { 
     return dispatch => {
-        getCategoryCoursesService(currentPage, category)
+        getCategoryCoursesService(category)
         .then( res => {
             dispatch({
                 type: POST_COURSES_IN_CATEGORY,
                 payload: res.data
             });
+            afterCallAPISuccess();
         })
         .catch( err => console.log(err) );
     }
 }
 
-export const getCourseDetailAction = (id) => {
+export const getCourseDetailAction = (id, afterCallAPISuccess) => {
     return dispatch => {
         getCourseDetailService(id)
         .then( res => {
@@ -55,6 +56,7 @@ export const getCourseDetailAction = (id) => {
                 type: POST_COURSE_DETAIL,
                 payload: res.data,
             });
+            afterCallAPISuccess();
         })
         .catch(err => console.log(err));
     }

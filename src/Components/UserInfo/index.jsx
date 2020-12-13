@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Input, Form, Button, message } from 'antd';
 import { useDispatch } from 'react-redux';
 import { updateUserInfoAction } from '../../redux/actions/user';
+import { groupID, errorResp, errorRespTranslation } from '../../constant/common';
 
 export default function UserInfo(props) {
     const formRef = React.createRef();
@@ -24,12 +25,12 @@ export default function UserInfo(props) {
     }
 
     const submit = (values) => {
-        values.maLoaiNguoiDung = (values.maLoaiNguoiDung === 'Teacher'? 'GV' : 'HV');
+        let newMaLoaiNguoiDung = (values.maLoaiNguoiDung === 'Teacher'? 'GV' : 'HV');
         const submitData = {
             taiKhoan: taiKhoan,
             matKhau: initialUserInfor.matKhau,
-            maLoaiNguoiDung: maLoaiNguoiDung,
-            maNhom: "GP11",
+            maLoaiNguoiDung: newMaLoaiNguoiDung,
+            maNhom: groupID,
             hoTen: values.hoTen,
             soDT: values.soDT,
             email: values.email,
@@ -44,7 +45,8 @@ export default function UserInfo(props) {
         }
 
         const afterCallAPIFailed = (err) => {
-            const errorMess = String(err)
+            let errorMess = String(err);
+            if ( err.response.data === errorResp.existedEmail) errorMess = errorRespTranslation.existedEmail;
             message.error({
                 content: errorMess,
                 icon: <i className="fa fa-exclamation-circle pr-2 text-danger" aria-hidden="true"></i>
@@ -95,7 +97,18 @@ export default function UserInfo(props) {
                         </Form.Item>
                     </div>
                     <div className="col-lg-6 col-sm-12">
-                        <Form.Item name="email" rules={[{ required: true, whitespace: true }]} initialValue={email}>
+                        <Form.Item name="email" rules={[
+                            { 
+                                required: true,
+                                message: 'Please input your email!',
+                                whitespace: true 
+                            },
+                            {
+                                pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$",
+                                message: 'Invalid e-mail',
+                            }
+                            ]} 
+                            initialValue={email}>
                             <Input size="large"
                                 prefix={<><i className="fa fa-envelope" aria-hidden="true"></i><span>E-mail:</span></>}
                                 bordered={isEditable}
@@ -104,7 +117,17 @@ export default function UserInfo(props) {
                         </Form.Item>
                     </div>
                     <div className="col-lg-6 col-sm-12">
-                        <Form.Item name="hoTen" rules={[{ required: true, whitespace: true }]} initialValue={hoTen}>
+                        <Form.Item name="hoTen" rules={[
+                            { 
+                                required: true,
+                                message: 'Please input your name!',
+                                whitespace: true 
+                            },
+                            {
+                                pattern: '^[A-Za-z ]+$',
+                                message: 'Please input only alphabetic character',
+                            }
+                            ]} initialValue={hoTen}>
                             <Input size="large"
                                 prefix={<><i className="fa fa-user" aria-hidden="true"></i> <span>Name:</span></>}
                                 bordered={isEditable}
@@ -113,7 +136,18 @@ export default function UserInfo(props) {
                         </Form.Item>
                     </div>
                     <div className="col-lg-6 col-sm-12">
-                        <Form.Item name="soDT" rules={[{ required: true, whitespace: true }]} initialValue={soDT}>
+                        <Form.Item name="soDT" rules={[
+                            { 
+                                required: true,
+                                message: 'Please input your phonenumber!',
+                                whitespace: true 
+                            },
+                            {
+                                pattern: "^[0-9]*$",
+                                message: 'Please input only number',
+                            }
+                            ]} 
+                            initialValue={soDT}>
                             <Input size="large"
                                 prefix={<><i className="fa fa-briefcase" aria-hidden="true"></i><span>Phone number:</span></>}
                                 bordered={isEditable}
