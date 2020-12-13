@@ -1,4 +1,4 @@
-import { GET_COURSES, POST_COURSE_DETAIL, POST_PENDING_COURSES, POST_REGISTERED_COURSES, REMOVE_PENDING_COURSE, UPDATE_PENDING_COURSES } from '../../constant/actionType';
+import {  GET_COURSES, POST_COURSE_DETAIL, POST_PENDING_COURSES, POST_REGISTERED_COURSES, REMOVE_PENDING_COURSE, UPDATE_PENDING_COURSES } from '../../constant/actionType';
 import { 
     getTrendingCoursesService,
     getCategoryCoursesService,
@@ -7,12 +7,14 @@ import {
     getRegisteredCoursesService,
     registerCourseService,
     unRegisterCourseService,
+    deleteCourseService,
 } from '../../Axios/course';
 import { 
     POST_TRENDING_COURSES,
     POST_COURSES_IN_CATEGORY,
 } from '../../constant/actionType';
-//--------------------------------------
+
+import { message } from 'antd';
 
 export const getCourseInfo = (payload) => { 
     return { 
@@ -124,5 +126,14 @@ export const unRegisterCourseAction = (data, afterDispatch, afterCallAPIFailed) 
     }
 }
 
-
-
+export const DeleteCourseAction=(CourseName)=>{
+    deleteCourseService(CourseName)
+    .then(res=>{
+        message.success(`Delete ${CourseName} success!!!`);
+    }
+        )
+    .catch(err=>{
+        message.error('Delete Error!!!');
+    } 
+        )
+}

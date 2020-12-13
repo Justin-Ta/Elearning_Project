@@ -3,7 +3,7 @@ class Comment {
       this.Course_ID = Course_ID;
       this.Comment_ID = Comment_ID;
       this.UserID = UserID;
-      this.CreatedTime - CreatedTime;
+      this.CreatedTime = CreatedTime;
       this.Content = Content;
       this.Like = Like;
     }

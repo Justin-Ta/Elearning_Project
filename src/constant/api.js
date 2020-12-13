@@ -27,6 +27,7 @@ export const unRegisterCourseUrl = 'https://elearning0706.cybersoft.edu.vn/api/Q
 export const getListUser = `https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=${groupID}`;
 
 export const getUserUrl = 'https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/ThongTinNguoiDung';
+// export const getListUserAPI = 'https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP11';
 
 export const logInUrl = "https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangNhap";
 
@@ -34,3 +35,14 @@ export const signUpUrl = "https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoi
 
 export const updateUserUrl = "https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung";
 
+export const deleteUserAPI=(userName)=>{
+    return `https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${userName}`
+}
+
+export const deleteCourseAPI=(courseName)=>{
+    return `https://elearning0706.cybersoft.edu.vn/api/QuanLyKhoaHoc/XoaKhoaHoc?MaKhoaHoc=${courseName}`
+}
+
+export const searchUserAPI=(keyWord)=>{
+    return `https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP11&tuKhoa=${keyWord}`
+}

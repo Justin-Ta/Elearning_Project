@@ -12,7 +12,7 @@ import {
   const { TextArea } = Input;
   const { Option } = Select;
   const normFile = (e) => {
-    console.log('Upload event:', e);
+     console.log('Upload event:', e);
     if (Array.isArray(e)) {
       return e;
     }
@@ -28,20 +28,20 @@ export default function CourseEdit(props) {
     return (
       <Form name="validate_other" onFinish={onFinish}>
         <Row justify="space-around">
-          <Col span={10}>
+          <Col span={24}>
             <Form.Item>
-              <span className="ant-form-text">ADD COURSE</span>
+            {(!props.location.aboutProps)?<span className="ant-form-text">ADD COURSE</span>:<span className="ant-form-text">EDIT COURSE</span>}
             </Form.Item>
           </Col>
 
-          <Col span={10}>
-            <Form.Item label="Course Id">
-              <span className="ant-form-text">55151</span>
-            </Form.Item>
-          </Col>
+           {/* <Col span={10}>
+             <Form.Item label="Course Id">
+               <span className="ant-form-text">55151</span>
+             </Form.Item>
+           </Col> */}
 
-          <Col span={10}>
-            <Form.Item
+           <Col span={10}>
+             <Form.Item
               name="select"
               hasFeedback
               rules={[

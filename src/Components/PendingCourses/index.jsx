@@ -14,7 +14,7 @@ export default function PendingCourses() {
             renderItem={(item, key) => (
                 <List.Item>
                     <List.Item.Meta
-                        avatar={<Tag color={tagColor[key]}>{key}</Tag>}
+                        avatar={<Tag color={tagColor[key]}>{key +1}</Tag>}
                         title={
                         <NavLink to={'/coursedetail/'+ encodeURIComponent(item.maKhoaHoc)}>
                             {item.tenKhoaHoc}

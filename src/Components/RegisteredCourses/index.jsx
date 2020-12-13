@@ -15,7 +15,7 @@ export default function RegisteredCourses() {
             renderItem={(item, key) => (
                 <List.Item>
                     <List.Item.Meta
-                        avatar={<Tag color={tagColor[key]}>{key}</Tag>}
+                        avatar={<Tag color={tagColor[key]}>{key+1}</Tag>}
                         title={
                         <NavLink to={`/coursedetail/${item.maKhoaHoc}`}>
                             {item.tenKhoaHoc}

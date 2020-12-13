@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getUserUrl, logInUrl, signUpUrl, updateUserUrl } from '../constant/api';
+import { getUserUrl, logInUrl, signUpUrl, updateUserUrl, deleteUserAPI, searchUserAPI, getListUser } from '../constant/api';
 import { TOKEN } from '../constant/common';
 
 export const signUpService = (userInfo) => {
@@ -8,6 +8,16 @@ export const signUpService = (userInfo) => {
 
 export const logInService = (data) => {
     return axios.post(logInUrl, data);
+}
+export const getListUserService=()=>{
+  return axios.get(getListUser)
+}
+export const deleteUserService=(UserName)=>{
+    return axios.delete(deleteUserAPI(UserName), {
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('accessToken')
+        }
+      });
 }
 
 export const updateUserService = (data) => {
@@ -24,4 +34,12 @@ export const getUserService = () => {
         'Authorization': `Bearer ${localStorage.getItem(TOKEN)}`,
     }
     return axios.post(getUserUrl, "", {headers});
+  }
+
+export const searchUserService= (keyWord)=>{
+    return axios.get(searchUserAPI(keyWord),{
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem(TOKEN)
+        }
+      })
 }

@@ -19,23 +19,31 @@ import {
   };
 
 export default function UserEdit(props) {
+  console.log("EditTile:", props.location.aboutProps)
+  // const [signUpForm] = Form.useForm();
+  // const [loading, setLoading] = useState(false);
+
   const onFinish = (values) => {
-    props.history.push("/admin/usermanagement");
-    console.log('Received values of form: ', values);
+    // setLoading(true);
+    // const { name, email, password, username } = values;
+    // let userInfo = {
+    //   "taiKhoan": username,
+    //   "matKhau": password,
+    //   "hoTen": name,
+    //   "soDT": "",
+    //   "maNhom": "GP11",
+    //   "email": email
+    // }
+    // console.log('sent data', userInfo, setLoading);
+    // sigUpAction(userInfo, signUpForm, setLoading);
   };
   
     return (
       <Form name="validate_other" onFinish={onFinish}>
         <Row justify="space-around">
-          <Col span={10}>
+          <Col span={24}>
             <Form.Item>
-              <span className="ant-form-text">ADD USER</span>
-            </Form.Item>
-          </Col>
-
-          <Col span={10}>
-            <Form.Item label="User Id">
-              <span className="ant-form-text">55151</span>
+              {(!props.location.aboutProps)?<span className="ant-form-text">ADD USER</span>:<span className="ant-form-text">EDIT USER</span>}
             </Form.Item>
           </Col>
 
@@ -43,6 +51,7 @@ export default function UserEdit(props) {
             <Form.Item
               name="select"
               hasFeedback
+              value="GV"
               rules={[
                 {
                   required: true,
@@ -51,8 +60,8 @@ export default function UserEdit(props) {
               ]}
             >
               <Select placeholder="Kind of user">
-                <Option value="teacher">Teacher</Option>
-                <Option value="student">Student</Option>
+                <Option value="GV">Teacher</Option>
+                <Option value="HV">Student</Option>
               </Select>
             </Form.Item>
           </Col>
@@ -65,6 +74,7 @@ export default function UserEdit(props) {
               <Input
                 prefix={<BookOutlined className="site-form-item-icon" />}
                 placeholder="User Name"
+               
               />
             </Form.Item>
           </Col>
@@ -101,11 +111,6 @@ export default function UserEdit(props) {
           <Form.Item
         name="phone"
         rules={[
-          {
-            type: "number",
-            maxLength: 10 | 11,
-            message: 'The input is not number',
-          },
           {
             required: true,
             message: 'Please input your phone number!',
@@ -157,6 +162,8 @@ export default function UserEdit(props) {
             </Button>
           </Upload>
         </Form.Item>
+
+
 
         <Form.Item
           wrapperCol={{

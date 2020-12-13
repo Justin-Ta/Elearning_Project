@@ -1,11 +1,24 @@
-import { DELETE_USERINFO, GET_USER_LIST, POST_USERINFO, UPDATE_USERINFO } from '../../constant/actionType';
-import { getUserService, logInService, signUpService, updateUserService } from '../../Axios/user';
+import { DELETE_USERINFO, GET_USER_LIST, POST_USERINFO, UPDATE_USERINFO, SEARCH_USER } from '../../constant/actionType';
+import { getUserService, logInService, signUpService, updateUserService, deleteUserService, getListUserService, searchUserService } from '../../Axios/user';
+import { message } from 'antd';
 
-export const getListOfUser = (payload) => {
-    return {
-        type: GET_USER_LIST,
-        payload: payload,
-    }
+
+
+export const getListUserAction=()=>{
+    return dispatch => {getListUserService()
+        .then(res=>{
+            dispatch(
+                {
+                    type: GET_USER_LIST,
+                    payload: res.data,
+                }
+            )
+        }
+            )
+        .catch(err=>{
+            console.log(err)
+        } 
+            )}  
 }
 
 export const logInAction = (data, afterCallAPISuccess, afterCallAPIFailed) => {
@@ -81,4 +94,34 @@ export const deleteInfoAction = () => {
         type: DELETE_USERINFO,
         payload: data
     }
+}
+
+export const DeleteUserAction=(UserName)=>{
+    deleteUserService(UserName)
+    .then(res=>{
+        message.success(`Delete ${UserName} success!!!`);
+    }
+        )
+    .catch(err=>{
+        message.error('Delete Error!!!');
+    } 
+        )
+}
+
+export const searchUserAction=(keyWord)=>{
+    return dispatch => {searchUserService(keyWord)
+        .then(res=>{
+            dispatch(
+                {
+                    type: SEARCH_USER,
+                    payload: res.data,
+                }
+            )
+        }
+            )
+        .catch(err=>{
+            console.log(err)
+        } 
+            )}
+    
 }

@@ -8,6 +8,7 @@ import {
     registerCourseUrl,
     unRegisterCourseUrl,
     getCourse,
+    deleteCourseAPI
 } from '../constant/api';
 import { GV_TOKEN, TOKEN } from '../constant/common';
 
@@ -57,4 +58,12 @@ export const unRegisterCourseService = (data) => {
         'Authorization': `Bearer ${localStorage.getItem(TOKEN)}`,
     }
     return axios.post(unRegisterCourseUrl, data, {headers});
+}
+
+export const deleteCourseService=(CourseName)=>{
+    return axios.delete(deleteCourseAPI(CourseName), {
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('accessToken')
+        }
+      });
 }

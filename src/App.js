@@ -24,7 +24,6 @@ import CourseDetail from './pages/CourseDetail'
 import DashBoard from './pages/Admin/DashBoard';
 
 function App() {
-
   return (
     <BrowserRouter>
     <Switch>

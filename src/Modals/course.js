@@ -3,7 +3,7 @@ class Course {
       this.Course_ID = Course_ID;
       this.Name = Name;
       this.Description = Description;
-      this.Category_ID - Category_ID;
+      this.Category_ID = Category_ID;
       this.Rating = Rating;
       this.Price = Price;
       this.Author = Author;
