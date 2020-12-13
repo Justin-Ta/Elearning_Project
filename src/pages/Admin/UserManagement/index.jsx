@@ -1,28 +1,28 @@
-import React, { useEffect } from 'react';
-import Modal from './Modal';
+import React, { useEffect, useState } from 'react';
+// import Modal from './Modal';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import {getListUser} from '../../../constant/api'
-import {getListOfUser, searchUserAction} from '../../../redux/actions/user';
+import { searchUserAction, DeleteUserAction, getListOfUser, getListUserAction} from '../../../redux/actions/user';
 import { NavLink } from 'react-router-dom';
-import {searchUserService} from '../../../Axios/user'
+import {searchUserService} from '../../../Axios/user';
 export default function UserManagement() {
     const state= Array.from(useSelector(state=>state.userReducer));
     const dispatch= useDispatch();
+    
     useEffect(()=>{
-      axios.get(getListUser)
-      .then(res=>{dispatch(getListOfUser(res.data))})
-      .catch(err=> console.log(err))
-    },[dispatch]);
+      dispatch(getListUserAction())
+    },[]);
 
-    useEffect(()=>{
-      searchUserService()
-      .then(res=>{dispatch(searchUserAction(res.data))})
-      .catch(err=> console.log(err))
-    },[dispatch]);
-
-
-    console.log("mang User",state);
+    const searchUserFuntion=(keyWork)=>{
+      if(keyWork!==""){
+        dispatch(searchUserAction(keyWork))
+      }
+      else{
+        dispatch(getListUserAction())
+      }
+    }
+    
     const renderUser = () =>{
         return state?.map((user, index)=>{
         const {maLoaiNguoiDung, taiKhoan, hoTen, email, soDt}= user
@@ -46,6 +46,11 @@ export default function UserManagement() {
                       pathname: "/admin/useredit",
                       aboutProps: {
                         selectedidds: true,
+                        maLoaiNguoiDung, 
+                        taiKhoan, 
+                        hoTen, 
+                        email, 
+                        soDt
                       },
                     }}
                     className="btn btn-warning mx-2"
@@ -55,7 +60,10 @@ export default function UserManagement() {
                   </NavLink>
                 </td>
                 <td className="text-left" style={{ width: "5%" }}>
-                  <button className="btn btn-danger mx-2" title="Delete course">
+                  <button className="btn btn-danger mx-2" title="Delete course" onClick={()=>{
+                    console.log("Selected user",taiKhoan)
+                    DeleteUserAction(taiKhoan)
+                  }}>
                     <i class="fa fa-trash"></i>
                   </button>
                 </td>
@@ -72,6 +80,7 @@ export default function UserManagement() {
                     <button className="btn btn-success" onClick={()=>{
                       const searchValue= document.getElementById("search").value;
                       console.log("take Value", searchValue);
+                      searchUserFuntion(searchValue)
                     }}>Search</button>
                     </span>
                 </div>

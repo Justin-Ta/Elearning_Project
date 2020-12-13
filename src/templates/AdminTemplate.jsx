@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import { Route } from "react-router-dom";
 import { Layout, Menu } from "antd";
 import {
@@ -9,8 +9,6 @@ import {
   BookOutlined,
   EditOutlined,
   HomeOutlined
-  // VideoCameraOutlined,
-  // UploadOutlined,
 } from "@ant-design/icons";
 import { NavLink } from "react-router-dom";
 
@@ -21,11 +19,12 @@ export const AdminTemplate = ({ Component, ...restProps }) => {
   const [state, setState] = useState({
     collapsed: false,
   });
+ 
   const toggle = () => {
     setState({
       collapsed: !state.collapsed,
     });
-  };
+  }; 
   return (
     <Route
       {...restProps}

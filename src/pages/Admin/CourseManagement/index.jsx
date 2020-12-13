@@ -1,18 +1,23 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import {getCourse} from '../../../constant/api';
+import {DeleteCourseAction} from '../../../redux/actions/course'
 import {getCourseInfo} from '../../../redux/actions/course';
 import { NavLink } from 'react-router-dom';
 
 export default function CourseManagement(props) {
-    const state = Array.from(useSelector(state=> state.trendingCourses));
-    const dispatch= useDispatch();
+    // const state = Array.from(useSelector(state=> state.trendingCourses));
+    const [state, setState]= useState()
+    // const dispatch= useDispatch();
     useEffect(() => {
       axios.get(getCourse)
-      .then(res=>{dispatch(getCourseInfo(res.data))})
+      .then(res=>{
+        // dispatch(getCourseInfo(res.data))
+        setState(res.data)
+      })
       .catch(err=> console.log(err));
-    },[dispatch])
+    },[state])
     
    
     const renderCourse = () =>{
@@ -52,8 +57,9 @@ export default function CourseManagement(props) {
                   </NavLink>
                 </td>
                 <td className="text-left" style={{ width: "5%" }}>
-                  <button className="btn btn-danger mx-2" title="Delete course" onClick={()=>{
-                    console.log("Selected course",tenKhoaHoc)
+                <button className="btn btn-danger mx-2" title="Delete course" onClick={()=>{
+                    console.log("Selected course", maKhoaHoc)
+                    DeleteCourseAction(maKhoaHoc)
                   }}>
                     <i class="fa fa-trash"></i>
                   </button>

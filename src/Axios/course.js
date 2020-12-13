@@ -14,5 +14,9 @@ export const getCategoryCoursesService = (currentPage, category) => {
 }
 
 export const deleteCourseService=(CourseName)=>{
-    return axios.delete(deleteCourseAPI(CourseName));
+    return axios.delete(deleteCourseAPI(CourseName), {
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('accessToken')
+        }
+      });
 }

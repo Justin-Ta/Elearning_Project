@@ -1,13 +1,24 @@
 import { GET_USER_LIST, POST_USERINFO, SEARCH_USER } from '../../constant/actionType';
-import { signUpService } from '../../Axios/user';
+import { signUpService, deleteUserService, getListUserService, searchUserService } from '../../Axios/user';
 import { message } from 'antd';
 import { TOKEN, USERINFO } from '../../constant/common';
 
-export const getListOfUser = (payload) => {
-    return {
-        type: GET_USER_LIST,
-        payload: payload,
-    }
+
+export const getListUserAction=()=>{
+    return dispatch => {getListUserService()
+        .then(res=>{
+            dispatch(
+                {
+                    type: GET_USER_LIST,
+                    payload: res.data,
+                }
+            )
+        }
+            )
+        .catch(err=>{
+            console.log(err)
+        } 
+            )}  
 }
 
 export const sigUpAction = (userInfo, signUpForm, setLoading) => {
@@ -38,13 +49,32 @@ export const postUserAction = () => {
     }
 }
 
-export const DeleteUserAction=()=>{
-    
+export const DeleteUserAction=(UserName)=>{
+    deleteUserService(UserName)
+    .then(res=>{
+        message.success(`Delete ${UserName} success!!!`);
+    }
+        )
+    .catch(err=>{
+        message.error('Delete Error!!!');
+    } 
+        )
 }
 
-export const searchUserAction = (payload) => {
-    return {
-        type: SEARCH_USER,
-        payload: payload,
-    }
+export const searchUserAction=(keyWord)=>{
+    return dispatch => {searchUserService(keyWord)
+        .then(res=>{
+            dispatch(
+                {
+                    type: SEARCH_USER,
+                    payload: res.data,
+                }
+            )
+        }
+            )
+        .catch(err=>{
+            console.log(err)
+        } 
+            )}
+    
 }

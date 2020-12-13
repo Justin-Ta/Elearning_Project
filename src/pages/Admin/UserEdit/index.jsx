@@ -60,6 +60,7 @@ export default function UserEdit(props) {
             <Form.Item
               name="select"
               hasFeedback
+              value="GV"
               rules={[
                 {
                   required: true,
@@ -82,6 +83,7 @@ export default function UserEdit(props) {
               <Input
                 prefix={<BookOutlined className="site-form-item-icon" />}
                 placeholder="User Name"
+               
               />
             </Form.Item>
           </Col>

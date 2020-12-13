@@ -20,7 +20,7 @@ export default function Header() {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(postUserAction());
-    }, [dispatch])
+    }, [dispatch]) 
 
     const logout = () => {
         localStorage.removeItem(TOKEN);
