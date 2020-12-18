@@ -8,6 +8,7 @@ import {
     registerCourseService,
     unRegisterCourseService,
     deleteCourseService,
+    getCoursesService
 } from '../../Axios/course';
 import { 
     POST_TRENDING_COURSES,
@@ -16,12 +17,7 @@ import {
 
 import { message } from 'antd';
 
-export const getCourseInfo = (payload) => { 
-    return { 
-        type: GET_COURSES,
-        payload: payload,
-    }
-}
+
 
 export const changeTrendingCoursesAction = (currentPage) => { 
     return dispatch => {
@@ -123,6 +119,25 @@ export const unRegisterCourseAction = (data, afterDispatch, afterCallAPIFailed) 
             afterCallAPIFailed();
             console.log(err);
         });
+    }
+}
+
+export const getListCourseAction=()=>{
+    return dispatch =>{
+        getCoursesService()
+        .then(res=>{
+            dispatch(
+                {
+                    type: GET_COURSES,
+                    payload: res.data,
+                }
+            )
+        }
+            )
+        .catch(err=>{
+            console.log(err)
+        } 
+            )
     }
 }
 

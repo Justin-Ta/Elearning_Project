@@ -46,3 +46,7 @@ export const deleteCourseAPI=(courseName)=>{
 export const searchUserAPI=(keyWord)=>{
     return `https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP11&tuKhoa=${keyWord}`
 }
+
+// export const searchCourseAPI=(keyWord)=>{
+//     return `https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP11&tuKhoa=${keyWord}`
+// }

@@ -1,25 +1,6 @@
-import { DELETE_USERINFO, GET_USER_LIST, POST_USERINFO, UPDATE_USERINFO, SEARCH_USER } from '../../constant/actionType';
+import { DELETE_USERINFO, GET_USER_LIST, POST_USERINFO, UPDATE_USERINFO, SEARCH_USER, REMOVE_USER_MANAGEMENT } from '../../constant/actionType';
 import { getUserService, logInService, signUpService, updateUserService, deleteUserService, getListUserService, searchUserService } from '../../Axios/user';
 import { message } from 'antd';
-
-
-
-export const getListUserAction=()=>{
-    return dispatch => {getListUserService()
-        .then(res=>{
-            dispatch(
-                {
-                    type: GET_USER_LIST,
-                    payload: res.data,
-                }
-            )
-        }
-            )
-        .catch(err=>{
-            console.log(err)
-        } 
-            )}  
-}
 
 export const logInAction = (data, afterCallAPISuccess, afterCallAPIFailed) => {
     logInService(data)
@@ -96,17 +77,50 @@ export const deleteInfoAction = () => {
     }
 }
 
-export const DeleteUserAction=(UserName)=>{
-    deleteUserService(UserName)
-    .then(res=>{
-        message.success(`Delete ${UserName} success!!!`);
-    }
-        )
-    .catch(err=>{
-        message.error('Delete Error!!!');
-    } 
-        )
+export const getListUserAction=()=>{
+    return dispatch => {getListUserService()
+        .then(res=>{
+            dispatch(
+                {
+                    type: GET_USER_LIST,
+                    payload: res.data,
+                }
+            )
+        }
+            )
+        .catch(err=>{
+            console.log(err)
+        } 
+            )}  
 }
+
+export const DeleteUserAction=(User)=>{
+    const data={
+            taiKhoan: User.taiKhoan,
+            hoTen: User.hoTen,
+            email: User.email,
+            soDt: User.soDT,
+            maLoaiNguoiDung: User.maLoaiNguoiDung,
+        }
+        const {taiKhoan}= data;
+return dispatch=>{
+        deleteUserService(taiKhoan)
+            .then(res=>{
+                dispatch(
+                    {
+                        type: REMOVE_USER_MANAGEMENT,
+                        payload: res.data,
+                    }
+                )
+                message.success(`Delete ${taiKhoan} success!!!`);
+            }
+                )
+            .catch(err=>{
+                message.error('Delete Error!!!');
+            } 
+                )
+    }
+    }
 
 export const searchUserAction=(keyWord)=>{
     return dispatch => {searchUserService(keyWord)

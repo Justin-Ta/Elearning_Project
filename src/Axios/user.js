@@ -12,6 +12,7 @@ export const logInService = (data) => {
 export const getListUserService=()=>{
   return axios.get(getListUser)
 }
+
 export const deleteUserService=(UserName)=>{
     return axios.delete(deleteUserAPI(UserName), {
         headers: {

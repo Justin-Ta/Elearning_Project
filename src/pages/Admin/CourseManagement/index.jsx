@@ -1,23 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import axios from 'axios';
-import {getCourse} from '../../../constant/api';
-import {DeleteCourseAction} from '../../../redux/actions/course'
-import {getCourseInfo} from '../../../redux/actions/course';
+import {DeleteCourseAction, getListCourseAction} from '../../../redux/actions/course'
 import { NavLink } from 'react-router-dom';
 
 export default function CourseManagement(props) {
-    // const state = Array.from(useSelector(state=> state.trendingCourses));
-    const [state, setState]= useState()
-    // const dispatch= useDispatch();
+    const state = Array.from(useSelector(state=> state.courseManagementReducer));
+
+    const dispatch= useDispatch();
+    
     useEffect(() => {
-      axios.get(getCourse)
-      .then(res=>{
-        // dispatch(getCourseInfo(res.data))
-        setState(res.data)
-      })
-      .catch(err=> console.log(err));
-    },[state])
+      dispatch(getListCourseAction())
+    },[dispatch])
     
    
     const renderCourse = () =>{
@@ -69,14 +62,14 @@ export default function CourseManagement(props) {
         })}
   return (
           <div>
-            <div className="input-group mb-3">
+            {/* <div className="input-group mb-3">
                 <input type="text" className="form-control" placeholder="Search Course..." ariaLabel="Search" ariaDescribedby="basic-addon1"/>
                 <div>
                     <span>
                     <button className="btn btn-success">Search</button>
                     </span>
                 </div>
-            </div>
+            </div> */}
             <div className="from-group">
               <NavLink type="button" class="btn btn-primary mb-3" to ='/admin/courseedit'>Add Course</NavLink>
             </div>

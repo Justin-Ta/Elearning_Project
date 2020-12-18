@@ -4,7 +4,7 @@ import { searchUserAction, DeleteUserAction, getListUserAction} from '../../../r
 import { NavLink } from 'react-router-dom';
 
 export default function UserManagement() {
-    const state= Array.from(useSelector(state=>state.userReducer));
+    const state= Array.from(useSelector(state=>state.userManagementReducer));
     const dispatch= useDispatch();
     
     useEffect(()=>{
@@ -18,6 +18,10 @@ export default function UserManagement() {
       else{
         dispatch(getListUserAction())
       }
+    }
+
+    const RemoveUserFunction=(User)=>{
+      dispatch(DeleteUserAction(User))
     }
     
     const renderUser = () =>{
@@ -58,8 +62,8 @@ export default function UserManagement() {
                 </td>
                 <td className="text-left" style={{ width: "5%" }}>
                   <button className="btn btn-danger mx-2" title="Delete course" onClick={()=>{
-                    console.log("Selected user",taiKhoan)
-                    DeleteUserAction(taiKhoan)
+                    console.log("Selected user",user);
+                    RemoveUserFunction(user)
                   }}>
                     <i class="fa fa-trash"></i>
                   </button>
