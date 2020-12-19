@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.scss';
 import 'antd/dist/antd.css';
 import {Route, BrowserRouter, Switch} from 'react-router-dom';
 

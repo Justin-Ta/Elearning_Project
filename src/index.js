@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import configStore from './redux/configStore';
 import thunk from 'redux-thunk';
-import 'react-app-polyfill/ie11'; //THU
+import 'react-app-polyfill/ie11';
 import 'react-app-polyfill/ie9';
 import 'react-app-polyfill/stable';
 import 'core-js/es/map';
