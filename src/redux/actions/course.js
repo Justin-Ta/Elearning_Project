@@ -126,14 +126,14 @@ export const unRegisterCourseAction = (data, afterDispatch, afterCallAPIFailed) 
     }
 }
 
-export const DeleteCourseAction=(CourseName)=>{
+export const DeleteCourseAction=(CourseName, afterCallAPISuccess)=>{
     deleteCourseService(CourseName)
     .then(res=>{
         message.success(`Delete ${CourseName} success!!!`);
-    }
-        )
+        afterCallAPISuccess();
+    })
     .catch(err=>{
+        err.response && console.log(err.response.data);
         message.error('Delete Error!!!');
-    } 
-        )
+    })
 }
