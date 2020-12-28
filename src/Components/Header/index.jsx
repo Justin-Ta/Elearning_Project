@@ -88,7 +88,7 @@ export default function Header() {
       <div>
         {/* <hr /> */}
         <div className="logoutBtn" onClick={logout}>
-          <i class="fa fa-sign-out" aria-hidden="true"></i> Log out
+          <i className="fa fa-sign-out" aria-hidden="true"></i> Log out
         </div>
       </div>
     </div>

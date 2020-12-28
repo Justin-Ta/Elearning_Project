@@ -1,11 +1,10 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import { Route } from "react-router-dom";
 import { Layout, Menu } from "antd";
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
   UserOutlined,
-  DesktopOutlined,
   BookOutlined,
   EditOutlined,
   HomeOutlined
@@ -19,100 +18,80 @@ export const AdminTemplate = ({ Component, ...restProps }) => {
   const [state, setState] = useState({
     collapsed: false,
   });
- 
+
   const toggle = () => {
     setState({
       collapsed: !state.collapsed,
     });
-  }; 
+  };
   return (
     <Route
       {...restProps}
       render={(propsRoute) => {
         return (
-            <Layout>
-              <Sider trigger={null} collapsible collapsed={state.collapsed}>
-                <div style={{ position: "fixed" }}>
-                  <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
+          <Layout style={{minHeight: "100vh"}}>
+            <Sider trigger={null} collapsible collapsed={state.collapsed}>
+              <div style={{ position: "fixed" }}>
+                <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
                   <Menu.Item
-                        icon={<HomeOutlined />}
-                        title="Turn To Home Page"
-                      >
-                        <NavLink to="/">
-                          HOME
+                    icon={<HomeOutlined />}
+                    title="Turn To Home Page"
+                  >
+                    <NavLink to="/">
+                      HOME
                         </NavLink>
-                      </Menu.Item>
-                    <SubMenu key="sub1" icon={<BookOutlined />} title="COURSE">
-                      <Menu.Item
-                        key="2"
-                        icon={<DesktopOutlined />}
-                        title="Course Management"
-                      >
-                        <NavLink to="/admin/coursesmanagement">
-                          Course Mgn
-                        </NavLink>
-                      </Menu.Item>
+                  </Menu.Item>
+                  <Menu.Item icon={<BookOutlined />} title="COURSE">
+                    <NavLink to="/admin/coursesmanagement">COURSE</NavLink>
+                  </Menu.Item>
 
-                      <Menu.Item
-                        key="3"
-                        icon={<EditOutlined/>}
-                        title="Add Course"
-                      >
-                        <NavLink to="/admin/courseedit">
-                          Add Course
+                  <SubMenu key="sub2" icon={<UserOutlined />} title="USER">
+                    <Menu.Item
+                      key="4"
+                      icon={<UserOutlined />}
+                      title="Student Management"
+                    >
+                      <NavLink to="/admin/usersmanagement">
+                        Student Mgn
                         </NavLink>
-                      </Menu.Item>
-                    </SubMenu>
+                    </Menu.Item>
 
-                    <SubMenu key="sub2" icon={<UserOutlined />} title="USER">
-                      <Menu.Item
-                        key="4"
-                        icon={<UserOutlined />}
-                        title="Student Management"
-                      >
-                        <NavLink to="/admin/usersmanagement">
-                          Student Mgn
+                    <Menu.Item
+                      key="5"
+                      icon={<EditOutlined />}
+                      title="Student Edit"
+                    >
+                      <NavLink to="/admin/useredit">
+                        Add User
                         </NavLink>
-                      </Menu.Item>
-
-                      <Menu.Item
-                        key="5"
-                        icon={<EditOutlined />}
-                        title="Student Edit"
-                      >
-                        <NavLink to="/admin/useredit">
-                          Add User
-                        </NavLink>
-                      </Menu.Item>
-                    </SubMenu>
-                  </Menu>
-                </div>
-              </Sider>
-              <Layout className="site-layout">
-                <Header
-                  className="site-layout-background"
-                  style={{ padding: 0 }}
-                >
-                  {React.createElement(
-                    state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
-                    {
-                      className: "trigger",
-                      onClick: toggle,
-                    }
-                  )}
-                </Header>
-                <Content
-                  className="site-layout-background"
-                  style={{
-                    margin: "0 16px",
-                    padding: 24,
-                    minHeight: "100vh",
-                  }}
-                >
-                  <Component {...propsRoute}/>
-                </Content>
-              </Layout>
+                    </Menu.Item>
+                  </SubMenu>
+                </Menu>
+              </div>
+            </Sider>
+            <Layout className="site-layout">
+              <Header
+                className="site-layout-background"
+                style={{ padding: 0 }}
+              >
+                {React.createElement(
+                  state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
+                  {
+                    className: "trigger",
+                    onClick: toggle,
+                  }
+                )}
+              </Header>
+              <Content
+                className="site-layout-background"
+                style={{
+                  padding: 24,
+                }}
+              >
+                <Component {...propsRoute} />
+              </Content>
             </Layout>
+          </Layout>
         );
       }}
     />

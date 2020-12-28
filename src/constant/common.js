@@ -35,8 +35,13 @@ export const tagColor = [
 export const errorResp = {
     existedEmail: "Email đã tồn tại!",
     existedUsername: "Tài khoản đã tồn tại!",
+    existedCourseID: "Mã khóa học đã tồn tại!",
 }
 export const errorRespTranslation = {
     existedEmail: "Email already existed",
     existedUsername: "Username already existed",
+    existedCourseID: "Course ID already existed"
+}
+export const message = {
+    required: "This field cannot be empty"
 }

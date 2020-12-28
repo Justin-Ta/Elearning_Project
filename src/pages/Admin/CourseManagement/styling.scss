@@ -1,8 +1,8 @@
 tbody {
     display: block;
-    height: 60vh;
     overflow-y: auto;
     overflow-x: visible;
+    min-height: 100vh;
     i{
         color: $whitePrimary;
     }

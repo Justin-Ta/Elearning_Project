@@ -1,101 +1,169 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import axios from 'axios';
-import {getCourse} from '../../../constant/api';
-import {DeleteCourseAction} from '../../../redux/actions/course'
-import {getCourseInfo} from '../../../redux/actions/course';
 import { NavLink } from 'react-router-dom';
+import { Table, Button, Input, Tooltip, message } from 'antd';
+import { deleteCourseService, getCoursesService } from '../../../Axios/course';
+import Loading from '../../../Components/Loading';
+import { nonAccentVietnamese } from '../../../share/functions';
+import { categoryDisplayNames } from '../../../constant/common';
+
+const { Search } = Input;
 
 export default function CourseManagement(props) {
-    // const state = Array.from(useSelector(state=> state.trendingCourses));
-    const [state, setState]= useState()
-    // const dispatch= useDispatch();
-    useEffect(() => {
-      axios.get(getCourse)
-      .then(res=>{
-        // dispatch(getCourseInfo(res.data))
-        setState(res.data)
-      })
-      .catch(err=> console.log(err));
-    },[state])
-    
-   
-    const renderCourse = () =>{
-        return state?.map((course, index)=>{
-          const {maKhoaHoc, tenKhoaHoc, soLuongHocVien}=course;
-            return (
-              <tr key={index}>
-                <td>{maKhoaHoc}</td>
-                <td>{tenKhoaHoc}</td>
-                <td className="text-center">{soLuongHocVien}</td>
-                <td className="text-center">
-                  {2 > 0 ? <span className="text-danger">2</span> : 1}
-                </td>
-                <td className="text-left" style={{ width: "5%" }}>
-                  <NavLink
-                    className="btn btn-primary mx-2"
-                    title="Detail course"
-                    to={`/admin/coursedetail/${maKhoaHoc}`}
-                  >
-                    <i class="fa fa-search"></i>
-                  </NavLink>
-                </td>
+  const [state, setState] = useState({
+    totalCourses: undefined,
+    filterCourses: undefined,
+  });
+  const [totalCourses, setTotalCourses] = useState();
+  const [isDisablesDel, setIsDisablesDel] = useState(true);
 
-                <td className="text-left" style={{ width: "5%" }}>
-                  {" "}
-                  <NavLink
-                    to={{
-                      pathname: "/admin/courseedit",
-                      aboutProps: {
-                        selectedidds: true,
-                      },
-                    }}
-                    className="btn btn-warning mx-2"
-                    title="Edit course"
-                  >
-                    <i class="fa fa-edit"></i>
-                  </NavLink>
-                </td>
-                <td className="text-left" style={{ width: "5%" }}>
-                <button className="btn btn-danger mx-2" title="Delete course" onClick={()=>{
-                    console.log("Selected course", maKhoaHoc)
-                    DeleteCourseAction(maKhoaHoc)
-                  }}>
-                    <i class="fa fa-trash"></i>
-                  </button>
-                </td>
-              </tr>
-            );
-        })}
+  useEffect(() => {
+    getCoursesService()
+      .then(res => {
+        const courses = res.data.map((course, index) => {
+          const newCourse = { ...course };
+          newCourse.key = index;
+          newCourse.danhMucKhoaHoc.tenDanhMucKhoaHoc = categoryDisplayNames[course.danhMucKhoaHoc.maDanhMucKhoahoc];
+          return newCourse;
+        })
+        setState({
+          totalCourses: courses,
+          filterCourses: courses,
+        });
+        //setTotalCourses(courses);
+      })
+      .catch(err => console.log(err));
+  }, [])
+
+  const onSearch = (keyword) => {
+    const result = state.totalCourses.filter((course) => {
+      let resource = JSON.stringify(Object.values(course));
+      keyword = nonAccentVietnamese(keyword);
+      resource = nonAccentVietnamese(resource);
+      return resource.includes(keyword);
+    });
+    //console.log(result);
+    setState({
+      totalCourses: state.totalCourses,
+      filterCourses: result,
+    });
+  }
+
+  const deleteCourse = (id) => {
+    const courseId = encodeURIComponent(id);
+    deleteCourseService(id)
+    .then(res=>{
+        message.success(`Delete ${id} success!!!`);
+        afterCallAPISuccess();
+    })
+    .catch(err=>{
+        err.response && console.log(err.response.data);
+        message.error('Delete Error!!!');
+    })
+
+    const afterCallAPISuccess = () => {
+      const newTotalCourses = [...state.totalCourses];
+      const indexInTotal = newTotalCourses.findIndex(course => { return course.maKhoaHoc === id });
+      indexInTotal !== -1 && newTotalCourses.splice(indexInTotal, 1);
+  
+      const newState = [...state.filterCourses];
+      const indexInState = newState.findIndex(course => { return course.maKhoaHoc === id });
+      console.log('indexInState', indexInState);
+      indexInTotal !== -1 && newState.splice(indexInState, 1);
+      setState({
+        totalCourses: newTotalCourses,
+        filterCourses: newState,
+      })
+  
+      console.log('state', state);
+    }
+  };
+
+  const columns = [
+    {
+      title: 'ID',
+      dataIndex: 'maKhoaHoc',
+      key: 'maKhoaHoc',
+    },
+    {
+      title: 'Course title',
+      dataIndex: 'tenKhoaHoc',
+      key: 'tenKhoaHoc',
+      render: (text, record) => (
+        <NavLink to={'/admin/coursedetail/' + encodeURIComponent(record.maKhoaHoc)}>
+          {text}
+        </NavLink>
+      ),
+    },
+    {
+      title: 'Category',
+      dataIndex: 'danhMucKhoaHoc',
+      key: 'danhMucKhoaHoc',
+      render: (danhMucKhoaHoc) => {
+        return (
+          <p>{danhMucKhoaHoc.tenDanhMucKhoaHoc}</p>
+        )
+      },
+      filters: Object.values(categoryDisplayNames).map(category => {
+        return {
+          text: category,
+          value: category,
+        }
+      }),
+      onFilter: (value, record) => record.danhMucKhoaHoc.tenDanhMucKhoaHoc.indexOf(value) === 0,
+    },
+    {
+      title: 'Authors',
+      dataIndex: 'nguoiTao',
+      key: 'nguoiTao',
+      render: (nguoiTao) => {
+        return (
+          <p>{nguoiTao.hoTen}</p>
+        )
+      }
+    },
+    {
+      title: 'Create date',
+      dataIndex: 'ngayTao',
+      key: 'ngayTao',
+    },
+    {
+      title: 'Action',
+      key: 'action',
+      render: (record) => (
+        <Tooltip title="Delete" color={"grey"}>
+          <Button type="primary" danger onClick={() => deleteCourse(record.maKhoaHoc)}>
+            <i className="fa fa-trash" aria-hidden="true"></i>
+          </Button>
+        </Tooltip>
+      ),
+    },
+  ];
+
+  let data = state.filterCourses;
+
+  const rowSelection = {
+    onChange: (selectedRowKeys, selectedRows) => {
+      console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
+      if (selectedRows.length > 1) setIsDisablesDel(false);
+      else setIsDisablesDel(true);
+    },
+  };
+
+  if (!state.totalCourses) return <Loading />;
   return (
-          <div>
-            <div className="input-group mb-3">
-                <input type="text" className="form-control" placeholder="Search Course..." ariaLabel="Search" ariaDescribedby="basic-addon1"/>
-                <div>
-                    <span>
-                    <button className="btn btn-success">Search</button>
-                    </span>
-                </div>
-            </div>
-            <div className="from-group">
-              <NavLink type="button" class="btn btn-primary mb-3" to ='/admin/courseedit'>Add Course</NavLink>
-            </div>
-            <table className="table">
-                <thead className="bg-dark text-light font-weight-bold">
-                    <tr>
-                        <td>ID</td>
-                        <td>Course Name</td>
-                        <td className="text-center">Amount of User</td>
-                        <td className="text-center">Pending User</td>
-                        <td style={{width:"5%"}}></td>
-                        <td style={{width:"5%"}}></td>
-                        <td style={{width:"5%"}}></td>
-                    </tr>
-                </thead>
-                <tbody className="table__content">
-                {renderCourse()}
-                </tbody>
-            </table>
-    </div>
+    <>
+      <div className="">
+        <Search placeholder="input search text" onSearch={onSearch} size="large" className="mb-3" />
+        <NavLink type="button" className="btn btn-primary mb-3" to='/admin/courseedit'>Add Course</NavLink>
+        <button type="button" className="btn btn-danger mb-3 ml-3" to='/admin/courseedit' disabled={isDisablesDel}>Delete Courses</button>
+      </div>
+      <Table columns={columns}
+        dataSource={data}
+        rowSelection={{
+          type: 'checkbox',
+          ...rowSelection,
+        }}
+      />
+    </>
   )
 }

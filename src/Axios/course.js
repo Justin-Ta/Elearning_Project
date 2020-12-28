@@ -8,7 +8,9 @@ import {
     registerCourseUrl,
     unRegisterCourseUrl,
     getCourse,
-    deleteCourseAPI
+    deleteCourseAPI,
+    createCourseUrl,
+    updateCourseUrl,
 } from '../constant/api';
 import { GV_TOKEN, TOKEN } from '../constant/common';
 
@@ -66,4 +68,20 @@ export const deleteCourseService=(CourseName)=>{
           Authorization: 'Bearer ' + localStorage.getItem('accessToken')
         }
       });
+}
+
+export const createCourseService = (data) => {
+    const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem(TOKEN)}`,
+    }
+    return axios.post(createCourseUrl, data, {headers});
+}
+
+export const updateCourseService = (data) => {
+    const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem(TOKEN)}`,
+    }
+    return axios.put(updateCourseUrl, data, {headers});
 }
