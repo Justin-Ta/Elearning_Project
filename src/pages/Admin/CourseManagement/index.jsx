@@ -13,7 +13,6 @@ export default function CourseManagement(props) {
     totalCourses: undefined,
     filterCourses: undefined,
   });
-  const [totalCourses, setTotalCourses] = useState();
   const [isDisablesDel, setIsDisablesDel] = useState(true);
 
   useEffect(() => {
@@ -50,7 +49,7 @@ export default function CourseManagement(props) {
 
   const deleteCourse = (id) => {
     const courseId = encodeURIComponent(id);
-    deleteCourseService(id)
+    deleteCourseService(courseId)
     .then(res=>{
         message.success(`Delete ${id} success!!!`);
         afterCallAPISuccess();
