@@ -40,11 +40,11 @@ export default function CourseEdit() {
       values.taiKhoanNguoiTao
     )
     
-    console.log("sent data", values);
+    //console.log("sent data", values);
 
     createCourseService(data)
     .then(res => {
-      console.log(res);
+      //console.log(res);
       message.success(`Add course success!!!`);
     })
     .catch(err => {
