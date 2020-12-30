@@ -36,11 +36,13 @@ export const errorResp = {
     existedEmail: "Email đã tồn tại!",
     existedUsername: "Tài khoản đã tồn tại!",
     existedCourseID: "Mã khóa học đã tồn tại!",
+    userRegistedCourse: "Người dùng đã được ghi danh không thể xóa!",
 }
 export const errorRespTranslation = {
     existedEmail: "Email already existed",
     existedUsername: "Username already existed",
-    existedCourseID: "Course ID already existed"
+    existedCourseID: "Course ID already existed",
+    userRegistedCourse: "Cannot remove user registering a course"
 }
 export const message = {
     required: "This field cannot be empty"

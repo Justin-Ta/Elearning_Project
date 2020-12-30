@@ -27,6 +27,10 @@ export const createCourseUrl = 'https://elearning0706.cybersoft.edu.vn/api/QuanL
 
 export const updateCourseUrl = 'https://elearning0706.cybersoft.edu.vn/api/QuanLyKhoaHoc/CapNhatKhoaHoc';
 
+export const deleteCourseAPI=(courseName)=>{
+    return `https://elearning0706.cybersoft.edu.vn/api/QuanLyKhoaHoc/XoaKhoaHoc?MaKhoaHoc=${courseName}`
+}
+
 // User API
 export const getListUser = `https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=${groupID}`;
 
@@ -40,10 +44,6 @@ export const updateUserUrl = "https://elearning0706.cybersoft.edu.vn/api/QuanLyN
 
 export const deleteUserAPI=(userName)=>{
     return `https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${userName}`
-}
-
-export const deleteCourseAPI=(courseName)=>{
-    return `https://elearning0706.cybersoft.edu.vn/api/QuanLyKhoaHoc/XoaKhoaHoc?MaKhoaHoc=${courseName}`
 }
 
 export const searchUserAPI=(keyWord)=>{

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Table, Button, Input, Tooltip, message } from 'antd';
+import { Table, Button, Input, message, Popconfirm } from 'antd';
 import { deleteCourseService, getCoursesService } from '../../../Axios/course';
 import Loading from '../../../Components/Loading';
 import { nonAccentVietnamese } from '../../../share/functions';
@@ -50,20 +50,20 @@ export default function CourseManagement(props) {
   const deleteCourse = (id) => {
     const courseId = encodeURIComponent(id);
     deleteCourseService(courseId)
-    .then(res=>{
-        message.success(`Delete ${id} success!!!`);
+      .then(res => {
+        message.success(`Delete ${id} successfully!!!`);
         afterCallAPISuccess();
-    })
-    .catch(err=>{
+      })
+      .catch(err => {
         err.response && console.log(err.response.data);
         message.error('Delete Error!!!');
-    })
+      })
 
     const afterCallAPISuccess = () => {
       const newTotalCourses = [...state.totalCourses];
       const indexInTotal = newTotalCourses.findIndex(course => { return course.maKhoaHoc === id });
       indexInTotal !== -1 && newTotalCourses.splice(indexInTotal, 1);
-  
+
       const newState = [...state.filterCourses];
       const indexInState = newState.findIndex(course => { return course.maKhoaHoc === id });
       console.log('indexInState', indexInState);
@@ -72,8 +72,8 @@ export default function CourseManagement(props) {
         totalCourses: newTotalCourses,
         filterCourses: newState,
       })
-  
-      console.log('state', state);
+
+      //console.log('state', state);
     }
   };
 
@@ -129,11 +129,11 @@ export default function CourseManagement(props) {
       title: 'Action',
       key: 'action',
       render: (record) => (
-        <Tooltip title="Delete" color={"grey"}>
-          <Button type="primary" danger onClick={() => deleteCourse(record.maKhoaHoc)}>
+        <Popconfirm placement="bottom" title={"Are you sure to delete this course?"} onConfirm={() => deleteCourse(record.maKhoaHoc)} okText="Yes" cancelText="No">
+          <Button type="primary" danger>
             <i className="fa fa-trash" aria-hidden="true"></i>
           </Button>
-        </Tooltip>
+        </Popconfirm>
       ),
     },
   ];
@@ -152,8 +152,9 @@ export default function CourseManagement(props) {
   return (
     <>
       <div className="">
+        <h1>Course Management</h1>
         <Search placeholder="input search text" onSearch={onSearch} size="large" className="mb-3" />
-        <NavLink type="button" className="btn btn-primary mb-3" to='/admin/courseedit'>Add Course</NavLink>
+        <NavLink type="button" className="btn btn-primary mb-3" to='/admin/courseedit'>+ New course</NavLink>
         <button type="button" className="btn btn-danger mb-3 ml-3" to='/admin/courseedit' disabled={isDisablesDel}>Delete Courses</button>
       </div>
       <Table columns={columns}

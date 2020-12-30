@@ -6,7 +6,6 @@ import { Course } from '../../../Modals/course';
 
 export default function CourseEdit() {
   const [PosterImg, setPosterImg] = useState("");
-  const formRef = React.createRef();
   const renderCategoryOptions = () => {
     return Object.values(categoryDisplayNames).map((category, index) => {
         return {
@@ -40,7 +39,6 @@ export default function CourseEdit() {
       values.taiKhoanNguoiTao
     )
     
-    //console.log("sent data", values);
 
     createCourseService(data)
     .then(res => {
@@ -60,7 +58,6 @@ export default function CourseEdit() {
       <div className="col-lg-8 col-md-8 col-sm-12 form">
         <Form
           {...layout}
-          ref={formRef}
           onFinish={onSubmit}
         >
           <Form.Item
