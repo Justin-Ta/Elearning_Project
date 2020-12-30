@@ -1,51 +1,46 @@
-import React, { useState } from "react";
+import React from "react";
 import { Route } from "react-router-dom";
 import { Layout, Menu } from "antd";
 import {
-  MenuUnfoldOutlined,
-  MenuFoldOutlined,
   UserOutlined,
   BookOutlined,
-  EditOutlined,
   HomeOutlined
 } from "@ant-design/icons";
 import { NavLink } from "react-router-dom";
 
-const { Header, Sider, Content } = Layout;
-const { SubMenu } = Menu;
+const { Sider, Content } = Layout;
 
 export const AdminTemplate = ({ Component, ...restProps }) => {
-  const [state, setState] = useState({
-    collapsed: false,
-  });
 
-  const toggle = () => {
-    setState({
-      collapsed: !state.collapsed,
-    });
-  };
   return (
     <Route
       {...restProps}
       render={(propsRoute) => {
         return (
-          <Layout style={{minHeight: "100vh"}}>
-            <Sider trigger={null} collapsible collapsed={state.collapsed}>
-              <div style={{ position: "fixed" }}>
-                <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
-                  <Menu.Item
-                    icon={<HomeOutlined />}
-                    title="Turn To Home Page"
-                  >
-                    <NavLink to="/">
-                      HOME
-                        </NavLink>
-                  </Menu.Item>
-                  <Menu.Item icon={<BookOutlined />} title="COURSE">
-                    <NavLink to="/admin/coursesmanagement">COURSE</NavLink>
-                  </Menu.Item>
+          <Layout style={{ minHeight: "100vh" }}>
+            <Sider
+              breakpoint="lg"
+              collapsedWidth="0"
+            >
+              <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
+                <Menu.Item
+                  icon={<HomeOutlined />}
+                  title="Turn To Home Page"
+                >
+                  <NavLink to="/">
+                    HOME
+                    </NavLink>
+                </Menu.Item>
 
-                  <SubMenu key="sub2" icon={<UserOutlined />} title="USER">
+                <Menu.Item icon={<BookOutlined />} title="COURSE">
+                  <NavLink to="/admin/coursesmanagement">COURSE</NavLink>
+                </Menu.Item>
+
+                <Menu.Item icon={<UserOutlined />} title="COURSE">
+                  <NavLink to="/admin/usersmanagement">USER</NavLink>
+                </Menu.Item>
+
+                {/* <SubMenu key="sub2" icon={<UserOutlined />} title="USER">
                     <Menu.Item
                       key="4"
                       icon={<UserOutlined />}
@@ -65,23 +60,10 @@ export const AdminTemplate = ({ Component, ...restProps }) => {
                         Add User
                         </NavLink>
                     </Menu.Item>
-                  </SubMenu>
-                </Menu>
-              </div>
+                  </SubMenu> */}
+              </Menu>
             </Sider>
             <Layout className="site-layout">
-              <Header
-                className="site-layout-background"
-                style={{ padding: 0 }}
-              >
-                {React.createElement(
-                  state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
-                  {
-                    className: "trigger",
-                    onClick: toggle,
-                  }
-                )}
-              </Header>
               <Content
                 className="site-layout-background"
                 style={{
