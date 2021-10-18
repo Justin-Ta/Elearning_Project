@@ -1,99 +1,123 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCourseDetailAction, registerCourseAction, unRegisterCourseAction } from '../../redux/actions/course';
+import { registerCourseAction, unRegisterCourseAction } from '../../redux/actions/course';
 import { Card, Button, message, Rate, Popconfirm } from 'antd';
 import { PlayCircleOutlined } from '@ant-design/icons';
 import CommentList from '../../Components/CommentList';
-import { useState } from 'react';
 import Loading from '../../Components/Loading';
 import { useHistory } from 'react-router-dom';
+import { getCourseDetailService } from '../../Axios/course';
+
+const STATUS = {
+    NEW: 'new',
+    REGISTER: 'register',
+    APPROVE: 'approve'
+}
 
 export default function CourseDetail(props) {
-    const id = props.match.params.id;
-    const [isLoading, setIsLoading] = useState(false);
-    const [isLoadingEntryPape, setIsLoadingEntryPape] = useState(true);
     const dispatch = useDispatch();
     const history = useHistory();
+    const path = props.match.params.id;
+    const [isLoading, setIsLoading] = useState(false);
+    const [isLoadingEntryPape, setIsLoadingEntryPape] = useState(true);
+    const User = useSelector((state) => state.userReducer);
+    const [state, setstate] = useState({
+        title: "",
+        createdAt: "",
+        students: "",
+        image, desc: "",
+        author: [],
+        source: [],
+        price: 0,
+        rating: 0,
+        totalRates: 0,
+        status: STATUS.NEW,
+        _id: ''
+    });
 
     useEffect(() => {
-        const afterCallAPISuccess = () => {
-            setIsLoadingEntryPape(false);
-        }
-        dispatch(getCourseDetailAction(id, afterCallAPISuccess));
-    }, [dispatch, id])
-    const state = useSelector(state => {
-        return {
-            courseDetail: state.courseDetailReducer,
-            choXetDuyet: state.userReducer.KhoaHocChoXetDuyet && state.userReducer.KhoaHocChoXetDuyet.findIndex(ele => {
-                return ele.maKhoaHoc === state.courseDetailReducer.maKhoaHoc;
-            }),
-            daXetDuyet: state.userReducer.KhoaHocDaXetDuyet && state.userReducer.KhoaHocDaXetDuyet.findIndex(ele => {
-                return ele.maKhoaHoc === state.courseDetailReducer.maKhoaHoc;
-            }),
-            taiKhoan: state.userReducer.taiKhoan,
-        }
-    });
-    //console.log("state.choXetDuyet", state);
-    const { tenKhoaHoc, ngayTao, luotXem, hinhAnh, moTa, nguoiTao, maKhoaHoc } = state.courseDetail;
-    if (!tenKhoaHoc || state.choXetDuyet === undefined || state.daXetDuyet === undefined) return <Loading />;
+        setIsLoadingEntryPape(true);
+        getCourseDetailService(path)
+            .then(res => {
+                let status;
+                if (res.data.source) status = STATUS.APPROVE;
+                else if (User.registeredCourses.find(c => c.courseId === res.data._id)) status = STATUS.REGISTER;
+                else status = STATUS.NEW;
+
+                const newState = {
+                    ...res.data,
+                    rating: res.data.rating || 0,
+                    totalRates: res.data.totalRates || 0,
+                    price: res.data.price || 0,
+                    status,
+                    createdAt: new Date(res.data.createdAt).toDateString()
+                }
+
+                setstate(newState);
+            })
+            .catch(err => { })
+            .finally(() => setIsLoadingEntryPape(false))
+    }, [path, User.registeredCourses])
+
+    const { title, createdAt, students, image, desc, author, source, price, rating, totalRates } = state;
 
     const register = () => {
-        if (!state.taiKhoan) {
-            history.push("/login");
-            return;
-        }
+        if (!User._id) return history.push("/login");
+
         setIsLoading(true);
         const data = {
-            maKhoaHoc: maKhoaHoc,
-            taiKhoan: state.taiKhoan,
-        }
-        const course = {
-            maKhoaHoc,
-            tenKhoaHoc
+            userId: User._id,
+            courseId: state._id
         }
 
         const afterDispatch = () => {
             setIsLoading(false)
+            setstate({
+                ...state,
+                status: STATUS.REGISTER
+            });
         }
 
-        const afterCallAPIFailed = () => {
+        const afterCallAPIFailed = (err) => {
             setIsLoading(false)
             message.error({
-                content: "Register unsuccessfully",
+                content: err?.response?.data?.message || "Register unsuccessfully",
                 icon: <i className="fa fa-exclamation-circle pr-2 text-danger" aria-hidden="true"></i>
             });
         }
-        dispatch(registerCourseAction(data, course, afterDispatch, afterCallAPIFailed));
+        dispatch(registerCourseAction(data, afterDispatch, afterCallAPIFailed));
     }
 
     const unRegister = () => {
         setIsLoading(true);
-        const data = {
-            maKhoaHoc: maKhoaHoc,
-            taiKhoan: state.taiKhoan,
-        }
+        const reg = User.registeredCourses.find(c => c.courseId === state._id);
+        if (!reg) return setIsLoading(false);
 
-        const afterDispatch = () => {
-            setIsLoading(false)
-        }
-
-        const afterCallAPIFailed = () => {
-            setIsLoading(false)
-            message.error({
-                content: "Unregister failed",
-                icon: <i className="fa fa-exclamation-circle pr-2 text-danger" aria-hidden="true"></i>
-            });
-        }
-        dispatch(unRegisterCourseAction(data, afterDispatch, afterCallAPIFailed));
+        dispatch(unRegisterCourseAction(reg._id,
+            () => {
+                setIsLoading(false);
+                setstate({
+                    ...state,
+                    status: STATUS.NEW
+                });
+            },
+            () => {
+                setIsLoading(false)
+                message.error({
+                    content: "Unregister failed",
+                    icon: <i className="fa fa-exclamation-circle pr-2 text-danger" aria-hidden="true"></i>
+                });
+            }
+        ));
     }
 
     const cardImg = (
         <>
-            {state.daXetDuyet >= 0 &&
+            {state.status === STATUS.APPROVE &&
                 <div className="courseDetail_header_card_playBg">
                     <PlayCircleOutlined />
                 </div>}
-            <img alt={hinhAnh} src={hinhAnh} />
+            <img alt={image} src={image} />
         </>
     );
 
@@ -108,25 +132,25 @@ export default function CourseDetail(props) {
                             <div className="container">
                                 <div className="row">
                                     <div className="courseDetail_header_detail col-lg-8 col-md-8 col-sm-12">
-                                        <h2>{tenKhoaHoc}</h2>
+                                        <h2>{title}</h2>
                                         <h5>
-                                            <Rate allowHalf defaultValue={3.4} disabled value={"3.4"} />
-                                            <span className="pl-3">3.4</span>
+                                            <Rate allowHalf defaultValue={rating} disabled value={rating} />
+                                            <span className="pl-3">{rating}/{totalRates}</span>
                                         </h5>
-                                        <p>Author: {nguoiTao.hoTen}</p>
-                                        <p>Created by: {ngayTao}</p>
-                                        <p>{luotXem} students</p>
+                                        <p>Author: {author.join(', ')}</p>
+                                        <p>Created on: {createdAt}</p>
+                                        <p>{students.length} students</p>
                                     </div>
                                     <div className="courseDetail_header_card col-lg-4 col-md-4 col-sm-12">
                                         <Card
                                             cover={cardImg}
                                         >
-                                            <h3>$132.344</h3>
+                                            <h3>${price}</h3>
                                             <Button type="primary w-100 mb-3" danger
                                                 size={"large"}
                                                 onClick={register}
                                                 loading={isLoading}
-                                                hidden={state.daXetDuyet >= 0 || state.choXetDuyet >= 0}
+                                                hidden={state.status !== STATUS.NEW}
                                             >
                                                 Register
                                             </Button>
@@ -134,10 +158,10 @@ export default function CourseDetail(props) {
                                                 <Button type="primary w-100 mb-3"
                                                     size={"large"}
                                                     loading={isLoading}
-                                                    hidden={state.choXetDuyet === -1}
+                                                    hidden={state.status !== STATUS.REGISTER}
                                                 >
                                                     Unregister
-                                            </Button>
+                                                </Button>
                                             </Popconfirm>
                                             <h6>How do you feel?</h6>
                                             <Rate allowHalf defaultValue={0} />
@@ -153,7 +177,7 @@ export default function CourseDetail(props) {
                                 <div className="courseDetail_content_wrapper">
                                     <div className="description col-lg-8 col-md-8 col-sm-12 mt-5">
                                         <h2>Description</h2>
-                                        {moTa}
+                                        <div dangerouslySetInnerHTML={{ __html: desc }}></div>
                                     </div>
                                     <div className="studentComment col-lg-8 col-md-8 col-sm-12 mt-5">
                                         <CommentList />

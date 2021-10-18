@@ -8,7 +8,6 @@ import { TOKEN } from "../../constant/common";
 import { deleteInfoAction, postUserInfoAction } from "../../redux/actions/user";
 import {
   getPendingCoursesAction,
-  getRegisteredCoursesAction,
 } from "../../redux/actions/course";
 
 const { Search } = Input;
@@ -22,17 +21,16 @@ export default function Header() {
   useEffect(() => {
     if (!token) return;
     dispatch(postUserInfoAction());
-  }, [dispatch, token, state.taiKhoan]);
+  }, [dispatch, token]);
 
   useEffect(() => {
     if (!token || !state.taiKhoan) return;
-    dispatch(getRegisteredCoursesAction({ taiKhoan: state.taiKhoan }));
     dispatch(getPendingCoursesAction({ taiKhoan: state.taiKhoan }));
   }, [dispatch, token, state.taiKhoan]);
 
   const [headerStyle, setHeaderStyle] = useState({});
   const [CollappseIconGroupStyle, setCollappseIconGroupStyle] = useState({});
-  const { hoTen: name, maLoaiNguoiDung: role } = state;
+  const { firstname: name, role } = state;
 
   const logout = () => {
     localStorage.removeItem(TOKEN);
@@ -52,7 +50,7 @@ export default function Header() {
   const showMore = () => {
     if (JSON.stringify(CollappseIconGroupStyle) === JSON.stringify({})) {
       return setCollappseIconGroupStyle({
-        width: "100%",
+        width: "15rem",
       });
     }
     return setCollappseIconGroupStyle({});
@@ -94,7 +92,7 @@ export default function Header() {
     </div>
   );
 
-  //console.count('header');
+  // console.log(state);
 
   return (
     <div className="header" style={headerStyle}>
@@ -109,14 +107,14 @@ export default function Header() {
             <span className="searchCollappseIcon pr-3">
               <SearchOutlined onClick={showSearch} onBlur={onBlur} />
             </span>
-            {!token && (
+            {!state.firstname && (
               <span className="moreCollappseIcon pr-3">
                 <MoreOutlined onClick={showMore} onBlur={onBlur} />
               </span>
             )}
           </div>
           <div>
-            {token ? (
+            {state.firstname ? (
               <>
                 <Dropdown
                   overlay={menu}

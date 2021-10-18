@@ -4,7 +4,6 @@ import {
     getCategoryCoursesService,
     getCourseDetailService,
     getPendingCourseService,
-    getRegisteredCoursesService,
     registerCourseService,
     unRegisterCourseService,
     deleteCourseService,
@@ -36,9 +35,9 @@ export const changeTrendingCoursesAction = (currentPage) => {
     }
 }
 
-export const getCategoryCoursesAction = (category, afterCallAPISuccess) => { 
+export const getCategoryCoursesAction = (category, currentPage, afterCallAPISuccess) => { 
     return dispatch => {
-        getCategoryCoursesService(category)
+        getCategoryCoursesService(category, currentPage)
         .then( res => {
             dispatch({
                 type: POST_COURSES_IN_CATEGORY,
@@ -77,45 +76,30 @@ export const getPendingCoursesAction = (data) => {
     }
 }
 
-export const getRegisteredCoursesAction = (data) => {
-    return dispatch => {
-        getRegisteredCoursesService(data)
-        .then( res => {
-            dispatch({ 
-                type: POST_REGISTERED_COURSES,
-                payload: res.data,
-            });
-        })
-        .catch(err => console.log(err));
-    }
-}
-
-export const registerCourseAction = (data, courseInfo, afterDispatch, afterCallAPIFailed) => {
+export const registerCourseAction = (data, afterDispatch, afterCallAPIFailed) => {
     return dispatch => {
         registerCourseService(data)
         .then( res => {
-            console.log('res.data', res.data);
             dispatch({
                 type: UPDATE_PENDING_COURSES,
-                payload: courseInfo,
+                payload: res.data,
             });
             afterDispatch();
         })
         .catch(err => {
-            afterCallAPIFailed();
+            afterCallAPIFailed(err);
             console.log(err);
         });
     }
 }
 
-export const unRegisterCourseAction = (data, afterDispatch, afterCallAPIFailed) => {
+export const unRegisterCourseAction = (id, afterDispatch, afterCallAPIFailed) => {
     return dispatch => {
-        unRegisterCourseService(data)
+        unRegisterCourseService(id)
         .then( res => {
-            console.log('res.data', res.data);
             dispatch({
                 type: REMOVE_PENDING_COURSE,
-                payload: data.maKhoaHoc,
+                payload: id,
             });
             afterDispatch();
         })

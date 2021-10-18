@@ -1,16 +1,16 @@
 //export const categoryNames = ['Development', 'Marketing', 'Business', 'Design', 'Music', 'Personal development'];
-export const categoryNames = ['BackEnd', 'DiDong', 'FrontEnd', 'Design', 'FullStack', 'TuDuy'];
+export const categoryNames = ['back-end', 'mobile', 'front-end', 'design', 'full-stack', 'programming-thinking'];
 export const categoryDisplayNames = {
-    BackEnd: 'Back-end',
-    DiDong: 'Mobile',
-    FrontEnd: 'Front-end',
-    Design: 'Design',
-    FullStack: 'Fullstack',
-    TuDuy: 'Programming thinking'
+    "back-end": 'Back-end',
+    "mobile": 'Mobile',
+    "front-end": 'Front-end',
+    "design": 'Design',
+    "full-stack": 'Fullstack',
+    "programming-thinking": 'Programming thinking'
 }
 export const groupID = "GP11";
 export const TOKEN= "accessToken";
-export const USERINFO = "username";
+export const USERID = "userId";
 export const pageSize = 8;
 export const mediaQuery = {
     $sm: 576,

@@ -1,51 +1,57 @@
 import { groupID } from "./common";
 
+const domain = 'https://elearning0706.cybersoft.edu.vn/api';
+// export const _domain = 'http://localhost:5000';
+export const _domain = 'https://elearning-be.herokuapp.com';
+
+
 // Course API
 export const getTrendingCoursesByPageUrl = (currentPage) =>{
-    return `https://elearning0706.cybersoft.edu.vn/api/QuanLyKhoaHoc/LayDanhSachKhoaHoc_PhanTrang?page=${currentPage}&pageSize=8&MaNhom=${groupID}`;
+    return `${_domain}/api/courses/all?page=${currentPage}&limit=${8}`;
 }
 
-export const getCategoryCoursesByPageUrl = (category) => {
-    return `https://elearning0706.cybersoft.edu.vn/api/QuanLyKhoaHoc/LayKhoaHocTheoDanhMuc?maDanhMuc=${category}&MaNhom=${groupID}`;
+export const getCategoryCoursesByPageUrl = (category, currentPage) => {
+    return `${_domain}/api/courses/all?page=${currentPage}&limit=${8}&category=${category}`;
 }
 
-export const getDetail= (CourseId) =>{
-    return `https://elearning0706.cybersoft.edu.vn/api/QuanLyKhoaHoc/LayThongTinKhoaHoc?maKhoaHoc=${CourseId}`;
+export const getDetail= (CoursePath) =>{
+    return `${_domain}/api/courses/${CoursePath}`;
 }
 
-export const getCourse= `https://elearning0706.cybersoft.edu.vn/api/QuanLyKhoaHoc/LayDanhSachKhoaHoc?MaNhom=${groupID}`;
+export const getCourse= `${domain}/QuanLyKhoaHoc/LayDanhSachKhoaHoc?MaNhom=${groupID}`;
 
-export const getPendingCourseUrl = 'https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/LayDanhSachKhoaHocChoXetDuyet';
+export const getPendingCourseUrl = `${domain}/QuanLyNguoiDung/LayDanhSachKhoaHocChoXetDuyet`;
 
-export const getRegisteredCoursesUrl = 'https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/LayDanhSachKhoaHocDaXetDuyet';
+export const registerCourseUrl = `${_domain}/api/courses/register`;
 
-export const registerCourseUrl = 'https://elearning0706.cybersoft.edu.vn/api/QuanLyKhoaHoc/DangKyKhoaHoc';
+export const unRegisterCourseUrl = (id) => `${_domain}/api/courses/unregister/${id}`;
 
-export const unRegisterCourseUrl = 'https://elearning0706.cybersoft.edu.vn/api/QuanLyKhoaHoc/HuyGhiDanh';
+export const createCourseUrl = `${domain}/QuanLyKhoaHoc/ThemKhoaHoc`;
 
-export const createCourseUrl = 'https://elearning0706.cybersoft.edu.vn/api/QuanLyKhoaHoc/ThemKhoaHoc';
-
-export const updateCourseUrl = 'https://elearning0706.cybersoft.edu.vn/api/QuanLyKhoaHoc/CapNhatKhoaHoc';
+export const updateCourseUrl = `${domain}/QuanLyKhoaHoc/CapNhatKhoaHoc`;
 
 export const deleteCourseAPI=(courseName)=>{
-    return `https://elearning0706.cybersoft.edu.vn/api/QuanLyKhoaHoc/XoaKhoaHoc?MaKhoaHoc=${courseName}`
+    return `${domain}/QuanLyKhoaHoc/XoaKhoaHoc?MaKhoaHoc=${courseName}`
 }
 
 // User API
-export const getListUser = `https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=${groupID}`;
 
-export const getUserUrl = 'https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/ThongTinNguoiDung';
+export const getListUser = `${domain}/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=${groupID}`;
 
-export const logInUrl = "https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangNhap";
+export const getUserUrl = (uid) => `${_domain}/api/users/${uid}`;
 
-export const signUpUrl = "https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangKy";
+export const logInUrl = `${_domain}/api/users/login`;
 
-export const updateUserUrl = "https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung";
+export const signUpUrl = `${_domain}/api/users/signup`;
+
+export const updateUserUrl = (uid) => `${_domain}/api/users/${uid}`;
+
+export const updateUserAvatarUrl = (uid) => `${_domain}/api/users/change-avatar/${uid}`;
 
 export const deleteUserAPI=(userName)=>{
-    return `https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${userName}`
+    return `${domain}/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${userName}`
 }
 
 export const searchUserAPI=(keyWord)=>{
-    return `https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=${groupID}&tuKhoa=${keyWord}`
+    return `${domain}/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=${groupID}&tuKhoa=${keyWord}`
 }

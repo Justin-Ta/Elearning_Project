@@ -5,23 +5,25 @@ import { NavLink } from 'react-router-dom';
 import Indicator from '../../../Components/Indicator';
 import { backGround } from '../../../constant/linkSoure'
 import { useHistory } from "react-router-dom";
-import { TOKEN } from '../../../constant/common';
+import { TOKEN, USERID } from '../../../constant/common';
 import { logInAction } from '../../../redux/actions/user';
 
 export default function Login(props) {
   const [loading, setLoading] = useState(false);
   const history = useHistory();
   const onFinish = values => {
-    const { password, userName } = values;
+    const { password, email } = values;
     let data = {
-      "taiKhoan": userName.trim(),
-      "matKhau": password.trim()
+      "email": email.trim(),
+      "password": password.trim()
     };
     setLoading(true);
-    const afterCallAPISuccess = (accessToken) => {
-      localStorage.setItem(TOKEN, accessToken);
+    const afterCallAPISuccess = (data) => {
+      localStorage.setItem(TOKEN, data.token);
+      localStorage.setItem(USERID, data.userId);
       history.push("/");
     };
+
     const afterCallAPIFailed = () => {
       setLoading(false);
       message.error({
@@ -29,6 +31,7 @@ export default function Login(props) {
         icon: <i className="fa fa-exclamation-circle pr-2 text-danger" aria-hidden="true"></i>
       });
     };
+
     logInAction(data, afterCallAPISuccess, afterCallAPIFailed);
   };
 
@@ -56,14 +59,14 @@ export default function Login(props) {
                 onFinish={onFinish}
               >
                 <Form.Item
-                  name="userName"
+                  name="email"
                   rules={[
-                    { required: true, message: "Please input your Username!" },
+                    { required: true, message: "Please input your email!" },
                   ]}
                 >
                   <Input
                     prefix={<UserOutlined className="site-form-item-icon" />}
-                    placeholder="Type your username..."
+                    placeholder="Type your email..."
                   />
                 </Form.Item>
 

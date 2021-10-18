@@ -24,8 +24,7 @@ export const getListUserAction=()=>{
 export const logInAction = (data, afterCallAPISuccess, afterCallAPIFailed) => {
     logInService(data)
         .then(res => {
-            const { accessToken } = res.data;
-            afterCallAPISuccess(accessToken);
+            afterCallAPISuccess(res.data);
         })
         .catch(err => {
             console.log(err);
@@ -40,7 +39,6 @@ export const signUpAction = (userInfo, aftercallAPISuccess, afterCallAPIFailed) 
             return;
         })
         .catch(err => {
-            console.log(err.response.data);
             afterCallAPIFailed(err);
         });
 }

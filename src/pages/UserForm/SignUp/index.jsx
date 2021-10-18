@@ -11,7 +11,7 @@ import {
 } from 'antd';
 import { UserOutlined, LockOutlined, MailOutlined } from '@ant-design/icons';
 import { signUpAction } from '../../../redux/actions/user';
-import { errorResp, errorRespTranslation, groupID } from '../../../constant/common';
+import { errorRespTranslation } from '../../../constant/common';
 
 export default function SignUp(props) {
   const [signUpForm] = Form.useForm();
@@ -19,14 +19,13 @@ export default function SignUp(props) {
 
   const onFinish = values => {
     setLoading(true);
-    const { name, email, password, username } = values;
+    const { firstname, email, password, lastname } = values;
     let userInfo = {
-      "taiKhoan": username,
-      "matKhau": password,
-      "hoTen": name,
-      "soDT": "",
-      "maNhom": groupID,
-      "email": email
+      "firstname": firstname,
+      "password": password,
+      "lastname": lastname,
+      "email": email,
+      "role": "HV",
     }
     //console.log('sent data', userInfo, setLoading);
     const aftercallAPISuccess = () => {
@@ -41,16 +40,15 @@ export default function SignUp(props) {
     const afterCallAPIFailed = (err) => {
       setLoading(false);
       const errResp = err.response.data;
-      const {existedEmail, existedUsername} = errorResp;
       let finalErrMess = 'Sign up unsuccessfully';
-      if (errResp === existedEmail) finalErrMess = errorRespTranslation.existedEmail;
-      else if (errResp === existedUsername) finalErrMess = errorRespTranslation.existedUsername;
+      if (errResp.code === 422) finalErrMess = errorRespTranslation.existedEmail;
       
       return message.error({
         content: finalErrMess,
         icon: <i className="fa fa-exclamation-circle pr-2 text-danger" aria-hidden="true"></i>
       });
     }
+    
     signUpAction(userInfo, aftercallAPISuccess, afterCallAPIFailed);
   };
 
@@ -70,13 +68,13 @@ export default function SignUp(props) {
             <div className="inputSignUp">
               <h2 className="text-center">SIGN UP</h2>
               <Form name="register" form={signUpForm} onFinish={onFinish} scrollToFirstError>
-                {/* UserName */}
+                {/* Firstname */}
                 <Form.Item
-                  name="username"
+                  name="firstname"
                   rules={[
                     {
                       required: true,
-                      message: "Please input your username!",
+                      message: "Please input your first name!",
                       whitespace: true,
                     },
                     {
@@ -87,23 +85,23 @@ export default function SignUp(props) {
                 >
                   <Input
                     prefix={<UserOutlined className="site-form-item-icon" />}
-                    placeholder="Type your username"
+                    placeholder="Type your first name"
                   />
                 </Form.Item>
-                {/*Name  */}
+                {/*Last name  */}
                 <Form.Item
-                  name="name"
+                  name="lastname"
                   rules={[
                     {
                       required: true,
-                      message: "Please input your name!",
+                      message: "Please input your last name!",
                       whitespace: true,
                     },
                   ]}
                 >
                   <Input
                     prefix={<UserOutlined className="site-form-item-icon" />}
-                    placeholder="Type your name"
+                    placeholder="Type your last name"
                   />
                 </Form.Item>
                 <Form.Item

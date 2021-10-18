@@ -4,7 +4,6 @@ import {
     getCategoryCoursesByPageUrl,
     getDetail,
     getPendingCourseUrl,
-    getRegisteredCoursesUrl,
     registerCourseUrl,
     unRegisterCourseUrl,
     getCourse,
@@ -18,8 +17,8 @@ export const getTrendingCoursesService = (currentPage) => {
     return axios.get(getTrendingCoursesByPageUrl(currentPage));
 }
 
-export const getCategoryCoursesService = (category) => {
-    return axios.get(getCategoryCoursesByPageUrl(category));
+export const getCategoryCoursesService = (category, currentPage) => {
+    return axios.get(getCategoryCoursesByPageUrl(category, currentPage));
 }
 
 export const getCourseDetailService = (CourseId) => {
@@ -38,14 +37,6 @@ export const getPendingCourseService = (username) => {
     return axios.post(getPendingCourseUrl, username, {headers});
 }
 
-export const getRegisteredCoursesService = (username) => {
-    const headers = {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${GV_TOKEN}`,
-    }
-    return axios.post(getRegisteredCoursesUrl, username, {headers});
-}
-
 export const registerCourseService = (data) => {
     const headers = {
         'Content-Type': 'application/json',
@@ -54,12 +45,12 @@ export const registerCourseService = (data) => {
     return axios.post(registerCourseUrl, data, {headers});
 }
 
-export const unRegisterCourseService = (data) => {
+export const unRegisterCourseService = (id) => {
     const headers = {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${localStorage.getItem(TOKEN)}`,
     }
-    return axios.post(unRegisterCourseUrl, data, {headers});
+    return axios.post(unRegisterCourseUrl(id), {headers});
 }
 
 export const deleteCourseService=(CourseName)=>{

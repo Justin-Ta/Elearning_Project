@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { getUserUrl, logInUrl, signUpUrl, updateUserUrl, deleteUserAPI, searchUserAPI, getListUser } from '../constant/api';
-import { TOKEN } from '../constant/common';
+import { getUserUrl, logInUrl, signUpUrl, updateUserUrl, deleteUserAPI, searchUserAPI, getListUser, updateUserAvatarUrl } from '../constant/api';
+import { TOKEN, USERID } from '../constant/common';
 
 export const signUpService = (userInfo) => {
     return axios.post(signUpUrl, userInfo);
@@ -25,7 +25,8 @@ export const updateUserService = (data) => {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${localStorage.getItem(TOKEN)}`,
     }
-    return axios.put(updateUserUrl, data, {headers});
+    const uid = localStorage.getItem(USERID);
+    return axios.put(updateUserUrl(uid), data, {headers});
 }
 
 export const getUserService = () => {
@@ -33,7 +34,9 @@ export const getUserService = () => {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${localStorage.getItem(TOKEN)}`,
     }
-    return axios.post(getUserUrl, "", {headers});
+
+    const uid = localStorage.getItem(USERID);
+    return axios({ method: 'get', url: getUserUrl(uid), headers });
   }
 
 export const searchUserService= (keyWord)=>{
@@ -42,4 +45,13 @@ export const searchUserService= (keyWord)=>{
           Authorization: 'Bearer ' + localStorage.getItem(TOKEN)
         }
       })
+}
+
+export const updateAvatarService = (data) => {
+    const headers = {
+        'Content-Type': 'multipart/form-data',
+        'Authorization': `Bearer ${localStorage.getItem(TOKEN)}`,
+    }
+    const uid = localStorage.getItem(USERID);
+    return axios.post(updateUserAvatarUrl(uid), data, {headers});
 }

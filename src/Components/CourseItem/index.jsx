@@ -4,8 +4,8 @@ import RatingStars from '../RatingStars';
 import { NavLink } from 'react-router-dom';
 
 export default function CourseItem(props) {
-    const { tenKhoaHoc, hinhAnh, maKhoaHoc, moTa } = props.course;
-    const url = '/coursedetail/'+ encodeURIComponent(maKhoaHoc);
+    const { title, image, path, author, price } = props.course;
+    const url = '/coursedetail/'+ path;
     return (
         <div className="courseItem">
             <NavLink to={url}>
@@ -13,17 +13,17 @@ export default function CourseItem(props) {
                     hoverable
                     cover={
                         <img className="imgCourse img-fluid"
-                            alt={hinhAnh}
-                            src={hinhAnh}
+                            alt={image}
+                            src={image}
                         />
                     }
                 >
                     <div className="title">
-                        {tenKhoaHoc}
+                        {title}
                     </div>
-                <div className="author">{moTa}</div>
+                <div className="author">{author.join(', ')}</div>
                     <RatingStars score={4.5} />
-                    <div className="price">$12.99
+                    <div className="price">${price || 0}
                         <span>$17.55</span>
                     </div>
                     <span className="bestseller">Bestseller</span>

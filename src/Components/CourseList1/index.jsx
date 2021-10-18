@@ -15,7 +15,6 @@ export default function CourseList1(props) {
         )
     });
 
-    //console.count("CourseList1");
     return (
         <div className="courseList1">
                 <Row gutter={[16, 30]}>

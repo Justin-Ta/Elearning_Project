@@ -1,4 +1,4 @@
-.userProfile{
+.userProfile {
     &_header {
         background-repeat: no-repeat;
         background-size: cover;
@@ -19,12 +19,39 @@
         }
 
         &_editAvartarIcon {
+            display: none;
             position: absolute;
-            display: inline-block;
             cursor: pointer;
-            top: 220px;
-            right: 25px;
-            
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.726);
+
+            &.hidden {
+                display: none!important;
+            }
+        }
+
+        .avatarWrapper {
+            position: relative;
+            width: max-content;
+            &:hover .userProfile_header_editAvartarIcon{
+                display: flex;
+                justify-content: space-evenly;
+                align-items: center;
+            }
+
+            .ant-upload.ant-upload-select-picture-card {
+                margin-right: 0;
+                margin-bottom: 0;
+            }
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
         }
 
         &_username {
@@ -52,7 +79,7 @@
             background-color: rgba(255, 255, 255, 0.722);
             padding: 0 20px;
             position: relative;
-            
+
             @include mediaQuery($md) {
                 margin: auto;
             }
@@ -60,17 +87,19 @@
     }
 
     &_tabs {
-         
         .ant-tabs-nav-wrap {
             border-bottom: 2px solid $brownDark;
-                
         }
 
         .ant-tabs-tab {
             border-top: 2px solid $brownDark !important;
             background-color: $whiteSecondary !important;
 
-            &:hover, &-active, .ant-tabs-tab-btn:hover, .ant-tabs-tab-btn:active, .ant-tabs-tab-btn:focus {
+            &:hover,
+            &-active,
+            .ant-tabs-tab-btn:hover,
+            .ant-tabs-tab-btn:active,
+            .ant-tabs-tab-btn:focus {
                 color: $brownDark;
             }
         }
@@ -79,7 +108,7 @@
             background-color: $brownDark !important;
             font-size: $body2;
 
-            & > .ant-tabs-tab-btn  {
+            & > .ant-tabs-tab-btn {
                 color: $txtWhitePrimary !important;
             }
         }

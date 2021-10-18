@@ -1,23 +1,42 @@
 import { Pagination } from 'antd';
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import CourseList1 from '../CourseList1';
-import { useSelector, useDispatch } from "react-redux";
-import { changeTrendingCoursesAction } from '../../redux/actions/course';
 import Loading from '../Loading';
-import { pageSize } from '../../constant/common';
+import { getTrendingCoursesService } from '../../Axios/course';
 
 export default function TrendingCourses() {
-    //console.count("TrendingCourses");
-    const state = useSelector(state => state.trendingCourses);
-    let isLoading = !state;
-    const dispatch = useDispatch();
+    const [isLoading, setisLoading] = useState(true)
+    const state = useRef({
+        currentPage: 1,
+        count: 0,
+        totalPages: 0,
+        totalCount: 0,
+        coursePerPage: 0,
+        items: []
+    });
 
     useEffect(() => {
-        dispatch(changeTrendingCoursesAction(1));
-    },[dispatch])
+        getCourses(1);
+    }, [])
 
-    const changePage = (currentPage) => {
-        dispatch(changeTrendingCoursesAction(currentPage));
+    const getCourses = (page) => {
+        setisLoading(true)
+        getTrendingCoursesService(page)
+            .then(res => {
+                const { courses, total_page, current_page, total_course } = res.data;
+                state.current = {
+                    currentPage: current_page,
+                    count: courses.length,
+                    totalPages: total_page,
+                    totalCount: total_course,
+                    items: courses,
+                    coursePerPage: Math.ceil(total_course / total_page)
+                }
+            })
+            .catch(err => {
+                state.current.count = 0;
+            })
+            .finally(() => setisLoading(false));
     }
 
     return (
@@ -26,17 +45,26 @@ export default function TrendingCourses() {
                 <h3>The world's largest selection of courses</h3>
                 <div className="popularCourses">Most popular courses</div>
                 {isLoading ?
-                <Loading />
-                :
-                <>
-                    <CourseList1 courses={state.items} />
-                    <Pagination
-                        pageSize={pageSize}
-                        total={state.totalCount}
-                        onChange={changePage}
-                        hideOnSinglePage={true}
-                    />
-                </>}
+                    <Loading />
+                    :
+                    <>
+                        {
+                            state.current.count ? (
+                                <>
+                                    <CourseList1 courses={state.current.items} />
+                                    <Pagination
+                                        pageSize={state.current.coursePerPage}
+                                        total={state.current.totalCount}
+                                        onChange={(currentPage) => getCourses(currentPage)}
+                                        hideOnSinglePage={true}
+                                    />
+                                </>
+                            ) : (
+                                <p>Some thing went wrong</p>
+                            )
+                        }
+                    </>
+                }
             </div>
         </div>
     )
