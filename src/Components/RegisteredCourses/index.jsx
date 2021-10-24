@@ -17,8 +17,8 @@ export default function RegisteredCourses() {
                     <List.Item.Meta
                         avatar={<Tag color={tagColor[key]}>{key+1}</Tag>}
                         title={
-                        <NavLink to={`/coursedetail/${item.maKhoaHoc}`}>
-                            {item.tenKhoaHoc}
+                        <NavLink to={`/coursedetail/${item.path}`}>
+                            {item.title}
                         </NavLink>
                     }
                     />

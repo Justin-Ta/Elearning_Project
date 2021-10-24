@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Input, Form, Button, message } from 'antd';
 import { useDispatch } from 'react-redux';
 import { updateUserInfoAction } from '../../redux/actions/user';
-import { errorResp, errorRespTranslation } from '../../constant/common';
+import { errorResp, errorRespTranslation, roleName } from '../../constant/common';
 
 export default function UserInfo(props) {
     const formRef = React.createRef();
@@ -80,7 +80,7 @@ export default function UserInfo(props) {
                 initialValues={{
                     firstname: firstname.charAt(0).toUpperCase() + firstname.slice(1),
                     lastname: lastname.charAt(0).toUpperCase() + lastname.slice(1),
-                    role: role === "HV" ? "Student" : "Teacher",
+                    role: roleName[role],
                     email,
                     phone
                 }}>

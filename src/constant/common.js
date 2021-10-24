@@ -47,3 +47,9 @@ export const errorRespTranslation = {
 export const message = {
     required: "This field cannot be empty"
 }
+
+export const roleName = {
+    "HV": "Student",
+    "GV": "Teacher",
+    "AD": "Admin"
+}
