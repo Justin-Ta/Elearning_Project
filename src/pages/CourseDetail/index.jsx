@@ -25,7 +25,7 @@ export default function CourseDetail(props) {
         title: "",
         createdAt: "",
         students: "",
-        image, 
+        image: "", 
         desc: "",
         author: [],
         source: [],
@@ -59,7 +59,7 @@ export default function CourseDetail(props) {
             .finally(() => setIsLoadingEntryPape(false))
     }, [path, User.registeredCourses])
 
-    const { title, createdAt, students, image, desc, author, price, rating, totalRates } = state;
+    const { title, createdAt, students, image, desc, author, rating, totalRates } = state;
 
     const register = () => {
         if (!User._id) return history.push("/login");

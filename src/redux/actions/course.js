@@ -11,8 +11,6 @@ import {
     POST_COURSES_IN_CATEGORY,
 } from '../../constant/actionType';
 
-import { message } from 'antd';
-
 export const getCourseInfo = (payload) => { 
     return { 
         type: GET_COURSES,

@@ -4,7 +4,7 @@ import RatingStars from '../RatingStars';
 import { NavLink } from 'react-router-dom';
 
 export default function CourseItem(props) {
-    const { title, image, path, author, price } = props.course;
+    const { title, image, path, author } = props.course;
     const url = '/coursedetail/'+ path;
     return (
         <div className="courseItem">

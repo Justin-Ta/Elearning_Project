@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { ArrowLeftOutlined, VideoCameraOutlined } from '@ant-design/icons';
 import Loading from '../../Components/Loading';
 import { useHistory } from 'react-router-dom';
 import { getCourseDetailService } from '../../Axios/course';
-import { Spin, List } from 'antd';
+import { List } from 'antd';
 
 
 export default function CourseDetail(props) {
     const history = useHistory();
     const path = props.match.params.id;
-    const [isLoading, setIsLoading] = useState(false);
     const [isLoadingEntryPape, setIsLoadingEntryPape] = useState(true);
     const User = useSelector((state) => state.userReducer);
     const [state, setstate] = useState(null);
@@ -25,7 +24,7 @@ export default function CourseDetail(props) {
             })
             .catch(err => { history.push(`/coursedetail/${path}`) })
             .finally(() => setIsLoadingEntryPape(false))
-    }, [path, User.registeredCourses])
+    }, [path, User.registeredCourses, history])
 
     return (
         <div className="courseDetail">
@@ -40,13 +39,11 @@ export default function CourseDetail(props) {
                             </div>
                             <div className="d-flex">
                                 <div className="w-75">
-                                    <Spin spinning={isLoading} >
-                                        <div className="videoWrapper">
-                                            <iframe src={CurrentVideo} />
-                                        </div>
-                                        <br/>
-                                        <h3>{state.title}</h3>
-                                    </Spin>
+                                    <div className="videoWrapper">
+                                        <iframe src={CurrentVideo} title={state.title}/>
+                                    </div>
+                                    <br />
+                                    <h3>{state.title}</h3>
                                 </div>
                                 <div className="pl-5 listWrapper w-25">
                                     <List
@@ -55,7 +52,7 @@ export default function CourseDetail(props) {
                                         itemLayout="horizontal"
                                         dataSource={state.source}
                                         renderItem={(item, i) => (
-                                            <List.Item className={item === CurrentVideo? 'active': ''}  onClick={() => setCurrentVideo(item)}>
+                                            <List.Item className={item === CurrentVideo ? 'active' : ''} onClick={() => setCurrentVideo(item)}>
                                                 <List.Item.Meta
                                                     avatar={<VideoCameraOutlined />}
                                                     title={<span>Session {i + 1}</span>}
