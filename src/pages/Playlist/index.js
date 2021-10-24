@@ -37,15 +37,15 @@ export default function CourseDetail(props) {
                             <div className="d-flex align-items-center mb-3 backBtn" onClick={() => history.push(`/coursedetail/${path}`)}>
                                 <ArrowLeftOutlined className="mr-2" /> <span>Back to course detail</span>
                             </div>
-                            <div className="d-flex">
-                                <div className="w-75">
+                            <div className="d-flex flex-column flex-lg-row">
+                                <div className="col-lg-8 col-12">
                                     <div className="videoWrapper">
                                         <iframe src={CurrentVideo} title={state.title}/>
                                     </div>
                                     <br />
                                     <h3>{state.title}</h3>
                                 </div>
-                                <div className="pl-5 listWrapper w-25">
+                                <div className="pt-3 pt-lg-0 pl-0 pl-lg-5 listWrapper col-lg-4 col-12">
                                     <List
                                         size="large"
                                         bordered
