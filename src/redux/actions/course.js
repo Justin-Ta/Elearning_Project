@@ -1,12 +1,10 @@
-import {  GET_COURSES, POST_COURSE_DETAIL, POST_PENDING_COURSES, POST_REGISTERED_COURSES, REMOVE_PENDING_COURSE, UPDATE_PENDING_COURSES } from '../../constant/actionType';
+import {  GET_COURSES, POST_COURSE_DETAIL, REMOVE_PENDING_COURSE, UPDATE_PENDING_COURSES } from '../../constant/actionType';
 import { 
     getTrendingCoursesService,
     getCategoryCoursesService,
     getCourseDetailService,
-    getPendingCourseService,
     registerCourseService,
     unRegisterCourseService,
-    deleteCourseService,
 } from '../../Axios/course';
 import { 
     POST_TRENDING_COURSES,
@@ -63,19 +61,6 @@ export const getCourseDetailAction = (id, afterCallAPISuccess) => {
     }
 }
 
-export const getPendingCoursesAction = (data) => {
-    return dispatch => {
-        getPendingCourseService(data)
-        .then( res => {
-            dispatch({ 
-                type: POST_PENDING_COURSES,
-                payload: res.data,
-            });
-        })
-        .catch(err => console.log(err));
-    }
-}
-
 export const registerCourseAction = (data, afterDispatch, afterCallAPIFailed) => {
     return dispatch => {
         registerCourseService(data)
@@ -110,14 +95,3 @@ export const unRegisterCourseAction = (id, afterDispatch, afterCallAPIFailed) =>
     }
 }
 
-export const DeleteCourseAction=(CourseName, afterCallAPISuccess)=>{
-    deleteCourseService(CourseName)
-    .then(res=>{
-        message.success(`Delete ${CourseName} success!!!`);
-        afterCallAPISuccess();
-    })
-    .catch(err=>{
-        err.response && console.log(err.response.data);
-        message.error('Delete Error!!!');
-    })
-}

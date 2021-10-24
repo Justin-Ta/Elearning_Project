@@ -20,3 +20,25 @@ export function nonAccentVietnamese(str) {
     str = str.replace(/\u02C6|\u0306|\u031B/g, ""); // Â, Ê, Ă, Ơ, Ư
     return str;
 }
+
+export function debounce(func, wait, immediate) {
+    var timeout;
+  
+    return function executedFunction() {
+      var context = this;
+      var args = arguments;
+          
+      var later = function() {
+        timeout = null;
+        if (!immediate) func.apply(context, args);
+      };
+  
+      var callNow = immediate && !timeout;
+      
+      clearTimeout(timeout);
+  
+      timeout = setTimeout(later, wait);
+      
+      if (callNow) func.apply(context, args);
+    };
+  };

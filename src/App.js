@@ -9,6 +9,7 @@ import ForgotPassword from './pages/UserForm/FogotPassWord';
 import Search from './pages/Search';
 import CategoryDetail from './pages/CategoryDetail';
 import CourseManagement from './pages/Admin/CourseManagement';
+import RegisterManagement from './pages/Admin/RegistrationManagement';
 import UserManagement from './pages/Admin/UserManagement';
 import PageNotFound from './pages/PageNotFound';
 import {HomeTemplate} from './templates/homeTemplate'
@@ -21,6 +22,7 @@ import CourseDetailForAdmin from './pages/Admin/CourseDetailForAdmin';
 import UserProfile from './pages/UserProfile';
 import CourseDetail from './pages/CourseDetail'
 import DashBoard from './pages/Admin/DashBoard';
+import PLaylist from './pages/Playlist';
 
 function App() {
   return (
@@ -32,9 +34,11 @@ function App() {
       <Route exact path='/login' component={Login}/>
       <Route exact path='/forgotpassword' component={ForgotPassword}/>  
       <HomeTemplate exact path='/coursedetail/:id' Component={CourseDetail}/>
+      <HomeTemplate exact path='/playlist/:id' Component={PLaylist}/>
       <HomeTemplate exact path='/search/:key' Component={Search}/>
       <AdminTemplate exact path='/admin' Component={DashBoard}/>
       <AdminTemplate exact path='/admin/coursesmanagement' Component={CourseManagement}/>
+      <AdminTemplate exact path='/admin/registration-management' Component={RegisterManagement}/>
       <AdminTemplate exact path='/admin/courseedit' Component={CourseEdit}/>
       <AdminTemplate exact path='/admin/coursedetail/:id' Component={CourseDetailForAdmin}/>
       <AdminTemplate exact path='/admin/usersmanagement' Component={UserManagement}/>

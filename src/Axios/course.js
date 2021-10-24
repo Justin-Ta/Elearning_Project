@@ -10,8 +10,10 @@ import {
     deleteCourseAPI,
     createCourseUrl,
     updateCourseUrl,
+    rejectRegistrationUrl,
+    approveRegistrationUrl,
 } from '../constant/api';
-import { GV_TOKEN, TOKEN } from '../constant/common';
+import { TOKEN } from '../constant/common';
 
 export const getTrendingCoursesService = (currentPage) => {
     return axios.get(getTrendingCoursesByPageUrl(currentPage));
@@ -22,19 +24,24 @@ export const getCategoryCoursesService = (category, currentPage) => {
 }
 
 export const getCourseDetailService = (CourseId) => {
-    return axios.get(getDetail(CourseId));
+    return axios.post(getDetail(CourseId), undefined, {
+        headers : {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem(TOKEN)}`,
+        }
+    });
 }
 
 export const getCoursesService = () => {
     return axios.get(getCourse);
 }
 
-export const getPendingCourseService = (username) => {
+export const getPendingCourseService = (page) => {
     const headers = {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${GV_TOKEN}`,
+        'Authorization': `Bearer ${localStorage.getItem(TOKEN)}`,
     }
-    return axios.post(getPendingCourseUrl, username, {headers});
+    return axios.post(getPendingCourseUrl(page), "", {headers});
 }
 
 export const registerCourseService = (data) => {
@@ -53,11 +60,35 @@ export const unRegisterCourseService = (id) => {
     return axios.post(unRegisterCourseUrl(id), {headers});
 }
 
-export const deleteCourseService=(CourseName)=>{
-    return axios.delete(deleteCourseAPI(CourseName), {
-        headers: {
-          Authorization: 'Bearer ' + localStorage.getItem('accessToken')
-        }
+export const rejectRegistrationService = (data) => {
+    const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem(TOKEN)}`,
+    }
+    return axios.post( rejectRegistrationUrl, data, {headers});
+}
+
+
+export const approveRegistrationService = (data) => {
+    const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem(TOKEN)}`,
+    }
+    return axios.post( approveRegistrationUrl, data, {headers});
+}
+
+export const deleteCourseService=(data)=>{
+    console.log(data)
+    const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem(TOKEN)}`,
+    }
+
+    return axios({
+        method: 'DELETE',
+        url: deleteCourseAPI,
+        data,
+        headers
       });
 }
 

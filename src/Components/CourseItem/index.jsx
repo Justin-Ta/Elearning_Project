@@ -23,9 +23,11 @@ export default function CourseItem(props) {
                     </div>
                 <div className="author">{author.join(', ')}</div>
                     <RatingStars score={4.5} />
-                    <div className="price">${price || 0}
+                    {/* <div className="price">${price || 0}
                         <span>$17.55</span>
-                    </div>
+                    </div> */}
+                    <br />
+                    <br/>
                     <span className="bestseller">Bestseller</span>
                 </Card>
             </NavLink>

@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { tagColor } from '../../constant/common';
 
 export default function PendingCourses() {
-    const state = useSelector(state => state.userReducer.KhoaHocChoXetDuyet);
+    const state = useSelector(state => state.userReducer.registeredCourses);
     const data = state;
     return (
         <List
@@ -16,8 +16,8 @@ export default function PendingCourses() {
                     <List.Item.Meta
                         avatar={<Tag color={tagColor[key]}>{key +1}</Tag>}
                         title={
-                        <NavLink to={'/coursedetail/'+ encodeURIComponent(item.maKhoaHoc)}>
-                            {item.tenKhoaHoc}
+                        <NavLink to={'/coursedetail/'+ encodeURIComponent(item.path)}>
+                            {item.title}
                         </NavLink>
                     }
                     />

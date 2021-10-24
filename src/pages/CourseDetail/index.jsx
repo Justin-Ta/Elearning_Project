@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { registerCourseAction, unRegisterCourseAction } from '../../redux/actions/course';
 import { Card, Button, message, Rate, Popconfirm } from 'antd';
 import { PlayCircleOutlined } from '@ant-design/icons';
-import CommentList from '../../Components/CommentList';
+// import CommentList from '../../Components/CommentList';
 import Loading from '../../Components/Loading';
 import { useHistory } from 'react-router-dom';
 import { getCourseDetailService } from '../../Axios/course';
@@ -25,7 +25,8 @@ export default function CourseDetail(props) {
         title: "",
         createdAt: "",
         students: "",
-        image, desc: "",
+        image, 
+        desc: "",
         author: [],
         source: [],
         price: 0,
@@ -36,7 +37,6 @@ export default function CourseDetail(props) {
     });
 
     useEffect(() => {
-        setIsLoadingEntryPape(true);
         getCourseDetailService(path)
             .then(res => {
                 let status;
@@ -59,7 +59,7 @@ export default function CourseDetail(props) {
             .finally(() => setIsLoadingEntryPape(false))
     }, [path, User.registeredCourses])
 
-    const { title, createdAt, students, image, desc, author, source, price, rating, totalRates } = state;
+    const { title, createdAt, students, image, desc, author, price, rating, totalRates } = state;
 
     const register = () => {
         if (!User._id) return history.push("/login");
@@ -115,7 +115,7 @@ export default function CourseDetail(props) {
         <>
             {state.status === STATUS.APPROVE &&
                 <div className="courseDetail_header_card_playBg">
-                    <PlayCircleOutlined />
+                    <PlayCircleOutlined onClick={() => history.push(`/playlist/${path}`)}/>
                 </div>}
             <img alt={image} src={image} />
         </>
@@ -145,7 +145,7 @@ export default function CourseDetail(props) {
                                         <Card
                                             cover={cardImg}
                                         >
-                                            <h3>${price}</h3>
+                                            {/* <h3>${price}</h3> */}
                                             <Button type="primary w-100 mb-3" danger
                                                 size={"large"}
                                                 onClick={register}
@@ -175,13 +175,13 @@ export default function CourseDetail(props) {
                         <div className="courseDetail_content">
                             <div className="container">
                                 <div className="courseDetail_content_wrapper">
-                                    <div className="description col-lg-8 col-md-8 col-sm-12 mt-5">
+                                    <div className="description col-lg-8 col-md-8 col-sm-12 my-5">
                                         <h2>Description</h2>
                                         <div dangerouslySetInnerHTML={{ __html: desc }}></div>
                                     </div>
-                                    <div className="studentComment col-lg-8 col-md-8 col-sm-12 mt-5">
+                                    {/* <div className="studentComment col-lg-8 col-md-8 col-sm-12 mt-5">
                                         <CommentList />
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
                         </div>

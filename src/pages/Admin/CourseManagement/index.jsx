@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Table, Button, Input, message, Popconfirm } from 'antd';
 import { deleteCourseService, getCoursesService } from '../../../Axios/course';
@@ -14,14 +14,13 @@ export default function CourseManagement(props) {
     filterCourses: undefined,
   });
   const [isDisablesDel, setIsDisablesDel] = useState(true);
-
+  const chosenCourses = useRef([]);
   useEffect(() => {
     getCoursesService()
       .then(res => {
-        const courses = res.data.map((course, index) => {
+        const courses = res.data.courses.map((course, index) => {
           const newCourse = { ...course };
           newCourse.key = index;
-          newCourse.danhMucKhoaHoc.tenDanhMucKhoaHoc = categoryDisplayNames[course.danhMucKhoaHoc.maDanhMucKhoahoc];
           return newCourse;
         })
         setState({
@@ -47,89 +46,88 @@ export default function CourseManagement(props) {
     });
   }
 
-  const deleteCourse = (id) => {
-    const courseId = encodeURIComponent(id);
-    deleteCourseService(courseId)
+  const deleteCourse = (ids) => {
+    // return console.log(id)
+    deleteCourseService({ "courses": ids })
       .then(res => {
-        message.success(`Delete ${id} successfully!!!`);
-        afterCallAPISuccess();
+        if (res.data.deletedCount !== ids.length) throw new Error("");
+        message.success(`Delete successfully!!!`);
+        const newTotalCourses = [...state.totalCourses];
+        const newState = [...state.filterCourses];
+
+        ids.forEach(id => {
+          const indexInTotal = newTotalCourses.findIndex(course => { return course._id === id });
+          indexInTotal !== -1 && newTotalCourses.splice(indexInTotal, 1);
+
+          const indexInState = newState.findIndex(course => { return course._id === id });
+          indexInTotal !== -1 && newState.splice(indexInState, 1);
+        })
+
+        setState({
+          totalCourses: newTotalCourses,
+          filterCourses: newState,
+        })
       })
       .catch(err => {
         err.response && console.log(err.response.data);
         message.error('Delete Error!!!');
       })
-
-    const afterCallAPISuccess = () => {
-      const newTotalCourses = [...state.totalCourses];
-      const indexInTotal = newTotalCourses.findIndex(course => { return course.maKhoaHoc === id });
-      indexInTotal !== -1 && newTotalCourses.splice(indexInTotal, 1);
-
-      const newState = [...state.filterCourses];
-      const indexInState = newState.findIndex(course => { return course.maKhoaHoc === id });
-      console.log('indexInState', indexInState);
-      indexInTotal !== -1 && newState.splice(indexInState, 1);
-      setState({
-        totalCourses: newTotalCourses,
-        filterCourses: newState,
-      })
-
-      //console.log('state', state);
-    }
   };
 
   const columns = [
     {
       title: 'ID',
-      dataIndex: 'maKhoaHoc',
-      key: 'maKhoaHoc',
+      dataIndex: 'path',
+      key: 'path',
     },
     {
       title: 'Course title',
-      dataIndex: 'tenKhoaHoc',
-      key: 'tenKhoaHoc',
+      dataIndex: 'title',
+      key: 'title',
       render: (text, record) => (
-        <NavLink to={'/admin/coursedetail/' + encodeURIComponent(record.maKhoaHoc)}>
+        <NavLink to={'/admin/coursedetail/' + encodeURIComponent(record.path)}>
           {text}
         </NavLink>
       ),
     },
     {
       title: 'Category',
-      dataIndex: 'danhMucKhoaHoc',
-      key: 'danhMucKhoaHoc',
-      render: (danhMucKhoaHoc) => {
+      dataIndex: 'category',
+      key: 'category',
+      render: (category) => {
         return (
-          <p>{danhMucKhoaHoc.tenDanhMucKhoaHoc}</p>
+          <p>{categoryDisplayNames[category]}</p>
         )
       },
-      filters: Object.values(categoryDisplayNames).map(category => {
+      filters: Object.entries(categoryDisplayNames).map(([category, label]) => {
         return {
-          text: category,
+          text: label,
           value: category,
         }
       }),
-      onFilter: (value, record) => record.danhMucKhoaHoc.tenDanhMucKhoaHoc.indexOf(value) === 0,
+      onFilter: (value, record) => value === record.category,
     },
     {
       title: 'Authors',
-      dataIndex: 'nguoiTao',
-      key: 'nguoiTao',
-      render: (nguoiTao) => {
+      dataIndex: 'author',
+      key: 'author',
+      render: (author) => {
         return (
-          <p>{nguoiTao.hoTen}</p>
+          <p>{author.join(', ')}</p>
         )
       }
     },
     {
       title: 'Create date',
-      dataIndex: 'ngayTao',
-      key: 'ngayTao',
+      dataIndex: 'createdAt',
+      key: 'createdAt',
+      render: (date) => new Date(date).toDateString()
     },
     {
       title: 'Action',
       key: 'action',
       render: (record) => (
-        <Popconfirm placement="bottom" title={"Are you sure to delete this course?"} onConfirm={() => deleteCourse(record.maKhoaHoc)} okText="Yes" cancelText="No">
+        <Popconfirm placement="bottom" title={"Are you sure to delete this course?"} onConfirm={() => deleteCourse([record._id])} okText="Yes" cancelText="No">
           <Button type="primary" danger>
             <i className="fa fa-trash" aria-hidden="true"></i>
           </Button>
@@ -142,9 +140,9 @@ export default function CourseManagement(props) {
 
   const rowSelection = {
     onChange: (selectedRowKeys, selectedRows) => {
-      console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
-      if (selectedRows.length > 1) setIsDisablesDel(false);
-      else setIsDisablesDel(true);
+      if (selectedRows.length < 2) return setIsDisablesDel(true);
+      chosenCourses.current = selectedRows.map(e => e._id);
+      isDisablesDel && setIsDisablesDel(false);
     },
   };
 
@@ -155,7 +153,9 @@ export default function CourseManagement(props) {
         <h1>Course Management</h1>
         <Search placeholder="input search text" onSearch={onSearch} size="large" className="mb-3" />
         <NavLink type="button" className="btn btn-primary mb-3" to='/admin/courseedit'>+ New course</NavLink>
-        <button type="button" className="btn btn-danger mb-3 ml-3" to='/admin/courseedit' disabled={isDisablesDel}>Delete Courses</button>
+        <Popconfirm disabled={isDisablesDel} placement="bottom" title={"Are you sure to delete these courses?"} onConfirm={() => deleteCourse(chosenCourses.current)} okText="Yes" cancelText="No">
+          <button type="button" className="btn btn-danger mb-3 ml-3" to='/admin/courseedit'>Delete Courses</button>
+        </Popconfirm>
       </div>
       <Table columns={columns}
         dataSource={data}

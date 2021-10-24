@@ -36,6 +36,10 @@ export const AdminTemplate = ({ Component, ...restProps }) => {
                   <NavLink to="/admin/coursesmanagement">COURSE</NavLink>
                 </Menu.Item>
 
+                <Menu.Item icon={<BookOutlined />} title="REGISTRATION">
+                  <NavLink to="/admin/registration-management">REGISTRATION</NavLink>
+                </Menu.Item>
+
                 <Menu.Item icon={<UserOutlined />} title="COURSE">
                   <NavLink to="/admin/usersmanagement">USER</NavLink>
                 </Menu.Item>

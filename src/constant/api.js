@@ -18,21 +18,23 @@ export const getDetail= (CoursePath) =>{
     return `${_domain}/api/courses/${CoursePath}`;
 }
 
-export const getCourse= `${domain}/QuanLyKhoaHoc/LayDanhSachKhoaHoc?MaNhom=${groupID}`;
+export const getCourse= `${_domain}/api/courses/all?page=0&limit=0`;
 
-export const getPendingCourseUrl = `${domain}/QuanLyNguoiDung/LayDanhSachKhoaHocChoXetDuyet`;
+export const getPendingCourseUrl = (currentPage) => `${_domain}/api/courses/registrations?page=${currentPage}&limit=${10}`;
 
 export const registerCourseUrl = `${_domain}/api/courses/register`;
 
 export const unRegisterCourseUrl = (id) => `${_domain}/api/courses/unregister/${id}`;
 
-export const createCourseUrl = `${domain}/QuanLyKhoaHoc/ThemKhoaHoc`;
+export const rejectRegistrationUrl = `${_domain}/api/courses/reject`; 
+
+export const approveRegistrationUrl = `${_domain}/api/courses/approve`; 
+
+export const createCourseUrl = `${_domain}/api/courses/create-course`;
 
 export const updateCourseUrl = `${domain}/QuanLyKhoaHoc/CapNhatKhoaHoc`;
 
-export const deleteCourseAPI=(courseName)=>{
-    return `${domain}/QuanLyKhoaHoc/XoaKhoaHoc?MaKhoaHoc=${courseName}`
-}
+export const deleteCourseAPI= `${_domain}/api/courses/delete`;
 
 // User API
 

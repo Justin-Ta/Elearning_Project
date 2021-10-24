@@ -21,10 +21,7 @@ const userReducer = (state = initialState, action) => {
             })
             return newState;
         case DELETE_USERINFO:
-            Object.keys(state).forEach(key => {
-                if (action.payload[key]) return newState[key] = action.payload[key];
-            })
-            return newState;
+            return initialState;
         case UPDATE_USERINFO:
             ['firstname', 'lastname', 'phone'].forEach(key => {
                 if (action.payload[key]) return newState[key] = action.payload[key];

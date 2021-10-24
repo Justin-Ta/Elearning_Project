@@ -6,9 +6,6 @@ import { NavLink, useHistory } from "react-router-dom";
 import ScrollToTop from "../BackToTop";
 import { TOKEN } from "../../constant/common";
 import { deleteInfoAction, postUserInfoAction } from "../../redux/actions/user";
-import {
-  getPendingCoursesAction,
-} from "../../redux/actions/course";
 
 const { Search } = Input;
 
@@ -22,11 +19,6 @@ export default function Header() {
     if (!token) return;
     dispatch(postUserInfoAction());
   }, [dispatch, token]);
-
-  useEffect(() => {
-    if (!token || !state.taiKhoan) return;
-    dispatch(getPendingCoursesAction({ taiKhoan: state.taiKhoan }));
-  }, [dispatch, token, state.taiKhoan]);
 
   const [headerStyle, setHeaderStyle] = useState({});
   const [CollappseIconGroupStyle, setCollappseIconGroupStyle] = useState({});
@@ -75,7 +67,7 @@ export default function Header() {
         <i className="fa fa-home" aria-hidden="true"></i> Go to my profile
       </NavLink>
       <hr />
-      {role === "GV" && (
+      {role === "AD" && (
         <>
           <NavLink to="/admin/coursesmanagement" style={{ cursor: "pointer" }}>
             <i className="fa fa-lock" aria-hidden="true"></i> Go to Admin page

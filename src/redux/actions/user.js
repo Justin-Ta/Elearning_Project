@@ -4,9 +4,10 @@ import { message } from 'antd';
 
 
 
-export const getListUserAction=()=>{
-    return dispatch => {getListUserService()
-        .then(res=>{
+export const getListUserAction = () => {
+    return dispatch => {
+        getListUserService()
+        .then(res => {
             dispatch(
                 {
                     type: GET_USER_LIST,
@@ -14,11 +15,12 @@ export const getListUserAction=()=>{
                 }
             )
         }
-            )
-        .catch(err=>{
+        )
+        .catch(err => {
             console.log(err)
-        } 
-            )}  
+        }
+        )
+    }
 }
 
 export const logInAction = (data, afterCallAPISuccess, afterCallAPIFailed) => {
@@ -29,7 +31,7 @@ export const logInAction = (data, afterCallAPISuccess, afterCallAPIFailed) => {
         .catch(err => {
             console.log(err);
             afterCallAPIFailed();
-        }) 
+        })
 }
 
 export const signUpAction = (userInfo, aftercallAPISuccess, afterCallAPIFailed) => {
@@ -61,54 +63,43 @@ export const postUserInfoAction = () => {
 export const updateUserInfoAction = (userInfo, afterDipatch, afterCallAPIFailed) => {
     return dispatch => {
         updateUserService(userInfo)
-        .then(res => {
-            //console.log(res.data);
-            dispatch({
-                type: UPDATE_USERINFO,
-                payload: res.data,
+            .then(res => {
+                //console.log(res.data);
+                dispatch({
+                    type: UPDATE_USERINFO,
+                    payload: res.data,
+                })
+                afterDipatch();
             })
-            afterDipatch();
-        })
-        .catch(err => {
-            console.log(err);
-            afterCallAPIFailed(err);
-        });
+            .catch(err => {
+                console.log(err);
+                afterCallAPIFailed(err);
+            });
     }
 }
 
 export const deleteInfoAction = () => {
-    const data = {
-        taiKhoan: undefined,
-        matKhau: undefined,
-        hoTen: undefined,
-        soDT: undefined,
-        maLoaiNguoiDung: undefined,
-        maNhom: undefined,
-        email: undefined,
-        KhoaHocChoXetDuyet:[],
-        KhoaHocDaXetDuyet:[],
-    }
     return {
-        type: DELETE_USERINFO,
-        payload: data
+        type: DELETE_USERINFO
     }
 }
 
-export const DeleteUserAction=(UserName)=>{
+export const DeleteUserAction = (UserName) => {
     deleteUserService(UserName)
-    .then(res=>{
-        message.success(`Delete ${UserName} success!!!`);
-    }
+        .then(res => {
+            message.success(`Delete ${UserName} success!!!`);
+        }
         )
-    .catch(err=>{
-        message.error('Delete Error!!!');
-    } 
+        .catch(err => {
+            message.error('Delete Error!!!');
+        }
         )
 }
 
-export const searchUserAction=(keyWord)=>{
-    return dispatch => {searchUserService(keyWord)
-        .then(res=>{
+export const searchUserAction = (keyWord) => {
+    return dispatch => {
+        searchUserService(keyWord)
+        .then(res => {
             dispatch(
                 {
                     type: SEARCH_USER,
@@ -116,10 +107,11 @@ export const searchUserAction=(keyWord)=>{
                 }
             )
         }
-            )
-        .catch(err=>{
+        )
+        .catch(err => {
             console.log(err)
-        } 
-            )}
-    
+        }
+        )
+    }
+
 }

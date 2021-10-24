@@ -1,6 +1,7 @@
 // common
 @import '../src/sass/theme.scss';
 @import './sass/mixin.scss';
+@import './App.scss';
 
 // Components
 @import './Components/Header/styling.scss';
@@ -21,6 +22,7 @@
 @import './pages/Admin/CourseEdit/styling.scss';
 @import './sass/Components/courseItemSmall/styling.scss';
 @import './sass/Components/courseItemLarge/styling.scss';
+@import './pages/Playlist/styling.scss';
 
 // Pages
 @import './pages/PageNotFound/styling.scss';

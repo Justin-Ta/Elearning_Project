@@ -12,11 +12,6 @@ export default function Login(props) {
   const [loading, setLoading] = useState(false);
   const history = useHistory();
   const onFinish = values => {
-    const { password, email } = values;
-    let data = {
-      "email": email.trim(),
-      "password": password.trim()
-    };
     setLoading(true);
     const afterCallAPISuccess = (data) => {
       localStorage.setItem(TOKEN, data.token);
@@ -32,7 +27,7 @@ export default function Login(props) {
       });
     };
 
-    logInAction(data, afterCallAPISuccess, afterCallAPIFailed);
+    logInAction(values, afterCallAPISuccess, afterCallAPIFailed);
   };
 
   return (

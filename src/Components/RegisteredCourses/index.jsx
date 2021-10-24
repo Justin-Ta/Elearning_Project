@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import { tagColor } from '../../constant/common';
 
 export default function RegisteredCourses() {
-    const state = useSelector(state => state.userReducer.KhoaHocDaXetDuyet);
+    const state = useSelector(state => state.userReducer.courses);
     const data = state;
 
     return (
