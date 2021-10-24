@@ -20,7 +20,7 @@ export default function CourseDetail(props) {
             .then(res => {
                 if (!res.data.source) history.push(`/coursedetail/${path}`)
                 setstate(res.data);
-                setCurrentVideo(res.data.source[0]);
+                setCurrentVideo(res.data.source[0].video);
             })
             .catch(err => { history.push(`/coursedetail/${path}`) })
             .finally(() => setIsLoadingEntryPape(false))
@@ -52,10 +52,11 @@ export default function CourseDetail(props) {
                                         itemLayout="horizontal"
                                         dataSource={state.source}
                                         renderItem={(item, i) => (
-                                            <List.Item className={item === CurrentVideo ? 'active' : ''} onClick={() => setCurrentVideo(item)}>
+                                            <List.Item className={item.video === CurrentVideo ? 'active' : ''} onClick={() => setCurrentVideo(item.video)}>
                                                 <List.Item.Meta
                                                     avatar={<VideoCameraOutlined />}
                                                     title={<span>Session {i + 1}</span>}
+                                                    description={item.title}
                                                 />
                                             </List.Item>
                                         )}

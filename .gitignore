@@ -6,6 +6,7 @@
 /.firebase/hosting.YnVpbGQ.cache
 /build
 /firebase.json
+/firebase-debug.log
 /.firebaserc
 /.vs/slnx.sqlite-journal
 /.vs/VSWorkspaceState.json
