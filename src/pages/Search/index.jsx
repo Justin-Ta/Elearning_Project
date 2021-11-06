@@ -2,14 +2,14 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import { getCoursesService } from '../../Axios/course';
+import { getCoursesService, searchCourseService } from '../../Axios/course';
 import CourseList2 from '../../Components/CourseList2';
 import Loading from '../../Components/Loading';
 import { nonAccentVietnamese } from '../../share/functions';
 
 export default function Search() {
     const history = useHistory()
-    let { key } = useParams();    
+    let { key } = useParams();
     const [state, setstate] = useState({
         isLoading: true,
         result: [],
@@ -17,21 +17,26 @@ export default function Search() {
     useEffect(() => {
         if (key === undefined) return history.push("/*");
         const keyword = nonAccentVietnamese(key);
-        getCoursesService()
-        .then(res => {
-            let courses = res.data;
-            const result = [];
-            courses.forEach(course => {
-                if (nonAccentVietnamese(course.tenKhoaHoc).includes(keyword)) result.push(course);
-            });
-            setstate({
-                isLoading: false,
-                result: result,
-            });
+        setstate({
+            isLoading: true,
+            result: [],
         })
-        .catch(err => {
-            console.log(err);
-        })
+        searchCourseService({ keyword })
+            .then(res => {
+                console.log(res.data)
+                let courses = res.data.courses;
+                setstate({
+                    isLoading: false,
+                    result: courses,
+                });
+            })
+            .catch(err => {
+                console.log(err);
+                setstate({
+                    isLoading: false,
+                    result: [],
+                })
+            })
     }, [key, history])
     //console.log('result', state.result);
     return (

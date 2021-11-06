@@ -99,14 +99,14 @@ export default function Header() {
             <span className="searchCollappseIcon pr-3">
               <SearchOutlined onClick={showSearch} onBlur={onBlur} />
             </span>
-            {!state.firstname && (
+            {!state._id && (
               <span className="moreCollappseIcon pr-3">
                 <MoreOutlined onClick={showMore} onBlur={onBlur} />
               </span>
             )}
           </div>
           <div>
-            {state.firstname ? (
+            {state._id ? (
               <>
                 <Dropdown
                   overlay={menu}

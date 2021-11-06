@@ -36,6 +36,8 @@ export const updateCourseUrl = `${domain}/QuanLyKhoaHoc/CapNhatKhoaHoc`;
 
 export const deleteCourseAPI= `${_domain}/api/courses/delete`;
 
+export const searchCourseUrl= `${_domain}/api/courses/search`;
+
 // User API
 
 export const getListUser = `${domain}/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=${groupID}`;

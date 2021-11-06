@@ -12,6 +12,7 @@ import {
     updateCourseUrl,
     rejectRegistrationUrl,
     approveRegistrationUrl,
+    searchCourseUrl,
 } from '../constant/api';
 import { TOKEN } from '../constant/common';
 
@@ -106,4 +107,8 @@ export const updateCourseService = (data) => {
         'Authorization': `Bearer ${localStorage.getItem(TOKEN)}`,
     }
     return axios.put(updateCourseUrl, data, {headers});
+}
+
+export const searchCourseService = (data) => {
+    return axios.post(searchCourseUrl, data);
 }

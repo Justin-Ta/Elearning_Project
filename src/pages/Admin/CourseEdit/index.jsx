@@ -31,9 +31,11 @@ export default function CourseEdit() {
 
   const onSubmit = (values) => {
     setLoading(true);
-    createCourseService(values)
+    createCourseService({
+      ...values,
+      path: encodeURIComponent(values.title)
+    })
       .then(res => {
-        //console.log(res);
         message.success(`Add course success!!!`);
       })
       .catch(err => {
@@ -91,13 +93,28 @@ export default function CourseEdit() {
             >
               {(fields, { add, remove }) => {
                 return (<>
-                  {fields.map((field, index) => (
-                    <Form.Item
-                      required={false}
-                      key={field.key}
-                    >
+                  {fields.map(({ key, name, fieldKey, ...restField }) => (
+                    <div key={key} className="mt-2">
                       <Form.Item
-                        {...field}
+                        {...restField}
+                        name={[name, 'title']}
+                        fieldKey={[fieldKey, 'title']}
+                        validateTrigger={['onChange', 'onBlur']}
+                        rules={[
+                          {
+                            required: true,
+                            whitespace: true,
+                            message: "Please input title of video or delete this field.",
+                          },
+                        ]}
+                        noStyle
+                      >
+                        <Input placeholder="Video title" className="w-25 mr-3" />
+                      </Form.Item>
+                      <Form.Item
+                        {...restField}
+                        name={[name, 'video']}
+                        fieldKey={[fieldKey, 'video']}
                         validateTrigger={['onChange', 'onBlur']}
                         rules={[
                           {
@@ -108,15 +125,15 @@ export default function CourseEdit() {
                         ]}
                         noStyle
                       >
-                        <Input placeholder="video source" style={{ maxWidth: '300px' }} />
+                        <Input placeholder="video source" className="w-25"/>
                       </Form.Item>
                       {fields.length > 1 ? (
                         <MinusCircleOutlined
                           className="dynamic-delete-button ml-2"
-                          onClick={() => remove(field.name)}
+                          onClick={() => remove(name)}
                         />
                       ) : null}
-                    </Form.Item>
+                    </div>
                   ))}
                   <Form.Item>
                     <Button
@@ -124,6 +141,7 @@ export default function CourseEdit() {
                       onClick={() => add()}
                       style={{ maxWidth: '300px' }}
                       icon={<PlusOutlined />}
+                      className="mt-3"
                     >
                       Add video source
                     </Button>
